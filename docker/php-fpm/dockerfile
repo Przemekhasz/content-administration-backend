@@ -1,0 +1,41 @@
+FROM php:8.1.25-fpm
+
+WORKDIR /var/www/cms-manager-api
+
+RUN apt-get update; \
+    apt-get -y --no-install-recommends install \
+        git \
+        libzip-dev \
+        libxml2-dev \
+        zip \
+        vim \
+        librabbitmq-dev \
+        libssh-dev \
+        && rm -rf /var/lib/apt/lists/*
+
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    postgresql-client \
+    postgresql-server-dev-all \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install AMQP extension using PECL
+RUN pecl install amqp
+
+# Enable AMQP extension
+RUN docker-php-ext-enable amqp
+
+RUN docker-php-ext-install pdo_pgsql && \
+    docker-php-ext-install zip && \
+    docker-php-ext-install xml &&\
+    docker-php-ext-install intl
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+COPY ./script/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+EXPOSE 21
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+

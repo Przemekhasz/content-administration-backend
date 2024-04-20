@@ -1,0 +1,21 @@
+FROM nginx:alpine
+
+WORKDIR /var/www/cms-manager-api
+
+ARG USERNAME="username"
+ARG PASSWORD="password"
+
+RUN apk add --no-cache apache2-utils
+
+RUN mkdir -p /etc/nginx/auth
+RUN htpasswd -bc /etc/nginx/auth/.htpasswd $USERNAME $PASSWORD
+
+RUN mkdir -p /var/run/php && chown nginx:nginx /var/run/php
+
+RUN mkdir -p /etc/nginx/ssl
+COPY ssl/cert.pem /etc/nginx/ssl/cert.crt
+COPY ssl/key.pem /etc/nginx/ssl/key.key
+
+EXPOSE 80 443
+
+CMD ["nginx", "-g", "daemon off;"]
