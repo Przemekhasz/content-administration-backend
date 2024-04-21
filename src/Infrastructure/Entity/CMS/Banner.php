@@ -27,4 +27,9 @@ class Banner
     {
         $this->image = $image;
     }
+
+    public function __toString(): string
+    {
+        return $this->image;
+    }
 }

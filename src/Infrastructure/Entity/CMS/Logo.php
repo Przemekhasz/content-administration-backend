@@ -28,4 +28,9 @@ class Logo
     {
         $this->logo = $logo;
     }
+
+    public function __toString(): string
+    {
+        return $this->logo;
+    }
 }

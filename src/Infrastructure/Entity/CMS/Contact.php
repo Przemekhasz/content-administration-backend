@@ -81,4 +81,9 @@ class Contact
     {
         $this->isAnswered = $isAnswered;
     }
+
+    public function __toString(): string
+    {
+        return $this->email;
+    }
 }

@@ -39,4 +39,9 @@ class SocialMediaLinkIcons
     {
         $this->url = $url;
     }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }

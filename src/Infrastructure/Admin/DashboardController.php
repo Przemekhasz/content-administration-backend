@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Admin;
 
 use App\Infrastructure\Entity\CMS\Banner;
+use App\Infrastructure\Entity\CMS\Page;
 use App\Infrastructure\Entity\CMS\Contact;
 use App\Infrastructure\Entity\CMS\Logo;
 use App\Infrastructure\Entity\CMS\PageHeader;
@@ -43,6 +44,7 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Ikony mediów społecznościowych', 'fa fa-share-alt', SocialMediaLinkIcons::class),
                 MenuItem::linkToCrud('Menu', 'fa fa-list-ul', \App\Infrastructure\Entity\CMS\MenuItem::class),
                 MenuItem::linkToCrud('Nagłówki', 'fa fa-heading', PageHeader::class),
+                MenuItem::linkToCrud('Page', 'fa-solid fa-file-alt', Page::class),
             ]);
 
         yield MenuItem::subMenu('Komunikacja', 'fa-solid fa-envelope')
@@ -57,9 +59,9 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             // the name visible to end users
-            ->setTitle('CMS')
+            ->setTitle('Page')
             // you can include HTML contents too (e.g. to link to an image)
-            ->setTitle('CMS Admin<span class="text-small">Panel.</span>')
+            ->setTitle('Page Admin<span class="text-small">Panel.</span>')
 
             // by default EasyAdmin displays a black square as its default favicon;
             // use this method to display a custom favicon: the given path is passed

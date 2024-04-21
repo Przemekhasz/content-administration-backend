@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Entity\CMS;
 
+use App\Infrastructure\Repository\MenuItemRepository;
 use App\Infrastructure\Traits\UUIDTrait;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -37,5 +38,10 @@ class MenuItem
     public function setUrl(string $url): void
     {
         $this->url = $url;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

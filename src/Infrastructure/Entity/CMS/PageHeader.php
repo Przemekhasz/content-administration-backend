@@ -39,4 +39,9 @@ class PageHeader
     {
         $this->isMain = $isMain;
     }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }
