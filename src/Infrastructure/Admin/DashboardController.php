@@ -3,12 +3,17 @@
 namespace App\Infrastructure\Admin;
 
 use App\Infrastructure\Entity\CMS\Banner;
-use App\Infrastructure\Entity\CMS\Page;
+use App\Infrastructure\Entity\CMS\Category;
 use App\Infrastructure\Entity\CMS\Contact;
+use App\Infrastructure\Entity\CMS\Gallery;
+use App\Infrastructure\Entity\CMS\Image;
 use App\Infrastructure\Entity\CMS\Logo;
+use App\Infrastructure\Entity\CMS\Page;
 use App\Infrastructure\Entity\CMS\PageHeader;
 use App\Infrastructure\Entity\CMS\SocialMediaLinkIcons;
+use App\Infrastructure\Entity\CMS\Tag;
 use App\Infrastructure\Entity\User\User;
+use App\Infrastructure\Repository\CMS\ContactRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Locale;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -18,20 +23,32 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+    public function __construct(
+        private readonly ContactRepository $contactRepository,
+    )
+    {
+    }
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
         parent::index();
 
-        return $this->render('admin/dashboard/dashboard.html.twig');
+        $newMessagesCount = $this->contactRepository->countUnansweredContacts();
+
+        return $this->render('admin/dashboard/dashboard.html.twig', [
+            'new_messages_count' => $newMessagesCount
+        ]);
     }
-
-
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Kokpit', 'fa fa-home');
 
+        yield MenuItem::section('Kreator stron');
+        yield MenuItem::linkToCrud('Strony', 'fa-solid fa-file-alt', Page::class);
+
+        yield MenuItem::section('Zarządzanie');
         yield MenuItem::subMenu('Zarządzanie użytkownikami', 'fa-solid fa-users')
             ->setSubItems([
                 MenuItem::linkToCrud('Użytkownik', 'fa-solid fa-user', User::class),
@@ -39,29 +56,34 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::subMenu('Zarządzanie treścią', 'fa-solid fa-edit')
             ->setSubItems([
+                MenuItem::section('Baner & logo'),
                 MenuItem::linkToCrud('Banery', 'fa-solid fa-image', Banner::class),
                 MenuItem::linkToCrud('Logo', 'fa-solid fa-flag', Logo::class),
-                MenuItem::linkToCrud('Ikony mediów społecznościowych', 'fa fa-share-alt', SocialMediaLinkIcons::class),
+                MenuItem::section('Zawartość strony'),
+                MenuItem::linkToCrud('Media społecznościowe', 'fa fa-share-alt', SocialMediaLinkIcons::class),
                 MenuItem::linkToCrud('Menu', 'fa fa-list-ul', \App\Infrastructure\Entity\CMS\MenuItem::class),
                 MenuItem::linkToCrud('Nagłówki', 'fa fa-heading', PageHeader::class),
-                MenuItem::linkToCrud('Page', 'fa-solid fa-file-alt', Page::class),
+                MenuItem::section('Galeria i obrazy'),
+                MenuItem::linkToCrud('Galerie', 'fas fa-images', Gallery::class),
+                MenuItem::linkToCrud('Zdjęcia', 'fas fa-image', Image::class),
+                MenuItem::linkToCrud('Kategorie', 'fas fa-tags', Category::class),
+                MenuItem::linkToCrud('Tagi', 'fas fa-tag', Tag::class)
             ]);
 
-        yield MenuItem::subMenu('Komunikacja', 'fa-solid fa-envelope')
+        yield MenuItem::section('Administracja');
+        yield MenuItem::subMenu('Zapytania', 'fa-solid fa-envelope')
             ->setSubItems([
                 MenuItem::linkToCrud('Wiadomości', 'fa-solid fa-message', Contact::class),
             ]);
     }
 
-
-
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
             // the name visible to end users
-            ->setTitle('Page')
+            ->setTitle('Administracja zawartością witryn')
             // you can include HTML contents too (e.g. to link to an image)
-            ->setTitle('Page Admin<span class="text-small">Panel.</span>')
+            ->setTitle('Administracja <span class="text-small">zawartością witryn.</span>')
 
             // by default EasyAdmin displays a black square as its default favicon;
             // use this method to display a custom favicon: the given path is passed

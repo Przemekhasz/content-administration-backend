@@ -2,8 +2,6 @@
 
 namespace App\Infrastructure\RepositoryManager\Interface;
 
-use Doctrine\ORM\QueryBuilder;
-
 interface CommandRepositoryInterface
 {
     public function getName(): string;

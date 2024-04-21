@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Entity\CMS;
 
-use App\Infrastructure\Repository\SocialMediaLinkIconsRepository;
+use App\Infrastructure\Repository\CMS\SocialMediaLinkIconsRepository;
 use App\Infrastructure\Traits\UUIDTrait;
 use Doctrine\ORM\Mapping as ORM;
 

@@ -3,6 +3,11 @@ AdminControllers:
     resource: ../../src/Infrastructure/Admin
     type: attribute
 
+Controllers:
+    prefix: /api
+    resource: ../../src/Infrastructure/Controller
+    type: attribute
+
 kernel:
     resource: ../../src/kernel.php
     type: attribute

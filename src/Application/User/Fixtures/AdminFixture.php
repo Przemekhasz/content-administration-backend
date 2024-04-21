@@ -4,7 +4,7 @@ namespace App\Application\User\Fixtures;
 
 use App\Domain\User\Enum\UserRoles;
 use App\Infrastructure\Entity\User\User;
-use App\Infrastructure\Repository\UserRepository;
+use App\Infrastructure\Repository\User\UserRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Psr\Log\LoggerInterface;

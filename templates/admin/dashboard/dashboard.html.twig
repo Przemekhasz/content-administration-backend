@@ -1,87 +1,57 @@
 {% extends '@!EasyAdmin/layout.html.twig' %}
 
+{% block page_title 'Dashboard' %}
+
 {% block main %}
+<div class="dashboard-banner" style="background: url('https://images.unsplash.com/photo-1703880258785-45bc4492a912?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center; background-size: cover; color: white; text-align: center; padding: 50px 0;">
+    <h1>Witaj w Panelu Administracyjnym!</h1>
+    <p>Personalizuj i zarządzaj swoją stroną efektywnie.</p>
+</div>
+
 <div class="container py-5">
     <div class="row">
-        <!-- Introduction Section -->
         <div class="col-md-12">
             <div class="jumbotron">
-                <h1 class="display-4">Welcome to Your CMS Dashboard!</h1>
-                <p class="lead">This powerful tool is designed to simplify the management of your websites. Below you'll find a quick guide to get started and links to more detailed resources.</p>
+                <h1 class="display-4">Cześć! 😎</h1>
+                <p class="lead">Stworzysz tutaj zawartość dla swojej strony, portfolio, wizytówki czego tylko zechcesz!</p>
                 <hr class="my-4">
-                <p>Explore the sections below for a step-by-step introduction to managing your content effectively.</p>
+                <p>
+                    Warstwa frontendowa jest osobnym modułem dostępnym pod tym adresem <a href="https://github.com/Przemekhasz">Przemekhasz</a>
+                    W tym miejscu możesz manipulować zawartością strony, tj.:
+                    <ul>
+                        <li>wgrać logo</li>
+                        <li>wgrać banery</li>
+                        <li>stworzyć menu</li>
+                        <li>kreować opisy</li>
+                        <li>otrzymywać wiadomości z formularza kontaktowego i na nie odpowiadać</li>
+                        <li>stworzyć galerie zdjęć z opisami, tagami oraz kategoriami</li>
+                        <li>stworzyć zbiór projektów/realizacji czegoś, czym się chcesz pochwalić i atrakcyjnie to przedstawić</li>
+                    </ul>
+                </p>
+                {% if new_messages_count > 0 %}
+                    <a href="?crudAction=index&crudControllerFqcn=App%5CInfrastructure%5CAdmin%5CContact%5CContactCrudController">
+                        <div class="alert alert-warning" role="alert">
+                            <b>{{ new_messages_count }}</b> Nowych wiadomości
+                        </div>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>
 
-    <!-- Quick Start Guide -->
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Create a New Page</h4>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Learn how to add a new page to your website quickly.</p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
-                        View Steps
-                    </button>
-                    <div class="collapse" id="collapseExample1">
-                        <div class="card card-body">
-                            1. Go to the Pages section.<br>
-                            2. Click 'Add New'.<br>
-                            3. Fill in the details and publish.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Edit Content</h4>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Modify existing content on any of your pages.</p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
-                        View Steps
-                    </button>
-                    <div class="collapse" id="collapseExample2">
-                        <div class="card card-body">
-                            1. Navigate to the page you want to edit.<br>
-                            2. Click the 'Edit' button.<br>
-                            3. Make changes and save.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Manage Users</h4>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Add or remove users who can edit the site.</p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
-                        View Steps
-                    </button>
-                    <div class="collapse" id="collapseExample3">
-                        <div class="card card-body">
-                            1. Go to the Users section.<br>
-                            2. Add a new user or modify existing permissions.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Additional Resources -->
-    <div class="row">
+    <div class="row mt-5">
         <div class="col text-center">
-            <a href="https://example.com/docs" class="btn btn-secondary">Full Documentation</a>
-            <a href="https://example.com/videos" class="btn btn-secondary">Video Tutorials</a>
+            <h6 class="display-8">Jeśli nie wiesz jak zacząć nie przejmuj sie, kliknij w ponizszy przycisk, znajduje sie tam plik pdf, w ktorym poprowadze krok po kroku</h6>
+            <a href="https://example.com/docs" class="btn btn-primary">Dokumentacja</a>
+        </div>
+    </div>
+
+    <!-- Author and Feedback Section -->
+    <div class="row mt-5">
+        <div class="col-md-12 text-center">
+            <h2>Autor i Kontakt</h2>
+            <p>Twórcą i opiekunem tej aplikacji jest <strong>Przemysław Tarapacki Przemekhasz</strong>. Wszelkie uwagi, pytania oraz pomysły na rozwój można zgłaszać na poniższy adres email:</p>
+            <a href="mailto:tarapackiprzemek45@gmail.com">tarapackiprzemek45@gmail.com</a>
         </div>
     </div>
 </div>

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Entity\User;
 
-use App\Infrastructure\Repository\UserRepository;
+use App\Infrastructure\Repository\User\UserRepository;
 use App\Infrastructure\RepositoryManager\Interface\EntityInterface;
 use App\Infrastructure\Traits\CreatedAtTrait;
 use App\Infrastructure\Traits\UpdatedAtTrait;
