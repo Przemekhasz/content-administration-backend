@@ -12,13 +12,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 trait UpdatedAtTrait
 {
-    #[Groups('default')]
     #[Column(type: 'datetime', nullable: false, options: ['default' => 'CURRENT_TIMESTAMP'])]
     private DateTimeInterface $updatedAt;
 
     /**
      * Set updatedAt
-     * @ORM\PreUpdate
      */
     public function setUpdatedAt(): void
     {

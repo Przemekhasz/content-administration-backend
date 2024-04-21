@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Admin;
 
 use App\Infrastructure\Entity\CMS\Banner;
+use App\Infrastructure\Entity\CMS\Contact;
 use App\Infrastructure\Entity\CMS\Logo;
 use App\Infrastructure\Entity\User\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -33,10 +34,11 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Użytkownik', 'fa-solid fa-user', User::class),
             ]);
 
-        yield MenuItem::subMenu('CMS', 'fa-solid fa-cogs')
+        yield MenuItem::subMenu('WEB', 'fa-solid fa-cogs')
             ->setSubItems([
                 MenuItem::linkToCrud('Baner', 'fa-solid fa-image', Banner::class),
                 MenuItem::linkToCrud('Logo', 'fa-solid fa-flag', Logo::class),
+                MenuItem::linkToCrud('Wiadomości', 'fa-solid fa-message', Contact::class),
             ]);
     }
 
@@ -45,7 +47,7 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             // the name visible to end users
-            ->setTitle('ACME Corp.')
+            ->setTitle('CMS')
             // you can include HTML contents too (e.g. to link to an image)
             ->setTitle('CMS Admin<span class="text-small">Panel.</span>')
 
