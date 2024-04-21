@@ -39,7 +39,6 @@ class ContactCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield FormField::addPanel('Wiadomości')->setIcon('fa fa-envelope');
-        yield IdField::new('id')->hideOnForm();
         yield EmailField::new('email', 'Email');
         yield TextField::new('topic', 'Temat');
         yield TextareaField::new('content', 'Zawartość')

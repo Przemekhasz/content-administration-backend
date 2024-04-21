@@ -31,21 +31,26 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Kokpit', 'fa fa-home');
 
-        yield MenuItem::subMenu('Użytkownicy', 'fa-solid fa-users')
+        yield MenuItem::subMenu('Zarządzanie użytkownikami', 'fa-solid fa-users')
             ->setSubItems([
                 MenuItem::linkToCrud('Użytkownik', 'fa-solid fa-user', User::class),
             ]);
 
-        yield MenuItem::subMenu('WEB', 'fa-solid fa-cogs')
+        yield MenuItem::subMenu('Zarządzanie treścią', 'fa-solid fa-edit')
             ->setSubItems([
-                MenuItem::linkToCrud('Baner', 'fa-solid fa-image', Banner::class),
+                MenuItem::linkToCrud('Banery', 'fa-solid fa-image', Banner::class),
                 MenuItem::linkToCrud('Logo', 'fa-solid fa-flag', Logo::class),
+                MenuItem::linkToCrud('Ikony mediów społecznościowych', 'fa fa-share-alt', SocialMediaLinkIcons::class),
+                MenuItem::linkToCrud('Menu', 'fa fa-list-ul', \App\Infrastructure\Entity\CMS\MenuItem::class),
+                MenuItem::linkToCrud('Nagłówki', 'fa fa-heading', PageHeader::class),
+            ]);
+
+        yield MenuItem::subMenu('Komunikacja', 'fa-solid fa-envelope')
+            ->setSubItems([
                 MenuItem::linkToCrud('Wiadomości', 'fa-solid fa-message', Contact::class),
-                MenuItem::linkToCrud('Social Media Icons', 'fa fa-share-alt', SocialMediaLinkIcons::class),
-                MenuItem::linkToCrud('Menu', 'fa fa-list', \App\Infrastructure\Entity\CMS\MenuItem::class),
-                MenuItem::linkToCrud('Nagłówek', 'fa fa-heading', PageHeader::class),
             ]);
     }
+
 
 
     public function configureDashboard(): Dashboard
