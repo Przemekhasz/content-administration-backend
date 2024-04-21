@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Admin;
 
 use App\Infrastructure\Entity\CMS\Banner;
+use App\Infrastructure\Entity\CMS\Logo;
 use App\Infrastructure\Entity\User\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Locale;
@@ -25,17 +26,20 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-
         yield MenuItem::linkToDashboard('Kokpit', 'fa fa-home');
+
         yield MenuItem::subMenu('Użytkownicy', 'fa-solid fa-users')
             ->setSubItems([
-                MenuItem::linkToCrud('Użytkownik', 'fa-solid fa-users', User::class),
+                MenuItem::linkToCrud('Użytkownik', 'fa-solid fa-user', User::class),
             ]);
-        yield MenuItem::subMenu('Banery', 'fa-solid fa-users')
+
+        yield MenuItem::subMenu('CMS', 'fa-solid fa-cogs')
             ->setSubItems([
-                MenuItem::linkToCrud('Baner', 'fa-solid fa-users', Banner::class),
+                MenuItem::linkToCrud('Baner', 'fa-solid fa-image', Banner::class),
+                MenuItem::linkToCrud('Logo', 'fa-solid fa-flag', Logo::class),
             ]);
     }
+
 
     public function configureDashboard(): Dashboard
     {

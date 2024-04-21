@@ -1,27 +1,28 @@
 <?php
 
-namespace App\Infrastructure\Admin\Banner;
+namespace App\Infrastructure\Admin\Logo;
 
 use App\Infrastructure\Entity\CMS\Banner;
+use App\Infrastructure\Entity\CMS\Logo;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
-class BannerCrudController extends AbstractCrudController
+class LogoCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Banner::class;
+        return Logo::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
-        yield FormField::addTab('Baner');
+        yield FormField::addTab('Logo');
         yield IdField::new('id')->hideOnForm();
 
-        yield ImageField::new('image', 'Obrazek')
+        yield ImageField::new('logo', 'Logo')
             ->setBasePath('uploads/img')
             ->setUploadDir('public/uploads/img')
             ->setUploadedFileNamePattern('[randomhash].[extension]')
