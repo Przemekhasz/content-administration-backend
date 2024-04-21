@@ -1,0 +1,8 @@
+AdminControllers:
+    prefix: /
+    resource: ../../src/Infrastructure/Admin
+    type: attribute
+
+kernel:
+    resource: ../../src/kernel.php
+    type: attribute

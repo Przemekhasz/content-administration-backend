@@ -1,0 +1,88 @@
+{% extends '@!EasyAdmin/layout.html.twig' %}
+
+{% block main %}
+<div class="container py-5">
+    <div class="row">
+        <!-- Introduction Section -->
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1 class="display-4">Welcome to Your CMS Dashboard!</h1>
+                <p class="lead">This powerful tool is designed to simplify the management of your websites. Below you'll find a quick guide to get started and links to more detailed resources.</p>
+                <hr class="my-4">
+                <p>Explore the sections below for a step-by-step introduction to managing your content effectively.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Start Guide -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Create a New Page</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Learn how to add a new page to your website quickly.</p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                        View Steps
+                    </button>
+                    <div class="collapse" id="collapseExample1">
+                        <div class="card card-body">
+                            1. Go to the Pages section.<br>
+                            2. Click 'Add New'.<br>
+                            3. Fill in the details and publish.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Edit Content</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Modify existing content on any of your pages.</p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                        View Steps
+                    </button>
+                    <div class="collapse" id="collapseExample2">
+                        <div class="card card-body">
+                            1. Navigate to the page you want to edit.<br>
+                            2. Click the 'Edit' button.<br>
+                            3. Make changes and save.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Manage Users</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Add or remove users who can edit the site.</p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+                        View Steps
+                    </button>
+                    <div class="collapse" id="collapseExample3">
+                        <div class="card card-body">
+                            1. Go to the Users section.<br>
+                            2. Add a new user or modify existing permissions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Resources -->
+    <div class="row">
+        <div class="col text-center">
+            <a href="https://example.com/docs" class="btn btn-secondary">Full Documentation</a>
+            <a href="https://example.com/videos" class="btn btn-secondary">Video Tutorials</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
