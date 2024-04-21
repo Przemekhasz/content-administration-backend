@@ -7,7 +7,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -44,11 +43,5 @@ class ContactCrudController extends AbstractCrudController
         yield TextareaField::new('replyMsg', 'Odpowiedź')
             ->hideOnIndex();
         yield BooleanField::new('isAnswered', 'Odpowiedziano?');
-        yield DateTimeField::new('createdAt', 'Data Utworzenia')->setFormTypeOptions([
-            'disabled' => true
-        ])->onlyOnDetail();
-        yield DateTimeField::new('updatedAt', 'Data aktualizacji')->setFormTypeOptions([
-            'disabled' => true
-        ])->onlyOnDetail();
     }
 }

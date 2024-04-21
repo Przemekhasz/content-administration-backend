@@ -33,13 +33,13 @@ class PageCrudController extends AbstractCrudController
         yield AssociationField::new('logo', 'Logotyp')
             ->setHelp('Przypisz logotyp do strony.')
             ->setFormTypeOptions(['by_reference' => true]);
-        yield AssociationField::new('menuItem', 'Element menu')
+        yield AssociationField::new('menuItems', 'Elementy menu')
             ->setHelp('Przypisz element menu do strony.')
             ->setFormTypeOptions(['by_reference' => true]);
-        yield AssociationField::new('pageHeader', 'Nagłówek')
+        yield AssociationField::new('pageHeaders', 'Nagłówki')
             ->setHelp('Przypisz nagłówek do strony.')
             ->setFormTypeOptions(['by_reference' => true]);
-        yield AssociationField::new('socialMediaIcon', 'Ikona mediów społecznościowych')
+        yield AssociationField::new('socialMediaIcons', 'Ikony mediów społecznościowych')
             ->setHelp('Przypisz ikonę mediów społecznościowych do strony.')
             ->setFormTypeOptions(['by_reference' => true]);
     }
