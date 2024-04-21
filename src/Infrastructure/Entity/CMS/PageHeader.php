@@ -14,7 +14,9 @@ class PageHeader
 
     public function __construct(
         #[ORM\Column]
-        private string $name = ""
+        private string $name = "",
+        #[ORM\Column(nullable: true)]
+        private bool $isMain = false,
     ) {
     }
 
@@ -26,5 +28,15 @@ class PageHeader
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function isMain(): bool
+    {
+        return $this->isMain;
+    }
+
+    public function setIsMain(bool $isMain): void
+    {
+        $this->isMain = $isMain;
     }
 }

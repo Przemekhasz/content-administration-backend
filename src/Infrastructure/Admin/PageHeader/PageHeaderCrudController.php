@@ -4,6 +4,7 @@ namespace App\Infrastructure\Admin\PageHeader;
 
 use App\Infrastructure\Entity\CMS\PageHeader;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -19,5 +20,6 @@ class PageHeaderCrudController extends AbstractCrudController
         yield FormField::addTab('Nagłówek');
 
         yield TextField::new('name', 'Nazwa nagłówka');
+        yield BooleanField::new('isMain', 'Główny?');
     }
 }
