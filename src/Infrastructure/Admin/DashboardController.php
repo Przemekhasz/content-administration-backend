@@ -5,6 +5,8 @@ namespace App\Infrastructure\Admin;
 use App\Infrastructure\Entity\CMS\Banner;
 use App\Infrastructure\Entity\CMS\Contact;
 use App\Infrastructure\Entity\CMS\Logo;
+use App\Infrastructure\Entity\CMS\PageHeader;
+use App\Infrastructure\Entity\CMS\SocialMediaLinkIcons;
 use App\Infrastructure\Entity\User\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Locale;
@@ -39,6 +41,9 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Baner', 'fa-solid fa-image', Banner::class),
                 MenuItem::linkToCrud('Logo', 'fa-solid fa-flag', Logo::class),
                 MenuItem::linkToCrud('Wiadomości', 'fa-solid fa-message', Contact::class),
+                MenuItem::linkToCrud('Social Media Icons', 'fa fa-share-alt', SocialMediaLinkIcons::class),
+                MenuItem::linkToCrud('Menu', 'fa fa-list', \App\Infrastructure\Entity\CMS\MenuItem::class),
+                MenuItem::linkToCrud('Nagłówek', 'fa fa-heading', PageHeader::class),
             ]);
     }
 
