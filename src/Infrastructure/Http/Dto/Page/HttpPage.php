@@ -31,6 +31,10 @@ class HttpPage
         private ?Collection $pageHeaders = null,
         #[OA\Property]
         private ?Collection $socialMediaLinkIcons = null,
+        #[OA\Property]
+        private ?Collection $galleries = null,
+        #[OA\Property]
+        private ?Collection $projects = null,
     ) {}
 
     public function getId(): ?string
@@ -121,5 +125,25 @@ class HttpPage
     public function setSocialMediaLinkIcons(?Collection $socialMediaLinkIcons): void
     {
         $this->socialMediaLinkIcons = $socialMediaLinkIcons;
+    }
+
+    public function getGalleries(): ?Collection
+    {
+        return $this->galleries;
+    }
+
+    public function setGalleries(?Collection $galleries): void
+    {
+        $this->galleries = $galleries;
+    }
+
+    public function getProjects(): ?Collection
+    {
+        return $this->projects;
+    }
+
+    public function setProjects(?Collection $projects): void
+    {
+        $this->projects = $projects;
     }
 }

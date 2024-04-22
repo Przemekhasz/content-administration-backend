@@ -10,6 +10,8 @@ use App\Infrastructure\Entity\Page\Image;
 use App\Infrastructure\Entity\Page\Logo;
 use App\Infrastructure\Entity\Page\Page;
 use App\Infrastructure\Entity\Page\PageHeader;
+use App\Infrastructure\Entity\Page\Project;
+use App\Infrastructure\Entity\Page\ProjectDetail;
 use App\Infrastructure\Entity\Page\SocialMediaLinkIcons;
 use App\Infrastructure\Entity\Page\Tag;
 use App\Infrastructure\Entity\User\User;
@@ -59,13 +61,21 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::section('Baner & logo'),
                 MenuItem::linkToCrud('Banery', 'fa-solid fa-image', Banner::class),
                 MenuItem::linkToCrud('Logo', 'fa-solid fa-flag', Logo::class),
+
                 MenuItem::section('Zawartość strony'),
                 MenuItem::linkToCrud('Media społecznościowe', 'fa fa-share-alt', SocialMediaLinkIcons::class),
                 MenuItem::linkToCrud('Menu', 'fa fa-list-ul', \App\Infrastructure\Entity\Page\MenuItem::class),
                 MenuItem::linkToCrud('Nagłówki', 'fa fa-heading', PageHeader::class),
-                MenuItem::section('Galeria i obrazy'),
+
+                MenuItem::section('Galeria zdjęć'),
                 MenuItem::linkToCrud('Galerie', 'fas fa-images', Gallery::class),
                 MenuItem::linkToCrud('Zdjęcia', 'fas fa-image', Image::class),
+
+                MenuItem::section('Projekty'),
+                MenuItem::linkToCrud('Projects', 'fas fa-list', Project::class),
+                MenuItem::linkToCrud('Project Details', 'fas fa-list', ProjectDetail::class),
+
+                MenuItem::section('Tagi i kategorie'),
                 MenuItem::linkToCrud('Kategorie', 'fas fa-tags', Category::class),
                 MenuItem::linkToCrud('Tagi', 'fas fa-tag', Tag::class)
             ]);

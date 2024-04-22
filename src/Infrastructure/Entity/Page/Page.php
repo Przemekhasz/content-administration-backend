@@ -49,9 +49,19 @@ class Page
     )]
     private Collection $socialMediaIcons;
 
+    #[ORM\ManyToMany(targetEntity: Gallery::class, cascade: ["persist"])]
+    #[ORM\JoinTable(name: "page_galleries")]
+    private Collection $galleries;
+
+    #[ORM\ManyToMany(targetEntity: Project::class, cascade: ["persist"])]
+    #[ORM\JoinTable(name: "page_projects")]
+    private Collection $projects;
+
     public function __construct() {
         $this->pageHeaders = new ArrayCollection();
         $this->socialMediaIcons = new ArrayCollection();
+        $this->galleries = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getPageName(): string
@@ -141,5 +151,33 @@ class Page
         if ($this->socialMediaIcons->removeElement($socialMediaLinkIcons)) {
             // additional clean-up logic if necessary
         }
+    }
+
+    public function getGalleries(): Collection {
+        return $this->galleries;
+    }
+
+    public function addGallery(Gallery $gallery): void {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries[] = $gallery;
+        }
+    }
+
+    public function removeGallery(Gallery $gallery): void {
+        $this->galleries->removeElement($gallery);
+    }
+
+    public function getProjects(): Collection {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): void {
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+        }
+    }
+
+    public function removeProject(Project $project): void {
+        $this->projects->removeElement($project);
     }
 }

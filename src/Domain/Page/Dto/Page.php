@@ -16,6 +16,8 @@ class Page
         private ?MenuItem $menuItem = null,
         private ?Collection $pageHeaders = null,
         private ?Collection $socialMediaLinkIcons = null,
+        private ?Collection $galleries = null,
+        private ?Collection $projects = null,
     ) {}
 
     public function getId(): ?string
@@ -106,5 +108,25 @@ class Page
     public function setSocialMediaLinkIcons(?Collection $socialMediaLinkIcons): void
     {
         $this->socialMediaLinkIcons = $socialMediaLinkIcons;
+    }
+
+    public function getGalleries(): ?Collection
+    {
+        return $this->galleries;
+    }
+
+    public function setGalleries(?Collection $galleries): void
+    {
+        $this->galleries = $galleries;
+    }
+
+    public function getProjects(): ?Collection
+    {
+        return $this->projects;
+    }
+
+    public function setProjects(?Collection $projects): void
+    {
+        $this->projects = $projects;
     }
 }
