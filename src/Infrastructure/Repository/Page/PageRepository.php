@@ -34,4 +34,15 @@ class PageRepository extends AbstractRepositoryManager
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function findProjectsByPageId(string $pageId)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->select('p', 'pr')
+            ->leftJoin('p.projects', 'pr')
+            ->where('p.id = :id')
+            ->setParameter('id', $pageId);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }
