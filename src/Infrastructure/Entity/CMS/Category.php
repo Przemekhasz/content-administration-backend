@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Entity\CMS;
 
-use App\Infrastructure\Repository\CMS\CategoryRepository;
+use App\Infrastructure\Repository\Page\CategoryRepository;
 use App\Infrastructure\Traits\UUIDTrait;
 use Doctrine\ORM\Mapping as ORM;
 

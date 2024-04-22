@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Repository\CMS;
+namespace App\Infrastructure\Repository\Page;
 
 use App\Infrastructure\Entity\CMS\Tag;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;

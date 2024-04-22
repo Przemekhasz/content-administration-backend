@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Entity\CMS;
 
-use App\Infrastructure\Repository\CMS\PageHeaderRepository;
+use App\Infrastructure\Repository\Page\PageHeaderRepository;
 use App\Infrastructure\Traits\UUIDTrait;
 use Doctrine\ORM\Mapping as ORM;
 

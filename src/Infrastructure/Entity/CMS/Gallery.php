@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Entity\CMS;
 
-use App\Infrastructure\Repository\CMS\GalleryRepository;
+use App\Infrastructure\Repository\Page\GalleryRepository;
 use App\Infrastructure\Traits\UUIDTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

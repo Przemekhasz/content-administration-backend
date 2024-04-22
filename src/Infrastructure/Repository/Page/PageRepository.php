@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Repository\CMS;
+namespace App\Infrastructure\Repository\Page;
 
 use App\Infrastructure\Entity\CMS\Page;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
@@ -29,5 +29,24 @@ class PageRepository extends AbstractRepositoryManager
             ->addSelect('smi');
 
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_OBJECT);
+    }
+
+    public function findPageByIdWithDetails(string $id): ?Page
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->leftJoin('p.banner', 'b')
+            ->addSelect('b')
+            ->leftJoin('p.logo', 'l')
+            ->addSelect('l')
+            ->leftJoin('p.menuItems', 'mi')
+            ->addSelect('mi')
+            ->leftJoin('p.pageHeaders', 'ph')
+            ->addSelect('ph')
+            ->leftJoin('p.socialMediaIcons', 'smi')
+            ->addSelect('smi')
+            ->where('p.id = :id')
+            ->setParameter('id', $id);
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
 }
