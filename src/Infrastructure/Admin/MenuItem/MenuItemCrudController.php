@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Admin\MenuItem;
 
-use App\Infrastructure\Entity\CMS\MenuItem;
+use App\Infrastructure\Entity\Page\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;

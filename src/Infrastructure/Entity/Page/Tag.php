@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Infrastructure\Entity\CMS;
+namespace App\Infrastructure\Entity\Page;
 
-use App\Infrastructure\Repository\Page\CategoryRepository;
+use App\Infrastructure\Repository\Page\TagRepository;
 use App\Infrastructure\Traits\UUIDTrait;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoryRepository::class)]
-#[ORM\Table(name: 'category')]
-class Category
+#[ORM\Entity(repositoryClass: TagRepository::class)]
+#[ORM\Table(name: 'tag')]
+class Tag
 {
     use UUIDTrait;
 

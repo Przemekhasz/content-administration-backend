@@ -4,7 +4,9 @@ namespace App\Infrastructure\Controller\Page;
 
 use App\Application\Page\PageAdapter;
 use App\Infrastructure\Api\API;
+use App\Infrastructure\Http\Dto\Page\HttpPage;
 use Exception;
+use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,6 +22,11 @@ class PageController extends AbstractController
     }
 
     #[Route(path: '/page/{id}', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Returns page by id',
+//        content: new OA\JsonContent(ref: new Model(type: HttpPage::class))
+    )]
     public function pages(string $id): JsonResponse
     {
         try {

@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Repository\Page;
 
-use App\Infrastructure\Entity\CMS\Category;
+use App\Infrastructure\Entity\Page\Category;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
 use Doctrine\ORM\EntityManagerInterface;
 

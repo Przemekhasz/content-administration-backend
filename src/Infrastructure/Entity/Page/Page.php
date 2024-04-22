@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Entity\CMS;
+namespace App\Infrastructure\Entity\Page;
 
 use App\Infrastructure\Repository\Page\PageRepository;
 use App\Infrastructure\Traits\UUIDTrait;
@@ -23,37 +23,33 @@ class Page
     #[ORM\Column(type: "boolean")]
     private bool $isPublic = true;
 
-    #[ORM\OneToOne(targetEntity: Banner::class, cascade: ["persist", "remove"])]
+    #[ORM\ManyToOne(targetEntity: Banner::class, cascade: ["persist", "remove"])]
     #[ORM\JoinColumn(name: "banner_id", referencedColumnName: "id", nullable: true)]
     private ?Banner $banner = null;
 
-    #[ORM\OneToOne(targetEntity: Logo::class, cascade: ["persist", "remove"])]
+    #[ORM\ManyToOne(targetEntity: Logo::class, cascade: ["persist", "remove"])]
     #[ORM\JoinColumn(name: "logo_id", referencedColumnName: "id", nullable: true)]
     private ?Logo $logo = null;
 
-    #[ORM\ManyToMany(targetEntity: MenuItem::class, cascade: ["persist", "remove"])]
-    #[ORM\JoinTable(name: "page_menu_items",
-        joinColumns: [new ORM\JoinColumn(name: "page_id", referencedColumnName: "id")],
-        inverseJoinColumns: [new ORM\JoinColumn(name: "menu_item_id", referencedColumnName: "id", unique: true)]
-    )]
-    private Collection $menuItems;
+    #[ORM\OneToOne(targetEntity: MenuItem::class, cascade: ["persist", "remove"])]
+    #[ORM\JoinColumn(name: "menu_item_id", referencedColumnName: "id", nullable: true)]
+    private ?MenuItem $menuItem = null;
 
     #[ORM\ManyToMany(targetEntity: PageHeader::class, cascade: ["persist", "remove"])]
     #[ORM\JoinTable(name: "page_page_headers",
         joinColumns: [new ORM\JoinColumn(name: "page_id", referencedColumnName: "id")],
-        inverseJoinColumns: [new ORM\JoinColumn(name: "page_header_id", referencedColumnName: "id", unique: true)]
+        inverseJoinColumns: [new ORM\JoinColumn(name: "page_header_id", referencedColumnName: "id", unique: false)]
     )]
     private Collection $pageHeaders;
 
     #[ORM\ManyToMany(targetEntity: SocialMediaLinkIcons::class, cascade: ["persist", "remove"])]
     #[ORM\JoinTable(name: "page_social_media_icons",
         joinColumns: [new ORM\JoinColumn(name: "page_id", referencedColumnName: "id")],
-        inverseJoinColumns: [new ORM\JoinColumn(name: "social_media_icon_id", referencedColumnName: "id", unique: true)]
+        inverseJoinColumns: [new ORM\JoinColumn(name: "social_media_icon_id", referencedColumnName: "id", unique: false)]
     )]
     private Collection $socialMediaIcons;
 
     public function __construct() {
-        $this->menuItems = new ArrayCollection();
         $this->pageHeaders = new ArrayCollection();
         $this->socialMediaIcons = new ArrayCollection();
     }
@@ -88,13 +84,11 @@ class Page
         $this->isPublic = $isPublic;
     }
 
-    public function getBanner(): ?Banner
-    {
+    public function getBanner(): ?Banner {
         return $this->banner;
     }
 
-    public function setBanner(?Banner $banner): void
-    {
+    public function setBanner(?Banner $banner): void {
         $this->banner = $banner;
     }
 
@@ -108,20 +102,12 @@ class Page
         $this->logo = $logo;
     }
 
-    public function getMenuItems(): Collection {
-        return $this->menuItems;
+    public function getMenuItem(): ?MenuItem {
+        return $this->menuItem;
     }
 
-    public function addMenuItem(MenuItem $menuItem): void {
-        if (!$this->menuItems->contains($menuItem)) {
-            $this->menuItems[] = $menuItem;
-        }
-    }
-
-    public function removeMenuItem(MenuItem $menuItem): void {
-        if ($this->menuItems->removeElement($menuItem)) {
-            // additional clean-up logic if necessary
-        }
+    public function setMenuItem(?MenuItem $menuItem): void {
+        $this->menuItem = $menuItem;
     }
 
 

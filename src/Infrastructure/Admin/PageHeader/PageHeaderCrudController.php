@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Admin\PageHeader;
 
-use App\Infrastructure\Entity\CMS\PageHeader;
+use App\Infrastructure\Entity\Page\PageHeader;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;

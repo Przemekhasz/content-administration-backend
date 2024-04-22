@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Admin\Logo;
 
-use App\Infrastructure\Entity\CMS\Banner;
-use App\Infrastructure\Entity\CMS\Logo;
+use App\Infrastructure\Entity\Page\Banner;
+use App\Infrastructure\Entity\Page\Logo;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -22,6 +22,7 @@ class LogoCrudController extends AbstractCrudController
         yield FormField::addTab('Logo');
         yield IdField::new('id')->hideOnForm();
 
+        yield TextField::new('name', 'Nazwa');
         yield ImageField::new('logo', 'Logo')
             ->setBasePath('uploads/img')
             ->setUploadDir('public/uploads/img')

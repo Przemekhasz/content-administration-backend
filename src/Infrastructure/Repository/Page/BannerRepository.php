@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Repository\Page;
 
-use App\Infrastructure\Entity\CMS\Banner;
+use App\Infrastructure\Entity\Page\Banner;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
 use Doctrine\ORM\EntityManagerInterface;
 

@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Type;
 
-use App\Infrastructure\Entity\CMS\Image;
+use App\Infrastructure\Entity\Page\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

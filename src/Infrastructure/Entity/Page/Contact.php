@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Entity\CMS;
+namespace App\Infrastructure\Entity\Page;
 
 use App\Infrastructure\Repository\Page\ContactRepository;
 use App\Infrastructure\Traits\CreatedAtTrait;

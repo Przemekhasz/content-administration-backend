@@ -2,16 +2,16 @@
 
 namespace App\Infrastructure\Admin;
 
-use App\Infrastructure\Entity\CMS\Banner;
-use App\Infrastructure\Entity\CMS\Category;
-use App\Infrastructure\Entity\CMS\Contact;
-use App\Infrastructure\Entity\CMS\Gallery;
-use App\Infrastructure\Entity\CMS\Image;
-use App\Infrastructure\Entity\CMS\Logo;
-use App\Infrastructure\Entity\CMS\Page;
-use App\Infrastructure\Entity\CMS\PageHeader;
-use App\Infrastructure\Entity\CMS\SocialMediaLinkIcons;
-use App\Infrastructure\Entity\CMS\Tag;
+use App\Infrastructure\Entity\Page\Banner;
+use App\Infrastructure\Entity\Page\Category;
+use App\Infrastructure\Entity\Page\Contact;
+use App\Infrastructure\Entity\Page\Gallery;
+use App\Infrastructure\Entity\Page\Image;
+use App\Infrastructure\Entity\Page\Logo;
+use App\Infrastructure\Entity\Page\Page;
+use App\Infrastructure\Entity\Page\PageHeader;
+use App\Infrastructure\Entity\Page\SocialMediaLinkIcons;
+use App\Infrastructure\Entity\Page\Tag;
 use App\Infrastructure\Entity\User\User;
 use App\Infrastructure\Repository\Page\ContactRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -61,7 +61,7 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Logo', 'fa-solid fa-flag', Logo::class),
                 MenuItem::section('Zawartość strony'),
                 MenuItem::linkToCrud('Media społecznościowe', 'fa fa-share-alt', SocialMediaLinkIcons::class),
-                MenuItem::linkToCrud('Menu', 'fa fa-list-ul', \App\Infrastructure\Entity\CMS\MenuItem::class),
+                MenuItem::linkToCrud('Menu', 'fa fa-list-ul', \App\Infrastructure\Entity\Page\MenuItem::class),
                 MenuItem::linkToCrud('Nagłówki', 'fa fa-heading', PageHeader::class),
                 MenuItem::section('Galeria i obrazy'),
                 MenuItem::linkToCrud('Galerie', 'fas fa-images', Gallery::class),

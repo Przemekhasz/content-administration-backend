@@ -10,6 +10,8 @@ class HttpBanner
         #[OA\Property]
         private ?string    $id = null,
         #[OA\Property]
+        private ?string $name = null,
+        #[OA\Property]
         private ?string $image = null,
     ) {}
 
@@ -26,6 +28,16 @@ class HttpBanner
     public function getImage(): ?string
     {
         return $this->image;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
     }
 
     public function setImage(?string $image): void
