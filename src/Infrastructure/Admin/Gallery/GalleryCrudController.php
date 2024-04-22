@@ -21,7 +21,6 @@ class GalleryCrudController extends AbstractCrudController
             TextField::new('name', 'Gallery Name'),
             CollectionField::new('images', 'Images')
                 ->setEntryType(ImageType::class)
-                ->onlyOnForms()
         ];
     }
 }
