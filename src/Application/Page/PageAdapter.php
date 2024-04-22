@@ -28,4 +28,9 @@ class PageAdapter
     {
         return $this->pageFacade->findGalleryByPageId($id)->getGalleries();
     }
+
+    public function findProjectsByPageId(string $id): ?Collection
+    {
+        return $this->pageFacade->findProjectsByPageId($id)->getProjects();
+    }
 }

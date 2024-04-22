@@ -20,4 +20,9 @@ class PageService
     {
         return $this->pageStorage->findGalleryByPageId($id);
     }
+
+    public function findProjectsByPageId(string $id): Page
+    {
+        return $this->pageStorage->findProjectsByPageId($id);
+    }
 }
