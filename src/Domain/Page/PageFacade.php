@@ -15,4 +15,9 @@ class PageFacade
     {
         return $this->pageService->findById($id);
     }
+
+    public function findGalleryByPageId(string $id): Page
+    {
+        return $this->pageService->findGalleryByPageId($id);
+    }
 }

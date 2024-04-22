@@ -22,4 +22,16 @@ class PageRepository extends AbstractRepositoryManager
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function findPageWithGalleries(string $pageId)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->select('p', 'g', 'i')
+            ->leftJoin('p.galleries', 'g')
+            ->leftJoin('g.images', 'i')
+            ->where('p.id = :id')
+            ->setParameter('id', $pageId);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }
