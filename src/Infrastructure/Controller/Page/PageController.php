@@ -4,9 +4,7 @@ namespace App\Infrastructure\Controller\Page;
 
 use App\Application\Page\PageAdapter;
 use App\Infrastructure\Api\API;
-use App\Infrastructure\Http\Dto\Page\HttpPage;
 use Exception;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -31,6 +29,21 @@ class PageController extends AbstractController
     {
         try {
             $dto = $this->adapter->findById($id);
+            return $this->api->json($dto);
+        } catch (Exception $exception) {
+            return $this->api->throwException($exception);
+        }
+    }
+
+    #[Route(path: '/page/{id}/gallery', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Returns page by id',
+    )]
+    public function gallery(string $id): JsonResponse
+    {
+        try {
+            $dto = $this->adapter->findGalleryByPageId($id);
             return $this->api->json($dto);
         } catch (Exception $exception) {
             return $this->api->throwException($exception);

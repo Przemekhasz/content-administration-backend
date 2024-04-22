@@ -17,38 +17,6 @@ class PageFactory
 
     public function createFromEntity(PageEntity $entity): Page
     {
-        $galleriesData = new ArrayCollection();
-        foreach ($entity->getGalleries() as $gallery) {
-            $imagesData = new ArrayCollection();
-            foreach ($gallery->getImages() as $image) {
-                $imagesData->add([
-                    'description' => $image->getDescription(),
-                    'imagePath' => sprintf('%s/%s', $this->imgUploadsDir, $image->getImagePath()),
-                ]);
-            }
-            $galleriesData->add([
-                'name' => $gallery->getName(),
-                'images' => $imagesData,
-            ]);
-        }
-
-        $projectsData = new ArrayCollection();
-        foreach ($entity->getProjects() as $project) {
-            $detailsData = new ArrayCollection();
-            foreach ($project->getDetails() as $detail) {
-                $detailsData->add([
-                    'description' => $detail->getDescription(),
-                    'imagePath' => sprintf('%s/%s', $this->imgUploadsDir, $detail->getImagePath()),
-                ]);
-            }
-            $projectsData->add([
-                'title' => $project->getTitle(),
-                'mainDescription' => $project->getMainDescription(),
-                'author' => $project->getAuthor(),
-                'details' => $detailsData,
-            ]);
-        }
-
         return new Page(
             id: $entity->getId(),
             pageName: $entity->getPageName(),
@@ -71,8 +39,8 @@ class PageFactory
             ),
             pageHeaders: $entity->getPageHeaders(),
             socialMediaLinkIcons: $entity->getSocialMediaIcons(),
-            galleries: $galleriesData,
-            projects: $projectsData
+            galleries: $entity->getGalleries(),
+            projects: $entity->getProjects()
         );
     }
 }
