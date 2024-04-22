@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Admin\Tag;
 
-use App\Infrastructure\Entity\CMS\Tag;
+use App\Infrastructure\Entity\Page\Tag;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 

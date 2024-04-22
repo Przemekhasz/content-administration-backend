@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Admin\Banner;
 
-use App\Infrastructure\Entity\CMS\Banner;
+use App\Infrastructure\Entity\Page\Banner;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -21,6 +21,7 @@ class BannerCrudController extends AbstractCrudController
         yield FormField::addTab('Baner');
         yield IdField::new('id')->hideOnForm();
 
+        yield TextField::new('name', 'Nazwa');
         yield ImageField::new('image', 'Obrazek')
             ->setBasePath('uploads/img')
             ->setUploadDir('public/uploads/img')

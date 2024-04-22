@@ -10,6 +10,8 @@ class HttpLogo
         #[OA\Property]
         private ?string    $id = null,
         #[OA\Property]
+        private ?string $name = null,
+        #[OA\Property]
         private ?string $logo = null,
     ) {}
 
@@ -21,6 +23,16 @@ class HttpLogo
     public function setId(?string $id): void
     {
         $this->id = $id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
     }
 
     public function setLogo(?string $logo): void

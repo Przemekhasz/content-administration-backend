@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Admin\Page;
 
-use App\Infrastructure\Entity\CMS\Page;
+use App\Infrastructure\Entity\Page\Page;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -33,8 +33,8 @@ class PageCrudController extends AbstractCrudController
         yield AssociationField::new('logo', 'Logotyp')
             ->setHelp('Przypisz logotyp do strony.')
             ->setFormTypeOptions(['by_reference' => true]);
-        yield AssociationField::new('menuItems', 'Elementy menu')
-            ->setHelp('Przypisz element menu do strony.')
+        yield AssociationField::new('menuItem', 'Element menu')
+            ->setHelp('Przypisz menu do tej strony.')
             ->setFormTypeOptions(['by_reference' => true]);
         yield AssociationField::new('pageHeaders', 'Nagłówki')
             ->setHelp('Przypisz nagłówek do strony.')

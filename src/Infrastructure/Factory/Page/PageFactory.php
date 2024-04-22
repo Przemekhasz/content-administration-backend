@@ -4,12 +4,15 @@ namespace App\Infrastructure\Factory\Page;
 
 use App\Domain\Page\Dto\Banner;
 use App\Domain\Page\Dto\Logo;
+use App\Domain\Page\Dto\MenuItem;
 use App\Domain\Page\Dto\Page;
-use App\Infrastructure\Entity\CMS\Page as PageEntity;
+use App\Infrastructure\Entity\Page\Page as PageEntity;
 
 class PageFactory
 {
-    public function __construct() {}
+    public function __construct(
+        private readonly ?string $imgUploadsDir,
+    ) {}
 
     public function createFromEntity(PageEntity $entity): Page
     {
@@ -20,13 +23,19 @@ class PageFactory
             isPublic: $entity->isPublic(),
             banner: new Banner(
                 id: $entity->getBanner()->getId(),
-                image: $entity->getBanner()->getImage(),
+                name: $entity->getBanner()->getName(),
+                image: sprintf('%s/%s', $this->imgUploadsDir, $entity->getBanner()->getImage()),
             ),
             logo: new Logo(
                 id: $entity->getLogo()->getId(),
-                logo: $entity->getLogo()->getLogo(),
+                name: $entity->getLogo()->getName(),
+                logo: sprintf('%s/%s', $this->imgUploadsDir, $entity->getLogo()->getLogo()),
             ),
-            menuItems: $entity->getMenuItems(),
+            menuItem: new MenuItem(
+                id: $entity->getMenuItem()->getId(),
+                name: $entity->getMenuItem()->getName(),
+                url: $entity->getMenuItem()->getUrl(),
+            ),
             pageHeaders: $entity->getPageHeaders(),
             socialMediaLinkIcons: $entity->getSocialMediaIcons(),
         );

@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Admin\Contact;
 
-use App\Infrastructure\Entity\CMS\Contact;
+use App\Infrastructure\Entity\Page\Contact;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;

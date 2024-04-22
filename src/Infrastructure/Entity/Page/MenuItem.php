@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Infrastructure\Entity\CMS;
+namespace App\Infrastructure\Entity\Page;
 
-use App\Infrastructure\Repository\Page\SocialMediaLinkIconsRepository;
+use App\Infrastructure\Repository\Page\MenuItemRepository;
 use App\Infrastructure\Traits\UUIDTrait;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Table('social_media_icons')]
-#[ORM\Entity(repositoryClass: SocialMediaLinkIconsRepository::class)]
-class SocialMediaLinkIcons
+#[ORM\Table('menu_item')]
+#[ORM\Entity(repositoryClass: MenuItemRepository::class)]
+class MenuItem
 {
     use UUIDTrait;
 

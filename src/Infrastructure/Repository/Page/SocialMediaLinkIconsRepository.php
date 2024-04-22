@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Repository\Page;
 
-use App\Infrastructure\Entity\CMS\SocialMediaLinkIcons;
+use App\Infrastructure\Entity\Page\SocialMediaLinkIcons;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
 use Doctrine\ORM\EntityManagerInterface;
 

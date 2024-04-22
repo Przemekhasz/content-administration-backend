@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Repository\Page;
 
-use App\Infrastructure\Entity\CMS\Page;
+use App\Infrastructure\Entity\Page\Page;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,7 +21,7 @@ class PageRepository extends AbstractRepositoryManager
             ->addSelect('b')
             ->leftJoin('p.logo', 'l')
             ->addSelect('l')
-            ->leftJoin('p.menuItems', 'mi')
+            ->leftJoin('p.menuItem', 'mi')
             ->addSelect('mi')
             ->leftJoin('p.pageHeaders', 'ph')
             ->addSelect('ph')
@@ -38,7 +38,7 @@ class PageRepository extends AbstractRepositoryManager
             ->addSelect('b')
             ->leftJoin('p.logo', 'l')
             ->addSelect('l')
-            ->leftJoin('p.menuItems', 'mi')
+            ->leftJoin('p.menuItem', 'mi')
             ->addSelect('mi')
             ->leftJoin('p.pageHeaders', 'ph')
             ->addSelect('ph')

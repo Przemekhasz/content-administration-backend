@@ -26,7 +26,7 @@ class HttpPage
         #[OA\Property]
         private ?HttpLogo $logo = null,
         #[OA\Property]
-        private ?Collection $menuItems = null,
+        private ?HttpMenuItem $menuItem = null,
         #[OA\Property]
         private ?Collection $pageHeaders = null,
         #[OA\Property]
@@ -93,14 +93,14 @@ class HttpPage
         $this->logo = $logo;
     }
 
-    public function getMenuItems(): ?Collection
+    public function getMenuItem(): ?HttpMenuItem
     {
-        return $this->menuItems;
+        return $this->menuItem;
     }
 
-    public function setMenuItems(?Collection $menuItems): void
+    public function setMenuItem(?HttpMenuItem $menuItem): void
     {
-        $this->menuItems = $menuItems;
+        $this->menuItem = $menuItem;
     }
 
     public function getPageHeaders(): ?Collection

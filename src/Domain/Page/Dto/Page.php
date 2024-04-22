@@ -13,7 +13,7 @@ class Page
         private bool $isPublic = true,
         private ?Banner $banner = null,
         private ?Logo $logo = null,
-        private ?Collection $menuItems = null,
+        private ?MenuItem $menuItem = null,
         private ?Collection $pageHeaders = null,
         private ?Collection $socialMediaLinkIcons = null,
     ) {}
@@ -78,14 +78,14 @@ class Page
         $this->logo = $logo;
     }
 
-    public function getMenuItems(): ?Collection
+    public function getMenuItem(): ?MenuItem
     {
-        return $this->menuItems;
+        return $this->menuItem;
     }
 
-    public function setMenuItems(?Collection $menuItems): void
+    public function setMenuItem(?MenuItem $menuItem): void
     {
-        $this->menuItems = $menuItems;
+        $this->menuItem = $menuItem;
     }
 
     public function getPageHeaders(): ?Collection

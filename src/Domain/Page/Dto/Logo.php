@@ -6,6 +6,7 @@ class Logo
 {
     public function __construct(
         private ?string    $id = null,
+        private ?string $name = null,
         private ?string $logo = null,
     ) {}
 
@@ -17,6 +18,16 @@ class Logo
     public function setId(?string $id): void
     {
         $this->id = $id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
     }
 
     public function setLogo(?string $logo): void

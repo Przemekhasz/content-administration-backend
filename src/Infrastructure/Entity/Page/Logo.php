@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Entity\CMS;
+namespace App\Infrastructure\Entity\Page;
 
 use App\Infrastructure\Repository\Page\LogoRepository;
 use App\Infrastructure\Traits\UUIDTrait;
@@ -13,8 +13,10 @@ class Logo
     use UUIDTrait;
 
     public function __construct(
+        #[ORM\Column(nullable: true)]
+        private string $name = "",
         #[ORM\Column]
-        private string $logo = ""
+        private string $logo = "",
     ) {
     }
 
@@ -28,8 +30,18 @@ class Logo
         $this->logo = $logo;
     }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
     public function __toString(): string
     {
-        return $this->logo;
+        return $this->name;
     }
 }
