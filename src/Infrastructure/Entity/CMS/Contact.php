@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Entity\CMS;
 
-use App\Infrastructure\Repository\CMS\ContactRepository;
+use App\Infrastructure\Repository\Page\ContactRepository;
 use App\Infrastructure\Traits\CreatedAtTrait;
 use App\Infrastructure\Traits\UpdatedAtTrait;
 use App\Infrastructure\Traits\UUIDTrait;

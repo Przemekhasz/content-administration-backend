@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Infrastructure\Repository\CMS;
+namespace App\Infrastructure\Repository\Page;
 
-use App\Infrastructure\Entity\CMS\Banner;
+use App\Infrastructure\Entity\CMS\Image;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
 use Doctrine\ORM\EntityManagerInterface;
 
-class BannerRepository extends AbstractRepositoryManager
+class ImageRepository extends AbstractRepositoryManager
 {
     public function __construct(EntityManagerInterface $em)
     {
-        parent::__construct($em, Banner::class);
+        parent::__construct($em, Image::class);
     }
 }

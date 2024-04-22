@@ -13,7 +13,7 @@ use App\Infrastructure\Entity\CMS\PageHeader;
 use App\Infrastructure\Entity\CMS\SocialMediaLinkIcons;
 use App\Infrastructure\Entity\CMS\Tag;
 use App\Infrastructure\Entity\User\User;
-use App\Infrastructure\Repository\CMS\ContactRepository;
+use App\Infrastructure\Repository\Page\ContactRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Locale;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
