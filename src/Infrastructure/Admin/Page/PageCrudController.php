@@ -42,5 +42,13 @@ class PageCrudController extends AbstractCrudController
         yield AssociationField::new('socialMediaIcons', 'Ikony mediów społecznościowych')
             ->setHelp('Przypisz ikonę mediów społecznościowych do strony.')
             ->setFormTypeOptions(['by_reference' => true]);
+
+        yield AssociationField::new('galleries', 'Galleries')
+            ->setHelp('Associate galleries with this page.')
+            ->setFormTypeOptions(['by_reference' => false]);
+
+        yield AssociationField::new('projects', 'Projects')
+            ->setHelp('Associate projects with this page.')
+            ->setFormTypeOptions(['by_reference' => false]);
     }
 }

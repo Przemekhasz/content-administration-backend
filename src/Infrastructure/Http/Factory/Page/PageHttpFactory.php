@@ -39,6 +39,8 @@ class PageHttpFactory
             ),
             pageHeaders: $http->getPageHeaders(),
             socialMediaLinkIcons: $http->getSocialMediaLinkIcons(),
+            galleries: $http->getGalleries(),
+            projects: $http->getProjects(),
         );
     }
 
@@ -66,6 +68,8 @@ class PageHttpFactory
             ),
             pageHeaders: $dto->getPageHeaders(),
             socialMediaLinkIcons: $dto->getSocialMediaLinkIcons(),
+            galleries: $dto->getGalleries(),
+            projects: $dto->getProjects(),
         );
     }
 }

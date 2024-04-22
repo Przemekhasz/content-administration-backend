@@ -18,7 +18,7 @@ class PageStorage implements PageStorageInterface
 
     public function findById(string $id): Page
     {
-        $page = $this->pageRepository->findPageByIdWithDetails($id);
+        $page = $this->pageRepository->findById($id);
         return $this->pageFactory->createFromEntity($page);
     }
 }
