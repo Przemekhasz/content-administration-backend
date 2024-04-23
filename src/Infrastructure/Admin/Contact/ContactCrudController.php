@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Admin\Contact;
 
 use App\Infrastructure\Entity\Page\Contact;
+use App\Infrastructure\Repository\Page\ContactRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -12,36 +13,114 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class ContactCrudController extends AbstractCrudController
 {
+    public function __construct(
+        private readonly MailerInterface $mailer,
+        private readonly ContactRepository $contactRepository,
+        private readonly ?string $pageUrl,
+        private readonly ?string $pageName,
+        private readonly ?string $fullName,
+        private readonly ?string $emailAddress,
+    ) {
+    }
+
     public static function getEntityFqcn(): string
     {
         return Contact::class;
     }
 
+
     public function configureActions(Actions $actions): Actions
     {
+        $replyAction = Action::new('reply', 'Odpowiedz', 'fa fa-reply')
+            ->linkToCrudAction('sendReply')
+            ->displayIf(static function ($entity) {
+                return !$entity->isAnswered();
+            });
+
         return $actions
-            // Add the "show" action so it appears in all pages by default
+            ->add(Crud::PAGE_INDEX, $replyAction)
+            ->add(Crud::PAGE_DETAIL, $replyAction)
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->update(Crud::PAGE_INDEX, Action::DETAIL, function (Action $action) {
                 return $action
                     ->setLabel('Poka')
-                    ->setIcon('fa fa-eye')
-                    ->addCssClass('btn btn-info');
+                    ->setIcon('fa fa-eye');
             });
     }
+
 
     public function configureFields(string $pageName): iterable
     {
         yield FormField::addPanel('Wiadomości')->setIcon('fa fa-envelope');
-        yield EmailField::new('email', 'Email');
-        yield TextField::new('topic', 'Temat');
+
+        yield EmailField::new('email', 'Email')
+            ->setFormTypeOption('disabled', $pageName === Crud::PAGE_EDIT);
+
+        yield TextField::new('topic', 'Temat')
+            ->setFormTypeOption('disabled', $pageName === Crud::PAGE_EDIT);
+
         yield TextareaField::new('content', 'Zawartość')
-            ->hideOnIndex();
+            ->hideOnIndex()
+            ->setFormTypeOption('disabled', $pageName === Crud::PAGE_EDIT);
+
         yield TextareaField::new('replyMsg', 'Odpowiedź')
             ->hideOnIndex();
-        yield BooleanField::new('isAnswered', 'Odpowiedziano?');
+
+        yield BooleanField::new('isAnswered', 'Odpowiedziano?')
+            ->renderAsSwitch($pageName !== Crud::PAGE_EDIT)
+            ->setFormTypeOption('disabled', $pageName === Crud::PAGE_EDIT);
     }
+
+    /**
+     * @param Request $request
+     * @param Environment $twig
+     * @return Response
+     * @throws TransportExceptionInterface
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function sendReply(Request $request, Environment $twig): Response
+    {
+        $contactId = $request->get('entityId');
+        $contact = $this->contactRepository->find($contactId);
+
+        $htmlContent = $twig->render('emails/reply_email.html.twig', [
+            'name' => $contact->getEmail(),
+            'content' => $contact->getContent(),
+            'message' => $contact->getReplyMsg(),
+            'topic' => $contact->getTopic(),
+            'page_url' => $this->pageUrl,
+            'page_name' => $this->pageName,
+            'fullName' => $this->fullName,
+        ]);
+
+        $email = (new Email())
+            ->from($this->emailAddress)
+            ->to($contact->getEmail())
+            ->subject('[RE] ' . $contact->getTopic())
+            ->html($htmlContent);
+
+        $this->mailer->send($email);
+
+        $contact->setIsAnswered(true);
+        $this->contactRepository->update($contact);
+
+        $this->addFlash('success', 'Reply sent successfully.');
+
+        return $this->redirect($this->generateUrl('admin'));
+    }
+
 }

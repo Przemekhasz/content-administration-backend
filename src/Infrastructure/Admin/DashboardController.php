@@ -16,6 +16,7 @@ use App\Infrastructure\Entity\Page\SocialMediaLinkIcons;
 use App\Infrastructure\Entity\Page\Tag;
 use App\Infrastructure\Entity\User\User;
 use App\Infrastructure\Repository\Page\ContactRepository;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Locale;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;

@@ -37,5 +37,12 @@ services:
         arguments:
             $imgUploadsDir: '%env(IMG_UPLOADS_DIR)%'
 
+    App\Infrastructure\Admin\Contact\ContactCrudController:
+        arguments:
+            $pageUrl: '%env(PAGE_URL)%'
+            $pageName: '%env(PAGE_NAME)%'
+            $fullName: '%env(FULL_NAME)%'
+            $emailAddress: '%env(EMAIL_ADDRESS)%'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

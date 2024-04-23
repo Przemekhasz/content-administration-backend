@@ -1,0 +1,70 @@
+{# templates/emails/reply_email.html.twig #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .header {
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .blockquote {
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-left: 5px solid #007BFF;
+            font-style: italic;
+        }
+        .response {
+            margin-top: 20px;
+        }
+        .footer {
+            font-size: 0.8em;
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{ topic | nl2br }}</h1>
+        </div>
+        <div class="content">
+            <div class="blockquote">
+                <p>{{ content | nl2br }}</p>
+            </div>
+            <div class="response">
+                <p>{{ message | nl2br }}</p>
+            </div>
+        </div>
+        <div class="footer">
+            {{ fullName | nl2br }}<br>
+            <a href="{{ page_url | nl2br }}">{{ page_name | nl2br }}</a>
+        </div>
+    </div>
+</body>
+</html>
