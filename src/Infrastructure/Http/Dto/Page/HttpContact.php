@@ -7,21 +7,21 @@ use OpenApi\Attributes as OA;
 class HttpContact
 {
     public function __construct(
-        #[OA\Property]
+        #[OA\Property(description: 'The unique identifier of the user.', example: 0)]
         private ?string $id = null,
-        #[OA\Property]
+        #[OA\Property(description: 'From email', example: 'user@example.com')]
         private ?string $email = null,
-        #[OA\Property]
+        #[OA\Property(description: 'Contact topic', example: 'topic')]
         private ?string $topic = null,
-        #[OA\Property]
+        #[OA\Property(description: 'Content', example: 'Contact content')]
         private ?string $content = null,
-        #[OA\Property]
+        #[OA\Property(description: 'Reply message', example: 'This is reply message')]
         private ?string $replyMsg = null,
-        #[OA\Property]
+        #[OA\Property(description: 'is answered', example: false)]
         private bool $isAnswered = false,
-        #[OA\Property]
+        #[OA\Property(description: 'Created At', example: 'user@example.com')]
         private ?string $createdAt = null,
-        #[OA\Property]
+        #[OA\Property(description: 'Updated At', example: 'user@example.com')]
         private ?string $updatedAt = null,
     ) {
     }
