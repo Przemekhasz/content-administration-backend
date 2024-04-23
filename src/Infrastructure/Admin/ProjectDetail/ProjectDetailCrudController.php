@@ -25,7 +25,7 @@ class ProjectDetailCrudController extends AbstractCrudController
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false),
             AssociationField::new('project', 'Project')
-                ->setFormTypeOptions(['by_reference' => true])
+                ->setFormTypeOptions(['by_reference' => true]),
         ];
     }
 }

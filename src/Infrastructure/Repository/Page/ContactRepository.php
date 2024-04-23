@@ -15,8 +15,6 @@ class ContactRepository extends AbstractRepositoryManager
 
     /**
      * Count the number of unanswered contacts.
-     *
-     * @return int
      */
     public function countUnansweredContacts(): int
     {

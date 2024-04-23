@@ -2,8 +2,6 @@
 
 namespace App\Infrastructure\Http\Dto\Page;
 
-use App\Domain\Page\Dto\Image;
-
 use Doctrine\Common\Collections\Collection;
 use OpenApi\Attributes as OA;
 
@@ -11,12 +9,13 @@ class HttpGallery
 {
     public function __construct(
         #[OA\Property]
-        private ?string    $id = null,
+        private ?string $id = null,
         #[OA\Property]
         private ?string $name = null,
         #[OA\Property]
         private ?Collection $images = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

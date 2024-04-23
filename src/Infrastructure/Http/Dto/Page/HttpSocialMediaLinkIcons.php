@@ -8,12 +8,13 @@ class HttpSocialMediaLinkIcons
 {
     public function __construct(
         #[OA\Property]
-        private ?string    $id = null,
+        private ?string $id = null,
         #[OA\Property]
         private ?string $name = null,
         #[OA\Property]
         private ?string $url = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

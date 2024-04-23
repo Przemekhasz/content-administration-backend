@@ -4,7 +4,6 @@ namespace App\Infrastructure\Repository\Page;
 
 use App\Infrastructure\Entity\Page\Page;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
-use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 

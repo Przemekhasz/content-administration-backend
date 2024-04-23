@@ -24,24 +24,25 @@ class Image
     private string $imagePath;
 
     #[ORM\ManyToOne(targetEntity: Gallery::class)]
-    #[ORM\JoinColumn(name: "gallery_id", referencedColumnName: "id", nullable: false)]
+    #[ORM\JoinColumn(name: 'gallery_id', referencedColumnName: 'id', nullable: false)]
     private ?Gallery $gallery = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class)]
     #[ORM\JoinTable(name: 'images_categories',
-        joinColumns: [new ORM\JoinColumn(name: "image_id", referencedColumnName: "id")],
-        inverseJoinColumns: [new ORM\JoinColumn(name: "category_id", referencedColumnName: "id")]
+        joinColumns: [new ORM\JoinColumn(name: 'image_id', referencedColumnName: 'id')],
+        inverseJoinColumns: [new ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id')]
     )]
     private Collection $categories;
 
     #[ORM\ManyToMany(targetEntity: Tag::class)]
     #[ORM\JoinTable(name: 'images_tags',
-        joinColumns: [new ORM\JoinColumn(name: "image_id", referencedColumnName: "id")],
-        inverseJoinColumns: [new ORM\JoinColumn(name: "tag_id", referencedColumnName: "id")]
+        joinColumns: [new ORM\JoinColumn(name: 'image_id', referencedColumnName: 'id')],
+        inverseJoinColumns: [new ORM\JoinColumn(name: 'tag_id', referencedColumnName: 'id')]
     )]
     private Collection $tags;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }

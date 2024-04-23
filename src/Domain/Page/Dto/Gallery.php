@@ -7,10 +7,11 @@ use Doctrine\Common\Collections\Collection;
 class Gallery
 {
     public function __construct(
-        private ?string    $id = null,
+        private ?string $id = null,
         private ?string $name = null,
         private ?Collection $images = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

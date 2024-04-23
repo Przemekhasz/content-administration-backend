@@ -5,10 +5,11 @@ namespace App\Domain\Page\Dto;
 class MenuItem
 {
     public function __construct(
-        private ?string    $id = null,
+        private ?string $id = null,
         private ?string $name = null,
         private ?string $url = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

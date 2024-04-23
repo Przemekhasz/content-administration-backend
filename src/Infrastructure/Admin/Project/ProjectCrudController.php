@@ -2,17 +2,14 @@
 
 namespace App\Infrastructure\Admin\Project;
 
-use App\Infrastructure\Entity\Page\Banner;
 use App\Infrastructure\Entity\Page\Project;
 use App\Infrastructure\Type\ProjectDetailType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
 class ProjectCrudController extends AbstractCrudController
 {

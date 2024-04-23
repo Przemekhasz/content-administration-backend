@@ -3,15 +3,14 @@
 namespace App\Infrastructure\Service\Page;
 
 use App\Domain\Page\Dto\Page;
-use App\Domain\Page\Dto\Project;
 use App\Infrastructure\Storage\Page\Interface\PageStorageInterface;
-use Doctrine\Common\Collections\Collection;
 
 class PageService
 {
     public function __construct(
         private readonly PageStorageInterface $pageStorage,
-    ) {}
+    ) {
+    }
 
     public function findById(string $id): Page
     {

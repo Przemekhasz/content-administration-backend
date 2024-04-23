@@ -7,14 +7,15 @@ use Doctrine\Common\Collections\Collection;
 class Image
 {
     public function __construct(
-        private ?string    $id = null,
+        private ?string $id = null,
         private ?string $title = null,
         private ?string $description = null,
         private ?string $imagePath = null,
         private ?Gallery $gallery = null,
         private ?Collection $categories = null,
         private ?Collection $tags = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

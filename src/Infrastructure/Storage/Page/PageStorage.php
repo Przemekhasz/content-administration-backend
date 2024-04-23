@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Storage\Page;
 
 use App\Domain\Page\Dto\Page;
-use App\Domain\Page\Dto\Project;
 use App\Infrastructure\Factory\Page\PageFactory;
 use App\Infrastructure\Factory\Page\ProjectFactory;
 use App\Infrastructure\Repository\Page\PageRepository;
@@ -18,13 +17,13 @@ class PageStorage implements PageStorageInterface
         private readonly PageFactory $pageFactory,
         private readonly ProjectFactory $projectFactory,
         private readonly ProjectRepository $projectRepository,
-    )
-    {
+    ) {
     }
 
     public function findById(string $id): Page
     {
         $page = $this->pageRepository->findById($id);
+
         return $this->pageFactory->createFromEntity($page);
     }
 
@@ -34,6 +33,7 @@ class PageStorage implements PageStorageInterface
     public function findGalleryByPageId(string $id): Page
     {
         $page = $this->pageRepository->findPageWithGalleries($id);
+
         return $this->pageFactory->createFromEntity($page);
     }
 
@@ -43,6 +43,7 @@ class PageStorage implements PageStorageInterface
     public function findProjectsByPageId(string $id): Page
     {
         $page = $this->pageRepository->findProjectsByPageId($id);
+
         return $this->pageFactory->createFromEntity($page);
     }
 }

@@ -2,24 +2,21 @@
 
 namespace App\Infrastructure\Http\Dto\Page;
 
-use App\Domain\Page\Dto\Category;
-use App\Domain\Page\Dto\Gallery;
-use App\Domain\Page\Dto\Tag;
-use Doctrine\Common\Collections\Collection;
 use OpenApi\Attributes as OA;
 
 class HttpProjectDetail
 {
     public function __construct(
         #[OA\Property]
-        private ?string    $id = null,
+        private ?string $id = null,
         #[OA\Property]
         private ?HttpProject $project = null,
         #[OA\Property]
         private ?string $description = null,
         #[OA\Property]
         private ?string $imagePath = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

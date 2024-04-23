@@ -14,9 +14,9 @@ class Banner
 
     public function __construct(
         #[ORM\Column(nullable: true)]
-        private string $name = "",
+        private string $name = '',
         #[ORM\Column]
-        private string $image = "",
+        private string $image = '',
     ) {
     }
 

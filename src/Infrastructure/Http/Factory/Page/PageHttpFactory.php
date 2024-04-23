@@ -13,7 +13,9 @@ use App\Infrastructure\Http\Dto\Page\HttpPage;
 
 class PageHttpFactory
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public function createDomainObject(HttpPage $http): Page
     {

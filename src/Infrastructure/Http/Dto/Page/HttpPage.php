@@ -4,17 +4,12 @@ namespace App\Infrastructure\Http\Dto\Page;
 
 use Doctrine\Common\Collections\Collection;
 use OpenApi\Attributes as OA;
-use App\Domain\Page\Dto\Banner;
-use App\Domain\Page\Dto\Logo;
-use App\Domain\Page\Dto\MenuItem;
-use App\Domain\Page\Dto\PageHeader;
-use App\Domain\Page\Dto\SocialMediaLinkIcons;
 
 class HttpPage
 {
     public function __construct(
         #[OA\Property]
-        private ?string    $id = null,
+        private ?string $id = null,
         #[OA\Property]
         private ?string $pageName = null,
         #[OA\Property]
@@ -35,7 +30,8 @@ class HttpPage
         private ?Collection $galleries = null,
         #[OA\Property]
         private ?Collection $projects = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

@@ -14,7 +14,7 @@ class PageHeader
 
     public function __construct(
         #[ORM\Column]
-        private string $name = "",
+        private string $name = '',
         #[ORM\Column(nullable: true)]
         private bool $isMain = false,
     ) {

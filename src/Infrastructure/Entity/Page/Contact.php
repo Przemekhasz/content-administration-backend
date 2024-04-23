@@ -18,13 +18,13 @@ class Contact
 
     public function __construct(
         #[ORM\Column]
-        private string $email = "",
+        private string $email = '',
         #[ORM\Column]
-        private string $topic = "",
+        private string $topic = '',
         #[ORM\Column]
-        private string $content = "",
+        private string $content = '',
         #[ORM\Column(nullable: true)]
-        private ?string $replyMsg = "",
+        private ?string $replyMsg = '',
         #[ORM\Column]
         private bool $isAnswered = false,
     ) {

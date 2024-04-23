@@ -5,10 +5,11 @@ namespace App\Domain\Page\Dto;
 class PageHeader
 {
     public function __construct(
-        private ?string    $id = null,
+        private ?string $id = null,
         private ?string $name = null,
-        private bool    $isMain = false,
-    ) {}
+        private bool $isMain = false,
+    ) {
+    }
 
     public function getId(): ?string
     {

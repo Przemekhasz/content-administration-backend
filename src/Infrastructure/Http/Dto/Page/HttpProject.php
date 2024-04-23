@@ -2,8 +2,6 @@
 
 namespace App\Infrastructure\Http\Dto\Page;
 
-use App\Domain\Page\Dto\Image;
-
 use App\Infrastructure\Http\Dto\User\HttpUser;
 use Doctrine\Common\Collections\Collection;
 use OpenApi\Attributes as OA;
@@ -12,7 +10,7 @@ class HttpProject
 {
     public function __construct(
         #[OA\Property]
-        private ?string    $id = null,
+        private ?string $id = null,
         #[OA\Property]
         private ?string $title = null,
         #[OA\Property]
@@ -25,7 +23,8 @@ class HttpProject
         private ?Collection $categories = null,
         #[OA\Property]
         private ?Collection $tags = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 class Page
 {
     public function __construct(
-        private ?string    $id = null,
+        private ?string $id = null,
         private ?string $pageName = null,
         private ?int $pageNumber = null,
         private bool $isPublic = true,
@@ -18,7 +18,8 @@ class Page
         private ?Collection $socialMediaLinkIcons = null,
         private ?Collection $galleries = null,
         private ?Collection $projects = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

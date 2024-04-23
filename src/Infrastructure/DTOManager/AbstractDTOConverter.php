@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\DTOManager;
 
-use ArrayObject;
-use Exception;
-use ReflectionClass;
-use ReflectionException;
-use ReflectionProperty;
 use Symfony\Component\HttpFoundation\InputBag;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,13 +18,13 @@ class AbstractDTOConverter
             $json = $json->all();
         }
         if (is_string($json)) {
-            $json = (array)json_decode($json);
+            $json = (array) json_decode($json);
         }
         if (!is_array($json)) {
             $json = [];
         }
 
-        foreach ($json as $k=>$v) {
+        foreach ($json as $k => $v) {
             $property = &$dto->{$k};
             $value = $v;
 
@@ -38,13 +33,13 @@ class AbstractDTOConverter
     }
 
     /**
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
-    public static function assignArrayToDTO(ArrayObject &$dto, $class): ArrayObject
+    public static function assignArrayToDTO(\ArrayObject &$dto, $class): \ArrayObject
     {
-        $reflect = (new ReflectionClass($class));
+        $reflect = (new \ReflectionClass($class));
 
-        foreach ($reflect->getProperties(ReflectionProperty::IS_PRIVATE) as $property) {
+        foreach ($reflect->getProperties(\ReflectionProperty::IS_PRIVATE) as $property) {
             try {
                 $methodName = 'get'.ucfirst($property->getName());
                 if (!$reflect->hasMethod($methodName)) {
@@ -53,7 +48,7 @@ class AbstractDTOConverter
                 $k = $property->getName();
                 $v = $class->{$methodName}();
                 $dto[$k] = $v;
-            } catch (Exception $exception) {
+            } catch (\Exception $exception) {
                 continue;
             }
         }
@@ -69,6 +64,7 @@ class AbstractDTOConverter
                 $dto[$k] = $v;
             }
         }
+
         return $dto;
     }
 }

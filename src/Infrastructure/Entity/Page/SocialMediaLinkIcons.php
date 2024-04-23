@@ -14,9 +14,9 @@ class SocialMediaLinkIcons
 
     public function __construct(
         #[ORM\Column]
-        private string $name = "",
+        private string $name = '',
         #[ORM\Column]
-        private string $url = "",
+        private string $url = '',
     ) {
     }
 

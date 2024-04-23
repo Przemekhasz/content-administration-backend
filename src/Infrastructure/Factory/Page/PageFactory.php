@@ -7,13 +7,13 @@ use App\Domain\Page\Dto\Logo;
 use App\Domain\Page\Dto\MenuItem;
 use App\Domain\Page\Dto\Page;
 use App\Infrastructure\Entity\Page\Page as PageEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class PageFactory
 {
     public function __construct(
         private readonly ?string $imgUploadsDir,
-    ) {}
+    ) {
+    }
 
     public function createFromEntity(PageEntity $entity): Page
     {
