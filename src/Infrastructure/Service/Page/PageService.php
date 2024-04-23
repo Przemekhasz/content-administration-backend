@@ -17,6 +17,11 @@ class PageService
         return $this->pageStorage->findById($id);
     }
 
+    public function findAll(): \Generator
+    {
+        return $this->pageStorage->findAll();
+    }
+
     public function findGalleryByPageId(string $id): Page
     {
         return $this->pageStorage->findGalleryByPageId($id);

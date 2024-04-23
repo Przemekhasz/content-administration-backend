@@ -7,6 +7,7 @@ use App\Domain\Page\Dto\Page;
 interface PageStorageInterface
 {
     public function findById(string $id): Page;
+    public function findAll(): \Generator;
 
     public function findGalleryByPageId(string $id): Page;
 

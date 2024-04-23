@@ -17,6 +17,11 @@ class PageFacade
         return $this->pageService->findById($id);
     }
 
+    public function findAll(): \Generator
+    {
+        return $this->pageService->findAll();
+    }
+
     public function findGalleryByPageId(string $id): Page
     {
         return $this->pageService->findGalleryByPageId($id);
