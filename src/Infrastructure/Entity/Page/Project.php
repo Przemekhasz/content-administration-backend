@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Entity\Page;
 
+use App\Infrastructure\Entity\User\User;
 use App\Infrastructure\Repository\Page\ProjectRepository;
 use App\Infrastructure\Traits\UUIDTrait;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,11 +21,12 @@ class Project
     #[ORM\Column(type: "text")]
     private string $mainDescription;
 
-    #[ORM\Column(type: "string", length: 255)]
-    private string $author;
-
-    #[ORM\OneToMany(targetEntity: ProjectDetail::class, mappedBy: "project", cascade: ["persist", "remove"])]
+    #[ORM\OneToMany(mappedBy: "project", targetEntity: ProjectDetail::class, cascade: ["persist", "remove"])]
     private Collection $details;
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: "author_id", referencedColumnName: "id", nullable: true)]
+    private ?User $author = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class)]
     #[ORM\JoinTable(name: 'project_categories',
@@ -62,11 +64,13 @@ class Project
         $this->mainDescription = $mainDescription;
     }
 
-    public function getAuthor(): string {
+    public function getAuthor(): ?User
+    {
         return $this->author;
     }
 
-    public function setAuthor(string $author): void {
+    public function setAuthor(?User $author): void
+    {
         $this->author = $author;
     }
 

@@ -27,7 +27,8 @@ class ProjectCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Title'),
             TextareaField::new('mainDescription', 'Main Description'),
-            TextField::new('author', 'Author'),
+            AssociationField::new('author', 'Autor')
+                ->setFormTypeOptions(['by_reference' => false]),
             CollectionField::new('details', 'Details')
                 ->setEntryType(ProjectDetailType::class)
                 ->allowAdd()

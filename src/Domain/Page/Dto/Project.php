@@ -1,29 +1,19 @@
 <?php
 
-namespace App\Infrastructure\Http\Dto\Page;
+namespace App\Domain\Page\Dto;
 
-use App\Domain\Page\Dto\Image;
-
-use App\Infrastructure\Http\Dto\User\HttpUser;
+use App\Domain\User\Dto\User;
 use Doctrine\Common\Collections\Collection;
-use OpenApi\Attributes as OA;
 
-class HttpProject
+class Project
 {
     public function __construct(
-        #[OA\Property]
         private ?string    $id = null,
-        #[OA\Property]
         private ?string $title = null,
-        #[OA\Property]
         private ?string $mainDescription = null,
-        #[OA\Property]
-        private ?HttpUser $author = null,
-        #[OA\Property]
         private ?Collection $details = null,
-        #[OA\Property]
+        private ?User $author = null,
         private ?Collection $categories = null,
-        #[OA\Property]
         private ?Collection $tags = null,
     ) {}
 
@@ -57,16 +47,6 @@ class HttpProject
         $this->mainDescription = $mainDescription;
     }
 
-    public function getAuthor(): ?HttpUser
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?HttpUser $author): void
-    {
-        $this->author = $author;
-    }
-
     public function getDetails(): ?Collection
     {
         return $this->details;
@@ -75,6 +55,16 @@ class HttpProject
     public function setDetails(?Collection $details): void
     {
         $this->details = $details;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): void
+    {
+        $this->author = $author;
     }
 
     public function getCategories(): ?Collection

@@ -12,4 +12,13 @@ class ProjectRepository extends AbstractRepositoryManager
     {
         parent::__construct($em, Project::class);
     }
+
+    public function findById(string $id): ?Project
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.id = :id')
+            ->setParameter('id', $id);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }
