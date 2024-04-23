@@ -16,9 +16,6 @@ trait UUIDTrait
     #[CustomIdGenerator(class: UuidGenerator::class)]
     protected string $id;
 
-    /**
-     * @param string $id
-     */
     public function setId(string $id): void
     {
         $this->id = $id;

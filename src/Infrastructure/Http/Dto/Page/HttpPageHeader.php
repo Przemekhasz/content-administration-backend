@@ -8,12 +8,13 @@ class HttpPageHeader
 {
     public function __construct(
         #[OA\Property]
-        private ?string    $id = null,
+        private ?string $id = null,
         #[OA\Property]
         private ?string $name = null,
         #[OA\Property]
-        private bool    $isMain = false,
-    ) {}
+        private bool $isMain = false,
+    ) {
+    }
 
     public function getId(): ?string
     {

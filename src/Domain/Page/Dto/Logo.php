@@ -5,10 +5,11 @@ namespace App\Domain\Page\Dto;
 class Logo
 {
     public function __construct(
-        private ?string    $id = null,
+        private ?string $id = null,
         private ?string $name = null,
         private ?string $logo = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

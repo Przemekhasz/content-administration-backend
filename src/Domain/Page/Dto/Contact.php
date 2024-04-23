@@ -5,7 +5,7 @@ namespace App\Domain\Page\Dto;
 class Contact
 {
     public function __construct(
-        private ?string    $id = null,
+        private ?string $id = null,
         private ?string $email = null,
         private ?string $topic = null,
         private ?string $content = null,
@@ -13,7 +13,8 @@ class Contact
         private bool $isAnswered = false,
         private ?string $createdAt = null,
         private ?string $updatedAt = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

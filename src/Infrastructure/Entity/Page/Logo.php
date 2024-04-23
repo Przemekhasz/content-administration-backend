@@ -14,9 +14,9 @@ class Logo
 
     public function __construct(
         #[ORM\Column(nullable: true)]
-        private string $name = "",
+        private string $name = '',
         #[ORM\Column]
-        private string $logo = "",
+        private string $logo = '',
     ) {
     }
 

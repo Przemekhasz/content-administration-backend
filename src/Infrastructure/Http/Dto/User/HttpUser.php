@@ -2,17 +2,17 @@
 
 namespace App\Infrastructure\Http\Dto\User;
 
-use Doctrine\Common\Collections\Collection;
 use OpenApi\Attributes as OA;
 
 class HttpUser
 {
     public function __construct(
         #[OA\Property]
-        private ?string    $id = null,
+        private ?string $id = null,
         #[OA\Property]
-        private ?string     $username = null,
-    ) {}
+        private ?string $username = null,
+    ) {
+    }
 
     public function getId(): ?string
     {

@@ -18,12 +18,12 @@ class ImageType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Title',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'required' => false,
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('imageFile', FileType::class, [
                 'label' => 'Image File',
@@ -39,9 +39,9 @@ class ImageType extends AbstractType
                             'image/gif',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid image file',
-                    ])
+                    ]),
                 ],
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ]);
     }
 

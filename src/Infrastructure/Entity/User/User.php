@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Entity\User;
 
-use App\Infrastructure\Entity\Page\Project;
 use App\Infrastructure\Repository\User\UserRepository;
 use App\Infrastructure\RepositoryManager\Interface\EntityInterface;
 use App\Infrastructure\Traits\CreatedAtTrait;
 use App\Infrastructure\Traits\UpdatedAtTrait;
 use App\Infrastructure\Traits\UUIDTrait;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -47,47 +44,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, EntityI
         $this->username = $username;
     }
 
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;
     }
 
-    /**
-     * @param string $password
-     * @return User
-     */
     public function setPassword(string $password): User
     {
         $this->password = $password;
+
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getRoles(): array
     {
         return $this->roles;
     }
 
-    /**
-     * @param array $roles
-     * @return User
-     */
     public function setRoles(array $roles): User
     {
         $this->roles = $roles;
+
         return $this;
     }
 
     public function addRole(string $role): self
     {
         $this->roles[] = $role;
+
         return $this;
     }
+
     public function hasRole(string $role): bool
     {
         return isset($this->roles[$role]);

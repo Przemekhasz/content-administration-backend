@@ -18,7 +18,7 @@ class AdminFixture extends Fixture
     }
 
     /**
-     * Load data fixtures with the passed EntityManager
+     * Load data fixtures with the passed EntityManager.
      */
     public function load(ObjectManager $manager): void
     {
@@ -28,7 +28,6 @@ class AdminFixture extends Fixture
         $user->setPassword(password_hash('admin1234', PASSWORD_DEFAULT));
         $user->setRoles([UserRoles::ROLE_ADMIN]);
         $user->setCreatedAt();
-
 
         $this->userRepository->persist($user);
 

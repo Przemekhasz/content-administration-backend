@@ -5,9 +5,10 @@ namespace App\Domain\Page\Dto;
 class Tag
 {
     public function __construct(
-        private ?string    $id = null,
+        private ?string $id = null,
         private ?string $name = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

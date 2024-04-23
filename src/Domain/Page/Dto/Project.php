@@ -8,14 +8,15 @@ use Doctrine\Common\Collections\Collection;
 class Project
 {
     public function __construct(
-        private ?string    $id = null,
+        private ?string $id = null,
         private ?string $title = null,
         private ?string $mainDescription = null,
         private ?Collection $details = null,
         private ?User $author = null,
         private ?Collection $categories = null,
         private ?Collection $tags = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

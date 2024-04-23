@@ -5,9 +5,10 @@ namespace App\Domain\User\Dto;
 class User
 {
     public function __construct(
-        private ?string    $id = null,
-        private ?string    $username = null,
-    ) {}
+        private ?string $id = null,
+        private ?string $username = null,
+    ) {
+    }
 
     public function getId(): ?string
     {

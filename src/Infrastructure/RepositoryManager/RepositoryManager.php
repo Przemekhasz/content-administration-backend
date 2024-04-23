@@ -13,6 +13,7 @@ use Doctrine\ORM\QueryBuilder;
 abstract class RepositoryManager extends EntityRepository implements CommandRepositoryInterface, QueryRepositoryInterface
 {
     private readonly ClassMetadata $metadata;
+
     public function __construct(EntityManagerInterface $em, ClassMetadata $metadata)
     {
         parent::__construct($em, $metadata);

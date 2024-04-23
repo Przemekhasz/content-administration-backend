@@ -5,9 +5,8 @@ namespace App\Infrastructure\Admin\SocialMediaLinkIcons;
 use App\Infrastructure\Entity\Page\SocialMediaLinkIcons;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
 class SocialMediaLinkIconsCrudController extends AbstractCrudController
 {
@@ -29,11 +28,10 @@ class SocialMediaLinkIconsCrudController extends AbstractCrudController
                 'YouTube' => 'youtube',
                 'Pinterest' => 'pinterest',
                 'Snapchat' => 'snapchat',
-                'TikTok' => 'tiktok'
+                'TikTok' => 'tiktok',
             ]);
 
         yield UrlField::new('url', 'URL')
             ->setHelp('Enter the full URL to the social media profile.');
     }
 }
-

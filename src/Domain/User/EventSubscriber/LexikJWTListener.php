@@ -14,11 +14,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class LexikJWTListener
 {
-
     public function __construct(
         private readonly RequestStack $requestStack
-    )
-    {
+    ) {
     }
 
     public function onJWTCreated(JWTCreatedEvent $event): void

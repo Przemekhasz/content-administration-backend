@@ -3,9 +3,7 @@
 namespace App\Domain\Page;
 
 use App\Domain\Page\Dto\Page;
-use App\Domain\Page\Dto\Project;
 use App\Infrastructure\Service\Page\PageService;
-use Doctrine\Common\Collections\Collection;
 
 class PageFacade
 {

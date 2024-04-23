@@ -7,7 +7,9 @@ use App\Infrastructure\Entity\Page\Gallery as GalleryEntity;
 
 class GalleryFactory
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public function createFromEntity(GalleryEntity $entity): Gallery
     {

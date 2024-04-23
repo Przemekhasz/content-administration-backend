@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Api\Interface;
 
-use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
 
@@ -18,5 +17,5 @@ interface ApiInterface
 
     public function json(mixed $object, int $status = 200): JsonResponse;
 
-    public function throwException(Exception $exception): JsonResponse;
+    public function throwException(\Exception $exception): JsonResponse;
 }

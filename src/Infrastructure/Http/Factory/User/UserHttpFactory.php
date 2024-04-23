@@ -7,7 +7,9 @@ use App\Infrastructure\Http\Dto\User\HttpUser;
 
 class UserHttpFactory
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public function createDomainObject(HttpUser $http): User
     {

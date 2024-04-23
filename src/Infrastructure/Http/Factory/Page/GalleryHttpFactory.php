@@ -2,13 +2,14 @@
 
 namespace App\Infrastructure\Http\Factory\Page;
 
-
 use App\Domain\Page\Dto\Gallery;
 use App\Infrastructure\Http\Dto\Page\HttpGallery;
 
 class GalleryHttpFactory
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public function createDomainObject(HttpGallery $http): Gallery
     {

@@ -8,7 +8,7 @@ class HttpContact
 {
     public function __construct(
         #[OA\Property]
-        private ?string    $id = null,
+        private ?string $id = null,
         #[OA\Property]
         private ?string $email = null,
         #[OA\Property]
@@ -23,7 +23,8 @@ class HttpContact
         private ?string $createdAt = null,
         #[OA\Property]
         private ?string $updatedAt = null,
-    ) {}
+    ) {
+    }
 
     public function getId(): ?string
     {

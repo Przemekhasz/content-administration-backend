@@ -4,9 +4,7 @@ namespace App\Infrastructure\DTOManager;
 
 use App\Infrastructure\DTOManager\Exception\ValidationException;
 use App\Infrastructure\DTOManager\Interface\DTOManagerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -26,9 +24,9 @@ class DTOManager implements DTOManagerInterface
         if (is_array($request)) {
             return $this->serializer->deserialize(json_encode($request), $class, 'json');
         }
+
         return new $class();
     }
-
 
     /**
      * @throws ValidationException
@@ -40,7 +38,7 @@ class DTOManager implements DTOManagerInterface
         if (count($violations) > 0) {
             $messages = [];
             foreach ($violations as $violation) {
-                $messages[] = $violation->getPropertyPath() . ': ' . $violation->getMessage();
+                $messages[] = $violation->getPropertyPath().': '.$violation->getMessage();
             }
             throw new ValidationException(implode("\n", $messages));
         }

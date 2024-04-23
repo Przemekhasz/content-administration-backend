@@ -27,8 +27,7 @@ class DashboardController extends AbstractDashboardController
 {
     public function __construct(
         private readonly ContactRepository $contactRepository,
-    )
-    {
+    ) {
     }
 
     #[Route('/admin', name: 'admin')]
@@ -39,7 +38,7 @@ class DashboardController extends AbstractDashboardController
         $newMessagesCount = $this->contactRepository->countUnansweredContacts();
 
         return $this->render('admin/dashboard/dashboard.html.twig', [
-            'new_messages_count' => $newMessagesCount
+            'new_messages_count' => $newMessagesCount,
         ]);
     }
 
@@ -77,7 +76,7 @@ class DashboardController extends AbstractDashboardController
 
                 MenuItem::section('Tagi i kategorie'),
                 MenuItem::linkToCrud('Kategorie', 'fas fa-tags', Category::class),
-                MenuItem::linkToCrud('Tagi', 'fas fa-tag', Tag::class)
+                MenuItem::linkToCrud('Tagi', 'fas fa-tag', Tag::class),
             ]);
 
         yield MenuItem::section('Administracja');
@@ -127,14 +126,14 @@ class DashboardController extends AbstractDashboardController
             // because many languages/locales are not associated to a single country)
             ->setLocales([
                 'en' => '🇬🇧 English',
-                'pl' => '🇵🇱 Polski'
+                'pl' => '🇵🇱 Polski',
             ])
             // to further customize the locale option, pass an instance of
             // EasyCorp\Bundle\EasyAdminBundle\Config\Locale
             ->setLocales([
                 'en', // locale without custom options
-                Locale::new('pl', 'polski', 'far fa-language') // custom label and icon
+                Locale::new('pl', 'polski', 'far fa-language'), // custom label and icon
             ])
-            ;
+        ;
     }
 }
