@@ -5,6 +5,8 @@ namespace App\Infrastructure\Admin\User;
 use App\Infrastructure\Entity\User\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -24,5 +26,6 @@ class UserCrudController extends AbstractCrudController
         yield TextField::new('userName', 'Nazwa użytkownika');
         yield TextField::new('password', 'Hasło')->hideOnIndex();
         yield ArrayField::new('roles', 'Rola');
+        yield CollectionField::new('projects', 'Projekty');
     }
 }

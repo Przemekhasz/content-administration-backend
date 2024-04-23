@@ -6,6 +6,7 @@ use App\Infrastructure\Entity\Page\Page;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 
 class PageRepository extends AbstractRepositoryManager
 {
@@ -14,6 +15,9 @@ class PageRepository extends AbstractRepositoryManager
         parent::__construct($em, Page::class);
     }
 
+    /**
+     * @throws NonUniqueResultException
+     */
     public function findById(string $id): ?Page
     {
         $qb = $this->createQueryBuilder('p')
@@ -23,6 +27,9 @@ class PageRepository extends AbstractRepositoryManager
         return $qb->getQuery()->getOneOrNullResult();
     }
 
+    /**
+     * @throws NonUniqueResultException
+     */
     public function findPageWithGalleries(string $pageId)
     {
         $qb = $this->createQueryBuilder('p')
@@ -35,6 +42,9 @@ class PageRepository extends AbstractRepositoryManager
         return $qb->getQuery()->getOneOrNullResult();
     }
 
+    /**
+     * @throws NonUniqueResultException
+     */
     public function findProjectsByPageId(string $pageId)
     {
         $qb = $this->createQueryBuilder('p')

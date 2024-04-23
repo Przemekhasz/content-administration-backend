@@ -15,8 +15,7 @@ class GalleryHttpFactory
         return new Gallery(
             id: $http->getId(),
             name: $http->getName(),
-            images: $http->getImages()
-
+            images: $http->getImages(),
         );
     }
 
@@ -25,7 +24,7 @@ class GalleryHttpFactory
         return new HttpGallery(
             id: $dto->getId(),
             name: $dto->getName(),
-            images: $dto->getImages()
+            images: $dto->getImages(),
         );
     }
 }

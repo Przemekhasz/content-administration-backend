@@ -4,7 +4,6 @@ namespace App\Infrastructure\Controller\Page;
 
 use App\Application\Page\PageAdapter;
 use App\Infrastructure\Api\API;
-use Exception;
 use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AbstractController
 {
     public function __construct(
-        private readonly API          $api,
+        private readonly API $api,
         private readonly PageAdapter $adapter,
     ) {
     }
@@ -23,14 +22,15 @@ class PageController extends AbstractController
     #[OA\Response(
         response: 200,
         description: 'Returns page by id',
-//        content: new OA\JsonContent(ref: new Model(type: HttpPage::class))
+        //        content: new OA\JsonContent(ref: new Model(type: HttpPage::class))
     )]
     public function pages(string $id): JsonResponse
     {
         try {
             $dto = $this->adapter->findById($id);
+
             return $this->api->json($dto);
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             return $this->api->throwException($exception);
         }
     }
@@ -44,8 +44,9 @@ class PageController extends AbstractController
     {
         try {
             $dto = $this->adapter->findGalleryByPageId($id);
+
             return $this->api->json($dto);
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             return $this->api->throwException($exception);
         }
     }
@@ -59,8 +60,9 @@ class PageController extends AbstractController
     {
         try {
             $dto = $this->adapter->findProjectsByPageId($id);
+
             return $this->api->json($dto);
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             return $this->api->throwException($exception);
         }
     }

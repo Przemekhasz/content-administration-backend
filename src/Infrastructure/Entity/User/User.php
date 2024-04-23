@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Entity\User;
 
+use App\Infrastructure\Entity\Page\Project;
 use App\Infrastructure\Repository\User\UserRepository;
 use App\Infrastructure\RepositoryManager\Interface\EntityInterface;
 use App\Infrastructure\Traits\CreatedAtTrait;
 use App\Infrastructure\Traits\UpdatedAtTrait;
 use App\Infrastructure\Traits\UUIDTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -27,6 +30,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, EntityI
     private string $password = '';
     #[ORM\Column(type: 'array')]
     private array $roles = [];
+
+    public function __construct()
+    {
+        $this->setUpdatedAt();
+        $this->setCreatedAt();
+    }
 
     public function getUsername(): ?string
     {
@@ -98,5 +107,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, EntityI
     {
         return sprintf('[%d] %s', $this->id, $this->username);
     }
-
 }
