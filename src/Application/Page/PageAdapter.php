@@ -22,6 +22,11 @@ class PageAdapter
         return $this->pageHttpFactory->createHttpObject($page);
     }
 
+    public function findAll(): \Generator
+    {
+        return $this->pageFacade->findAll();
+    }
+
     public function findGalleryByPageId(string $id): ?Collection
     {
         return $this->pageFacade->findGalleryByPageId($id)->getGalleries();

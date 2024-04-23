@@ -22,12 +22,27 @@ class PageController extends AbstractController
     #[OA\Response(
         response: 200,
         description: 'Returns page by id',
-        //        content: new OA\JsonContent(ref: new Model(type: HttpPage::class))
     )]
-    public function pages(string $id): JsonResponse
+    public function page(string $id): JsonResponse
     {
         try {
             $dto = $this->adapter->findById($id);
+
+            return $this->api->json($dto);
+        } catch (\Exception $exception) {
+            return $this->api->throwException($exception);
+        }
+    }
+
+    #[Route(path: '/pages', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Returns page by id',
+    )]
+    public function pages(): JsonResponse
+    {
+        try {
+            $dto = $this->adapter->findAll();
 
             return $this->api->json($dto);
         } catch (\Exception $exception) {
