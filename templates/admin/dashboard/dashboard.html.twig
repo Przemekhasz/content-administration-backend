@@ -1,10 +1,10 @@
 {% extends '@!EasyAdmin/layout.html.twig' %}
 
-{% block page_title 'Dashboard' %}
+{% block page_title 'Kokpit' %}
 
 {% block main %}
 <div class="dashboard-banner" style="background: url('https://images.unsplash.com/photo-1703880258785-45bc4492a912?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center; background-size: cover; color: white; text-align: center; padding: 50px 0;">
-    <h1>Witaj w Panelu Administracyjnym!</h1>
+    <h1>Ahoj! witaj w kokpicie w którym stworzysz stronę marzeń!</h1>
     <p>Personalizuj i zarządzaj swoją stroną efektywnie.</p>
 </div>
 
@@ -14,6 +14,9 @@
             <div class="jumbotron">
                 <h1 class="display-4">Cześć! 😎</h1>
                 <p class="lead">Stworzysz tutaj zawartość dla swojej strony, portfolio, wizytówki czego tylko zechcesz!</p>
+                <quote>
+                    Jedyne ograniczenie to wyobraznia a jezeli jednak Twoja wyobraznia wykracza poza mozliwosci tej strony, nic straconego, odezwij sie a wprowadzimy to o czym marzysz.
+                </quote>
                 <hr class="my-4">
                 <p>
                     Warstwa frontendowa jest osobnym modułem dostępnym pod tym adresem <a href="https://github.com/Przemekhasz">Przemekhasz</a>
@@ -26,6 +29,11 @@
                         <li>otrzymywać wiadomości z formularza kontaktowego i na nie odpowiadać</li>
                         <li>stworzyć galerie zdjęć z opisami, tagami oraz kategoriami</li>
                         <li>stworzyć zbiór projektów/realizacji czegoś, czym się chcesz pochwalić i atrakcyjnie to przedstawić</li>
+                        <li>prowadzić bloga</li>
+                        <li>Zmieniać kolory, ogólnopojęte style strony</li>
+                        <li>dostosowac szablon mailowy do wlasnych potrzeb</li>
+                        <li>zmieniac czcionki</li>
+                        <li>podpinac animacje</li>
                     </ul>
                 </p>
                 {% if new_messages_count > 0 %}
@@ -38,11 +46,11 @@
             </div>
         </div>
     </div>
-
+    <hr class="my-4">
     <div class="row mt-5">
         <div class="col text-center">
             <h6 class="display-8">Jeśli nie wiesz jak zacząć nie przejmuj sie, kliknij w ponizszy przycisk, znajduje sie tam plik pdf, w ktorym poprowadze krok po kroku</h6>
-            <a href="https://example.com/docs" class="btn btn-primary">Dokumentacja</a>
+            <a href="https://localhost:8080/assets/docs/doc.pdf" class="btn btn-primary" target="_blank">Dokumentacja</a>
         </div>
     </div>
 

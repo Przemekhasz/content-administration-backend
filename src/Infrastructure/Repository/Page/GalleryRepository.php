@@ -12,4 +12,13 @@ class GalleryRepository extends AbstractRepositoryManager
     {
         parent::__construct($em, Gallery::class);
     }
+
+    public function findById(string $id): ?Gallery
+    {
+        $qb = $this->createQueryBuilder('g')
+            ->where('g.id = :id')
+            ->setParameter('id', $id);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

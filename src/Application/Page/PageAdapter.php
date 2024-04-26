@@ -2,6 +2,10 @@
 
 namespace App\Application\Page;
 
+use App\Domain\Page\Dto\Gallery;
+use App\Domain\Page\Dto\Page;
+use App\Domain\Page\Dto\Project;
+use App\Domain\Page\Dto\Styles;
 use App\Domain\Page\PageFacade;
 use App\Infrastructure\Http\Dto\Page\HttpPage;
 use App\Infrastructure\Http\Factory\Page\PageHttpFactory;
@@ -35,5 +39,20 @@ class PageAdapter
     public function findProjectsByPageId(string $id): ?Collection
     {
         return $this->pageFacade->findProjectsByPageId($id)->getProjects();
+    }
+
+    public function findStylesByPageId(string $id): Styles
+    {
+        return $this->pageFacade->findStylesByPageId($id);
+    }
+
+    public function findProjectByProjectId(string $projectId): Project
+    {
+        return $this->pageFacade->findProjectByProjectId($projectId);
+    }
+
+    public function findGalleryById(string $galleryId): Gallery
+    {
+        return $this->pageFacade->findGalleryById($galleryId);
     }
 }

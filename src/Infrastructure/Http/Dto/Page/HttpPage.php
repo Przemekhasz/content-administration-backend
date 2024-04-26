@@ -30,6 +30,8 @@ class HttpPage
         private ?Collection $galleries = null,
         #[OA\Property]
         private ?Collection $projects = null,
+        #[OA\Property]
+        private ?HttpStyles $styles = null,
     ) {
     }
 
@@ -141,5 +143,15 @@ class HttpPage
     public function setProjects(?Collection $projects): void
     {
         $this->projects = $projects;
+    }
+
+    public function getStyles(): ?HttpStyles
+    {
+        return $this->styles;
+    }
+
+    public function setStyles(?HttpStyles $styles): void
+    {
+        $this->styles = $styles;
     }
 }

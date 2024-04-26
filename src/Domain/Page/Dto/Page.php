@@ -18,6 +18,7 @@ class Page
         private ?Collection $socialMediaLinkIcons = null,
         private ?Collection $galleries = null,
         private ?Collection $projects = null,
+        private ?Styles $styles = null,
     ) {
     }
 
@@ -129,5 +130,15 @@ class Page
     public function setProjects(?Collection $projects): void
     {
         $this->projects = $projects;
+    }
+
+    public function getStyles(): ?Styles
+    {
+        return $this->styles;
+    }
+
+    public function setStyles(?Styles $styles): void
+    {
+        $this->styles = $styles;
     }
 }
