@@ -50,5 +50,9 @@ class PageCrudController extends AbstractCrudController
         yield AssociationField::new('projects', 'Projects')
             ->setHelp('Associate projects with this page.')
             ->setFormTypeOptions(['by_reference' => false]);
+
+        yield AssociationField::new('styles', 'Motyw strony')
+            ->setHelp('Przypisz motyw strony')
+            ->setFormTypeOptions(['by_reference' => true]);
     }
 }

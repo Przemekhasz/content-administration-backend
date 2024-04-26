@@ -6,10 +6,12 @@ use App\Domain\Page\Dto\Banner;
 use App\Domain\Page\Dto\Logo;
 use App\Domain\Page\Dto\MenuItem;
 use App\Domain\Page\Dto\Page;
+use App\Domain\Page\Dto\Styles;
 use App\Infrastructure\Http\Dto\Page\HttpBanner;
 use App\Infrastructure\Http\Dto\Page\HttpLogo;
 use App\Infrastructure\Http\Dto\Page\HttpMenuItem;
 use App\Infrastructure\Http\Dto\Page\HttpPage;
+use App\Infrastructure\Http\Dto\Page\HttpStyles;
 
 class PageHttpFactory
 {
@@ -43,6 +45,17 @@ class PageHttpFactory
             socialMediaLinkIcons: $http->getSocialMediaLinkIcons(),
             galleries: $http->getGalleries(),
             projects: $http->getProjects(),
+            styles: new Styles(
+                id: $http->getStyles()->getId(),
+                name: $http->getStyles()->getName(),
+                appBarBackground: $http->getStyles()->getAppBarBackground(),
+                footerBackground: $http->getStyles()->getFooterBackground(),
+                emailBackground: $http->getStyles()->getEmailBackground(),
+                background: $http->getStyles()->getBackground(),
+                fontFamily: $http->getStyles()->getFontFamily(),
+                categoryColor: $http->getStyles()->getCategoryColor(),
+                tagColor: $http->getStyles()->getTagColor(),
+            ),
         );
     }
 
@@ -72,6 +85,17 @@ class PageHttpFactory
             socialMediaLinkIcons: $dto->getSocialMediaLinkIcons(),
             galleries: $dto->getGalleries(),
             projects: $dto->getProjects(),
+            styles: new HttpStyles(
+                id: $dto->getStyles()->getId(),
+                name: $dto->getStyles()->getName(),
+                appBarBackground: $dto->getStyles()->getAppBarBackground(),
+                footerBackground: $dto->getStyles()->getFooterBackground(),
+                emailBackground: $dto->getStyles()->getEmailBackground(),
+                background: $dto->getStyles()->getBackground(),
+                fontFamily: $dto->getStyles()->getFontFamily(),
+                categoryColor: $dto->getStyles()->getCategoryColor(),
+                tagColor: $dto->getStyles()->getTagColor(),
+            ),
         );
     }
 }

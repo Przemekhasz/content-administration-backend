@@ -57,6 +57,10 @@ class Page
     #[ORM\JoinTable(name: 'page_projects')]
     private Collection $projects;
 
+    #[ORM\OneToOne(targetEntity: Styles::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'styles_id', referencedColumnName: 'id', nullable: true)]
+    private ?Styles $styles = null;
+
     public function __construct()
     {
         $this->pageHeaders = new ArrayCollection();
@@ -195,5 +199,15 @@ class Page
     public function removeProject(Project $project): void
     {
         $this->projects->removeElement($project);
+    }
+
+    public function getStyles(): ?Styles
+    {
+        return $this->styles;
+    }
+
+    public function setStyles(?Styles $styles): void
+    {
+        $this->styles = $styles;
     }
 }

@@ -54,4 +54,18 @@ class PageRepository extends AbstractRepositoryManager
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function findStylesByPageId(string $pageId): ?Page
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->select('p', 's')
+            ->leftJoin('p.styles', 's')
+            ->where('p.id = :id')
+            ->setParameter('id', $pageId);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

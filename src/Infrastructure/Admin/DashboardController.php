@@ -13,6 +13,7 @@ use App\Infrastructure\Entity\Page\PageHeader;
 use App\Infrastructure\Entity\Page\Project;
 use App\Infrastructure\Entity\Page\ProjectDetail;
 use App\Infrastructure\Entity\Page\SocialMediaLinkIcons;
+use App\Infrastructure\Entity\Page\Styles;
 use App\Infrastructure\Entity\Page\Tag;
 use App\Infrastructure\Entity\User\User;
 use App\Infrastructure\Repository\Page\ContactRepository;
@@ -49,6 +50,9 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Kreator stron');
         yield MenuItem::linkToCrud('Strony', 'fa-solid fa-file-alt', Page::class);
+
+        yield MenuItem::section('Konfiguracja');
+        yield MenuItem::linkToCrud('Motyw', 'fa-solid fa-palette', Styles::class);
 
         yield MenuItem::section('Zarządzanie');
         yield MenuItem::subMenu('Zarządzanie użytkownikami', 'fa-solid fa-users')

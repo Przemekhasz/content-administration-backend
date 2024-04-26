@@ -2,7 +2,10 @@
 
 namespace App\Domain\Page;
 
+use App\Domain\Page\Dto\Gallery;
 use App\Domain\Page\Dto\Page;
+use App\Domain\Page\Dto\Project;
+use App\Domain\Page\Dto\Styles;
 use App\Infrastructure\Service\Page\PageService;
 
 class PageFacade
@@ -30,5 +33,20 @@ class PageFacade
     public function findProjectsByPageId(string $id): Page
     {
         return $this->pageService->findProjectsByPageId($id);
+    }
+
+    public function findStylesByPageId(string $id): Styles
+    {
+        return $this->pageService->findStylesByPageId($id);
+    }
+
+    public function findProjectByProjectId(string $projectId): Project
+    {
+        return $this->pageService->findProjectByProjectId($projectId);
+    }
+
+    public function findGalleryById(string $galleryId): Gallery
+    {
+        return $this->pageService->findGalleryById($galleryId);
     }
 }

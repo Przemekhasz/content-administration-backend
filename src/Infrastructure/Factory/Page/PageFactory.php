@@ -6,6 +6,7 @@ use App\Domain\Page\Dto\Banner;
 use App\Domain\Page\Dto\Logo;
 use App\Domain\Page\Dto\MenuItem;
 use App\Domain\Page\Dto\Page;
+use App\Domain\Page\Dto\Styles;
 use App\Infrastructure\Entity\Page\Page as PageEntity;
 
 class PageFactory
@@ -40,7 +41,18 @@ class PageFactory
             pageHeaders: $entity->getPageHeaders(),
             socialMediaLinkIcons: $entity->getSocialMediaIcons(),
             galleries: $entity->getGalleries(),
-            projects: $entity->getProjects()
+            projects: $entity->getProjects(),
+            styles: new Styles(
+                id: $entity->getStyles()?->getId(),
+                name: $entity->getStyles()?->getName(),
+                appBarBackground: $entity->getStyles()?->getAppBarBackground(),
+                footerBackground: $entity->getStyles()?->getFooterBackground(),
+                emailBackground: $entity->getStyles()?->getEmailBackground(),
+                background: $entity->getStyles()?->getBackground(),
+                fontFamily: $entity->getStyles()?->getFontFamily(),
+                categoryColor: $entity->getStyles()?->getCategoryColor(),
+                tagColor: $entity->getStyles()?->getTagColor(),
+            ),
         );
     }
 }
