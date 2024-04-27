@@ -2,6 +2,10 @@
 
 namespace App\Infrastructure\Entity\Page;
 
+use App\Infrastructure\Entity\Gallery\Gallery;
+use App\Infrastructure\Entity\Project\Project;
+use App\Infrastructure\Entity\Styles\GlobalStyles;
+use App\Infrastructure\Entity\Styles\Styles;
 use App\Infrastructure\Repository\Page\PageRepository;
 use App\Infrastructure\Traits\UUIDTrait;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -57,7 +61,11 @@ class Page
     #[ORM\JoinTable(name: 'page_projects')]
     private Collection $projects;
 
-    #[ORM\OneToOne(targetEntity: Styles::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: GlobalStyles::class)]
+    #[ORM\JoinColumn(name: 'global_styles_id', referencedColumnName: 'id', nullable: true)]
+    private ?GlobalStyles $globalStyles = null;
+
+    #[ORM\ManyToOne(targetEntity: Styles::class)]
     #[ORM\JoinColumn(name: 'styles_id', referencedColumnName: 'id', nullable: true)]
     private ?Styles $styles = null;
 
@@ -199,6 +207,16 @@ class Page
     public function removeProject(Project $project): void
     {
         $this->projects->removeElement($project);
+    }
+
+    public function getGlobalStyles(): ?GlobalStyles
+    {
+        return $this->globalStyles;
+    }
+
+    public function setGlobalStyles(?GlobalStyles $globalStyles): void
+    {
+        $this->globalStyles = $globalStyles;
     }
 
     public function getStyles(): ?Styles

@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Admin\Gallery;
 
-use App\Infrastructure\Entity\Page\Gallery;
+use App\Infrastructure\Entity\Gallery\Gallery;
 use App\Infrastructure\Type\ImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;

@@ -26,6 +26,34 @@ doctrine:
                 prefix: App\Infrastructure\Entity\User
                 alias: User
 
+            Contact:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Infrastructure/Entity/Contact'
+                prefix: App\Infrastructure\Entity\Contact
+                alias: Contact
+
+            Gallery:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Infrastructure/Entity/Gallery'
+                prefix: App\Infrastructure\Entity\Gallery
+                alias: Gallery
+
+            Project:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Infrastructure/Entity/Project'
+                prefix: App\Infrastructure\Entity\Project
+                alias: Project
+
+            Styles:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Infrastructure/Entity/Styles'
+                prefix: App\Infrastructure\Entity\Styles
+                alias: Styles
+
 when@test:
     doctrine:
         dbal:

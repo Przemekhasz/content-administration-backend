@@ -2,23 +2,33 @@
 
 namespace App\Infrastructure\Factory\Page;
 
-use App\Domain\Page\Dto\Styles;
-use App\Infrastructure\Entity\Page\Styles as StylesEntity;
+use App\Domain\Styles\Dto\Styles;
+use App\Infrastructure\Entity\Styles\Styles as StylesEntity;
 
 class StylesFactory
 {
     public function createFromEntity(StylesEntity $entity): Styles
     {
         return new Styles(
-            id: $entity->getId(),
+            id: $entity?->getId(),
             name: $entity->getName(),
-            appBarBackground: $entity->getAppBarBackground(),
-            footerBackground: $entity->getFooterBackground(),
-            emailBackground: $entity->getEmailBackground(),
-            background: $entity->getBackground(),
-            fontFamily: $entity->getFontFamily(),
-            categoryColor: $entity->getCategoryColor(),
-            tagColor: $entity->getTagColor(),
+            primaryColor: $entity->getPrimaryColor(),
+            secondaryColor: $entity->getSecondaryColor(),
+            backgroundColor: $entity->getBackgroundColor(),
+            categoriesBackgroundColor: $entity->getCategoriesBackgroundColor(),
+            tagsBackgroundColor: $entity->getTagsBackgroundColor(),
+            categoriesColor: $entity->getCategoriesColor(),
+            tagsColor: $entity->getTagsColor(),
+            textColor: $entity->getTextColor(),
+            bannerTextBold: $entity->isBannerTextBold(),
+            bannerTextShadow: $entity->isBannerTextShadow(),
+            bannerTextAnimation: $entity->isBannerTextAnimation(),
+            bannerTextFontFamily: $entity->getBannerTextFontFamily(),
+            bannerTextShadowColor: $entity->getBannerTextShadowColor(),
+            linkColor: $entity->getLinkColor(),
+            hoverColor: $entity->getHoverColor(),
+            headingFont: $entity->getHeadingFont(),
+            bodyFont: $entity->getBodyFont(),
         );
     }
 }

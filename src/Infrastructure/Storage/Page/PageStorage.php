@@ -2,18 +2,21 @@
 
 namespace App\Infrastructure\Storage\Page;
 
-use App\Domain\Page\Dto\Gallery;
+use App\Domain\Gallery\Dto\Gallery;
 use App\Domain\Page\Dto\Page;
-use App\Domain\Page\Dto\Project;
-use App\Domain\Page\Dto\Styles;
-use App\Infrastructure\Factory\Page\GalleryFactory;
+use App\Domain\Project\Dto\Project;
+use App\Domain\Styles\Dto\GlobalStyles;
+use App\Domain\Styles\Dto\Styles;
+use App\Infrastructure\Factory\gallery\GalleryFactory;
+use App\Infrastructure\Factory\Page\GlobalStylesFactory;
 use App\Infrastructure\Factory\Page\PageFactory;
-use App\Infrastructure\Factory\Page\ProjectFactory;
 use App\Infrastructure\Factory\Page\StylesFactory;
-use App\Infrastructure\Repository\Page\GalleryRepository;
+use App\Infrastructure\Factory\Project\ProjectFactory;
+use App\Infrastructure\Repository\Gallery\GalleryRepository;
 use App\Infrastructure\Repository\Page\PageRepository;
-use App\Infrastructure\Repository\Page\ProjectRepository;
-use App\Infrastructure\Repository\Page\StylesRepository;
+use App\Infrastructure\Repository\Project\ProjectRepository;
+use App\Infrastructure\Repository\Styles\GlobalStylesRepository;
+use App\Infrastructure\Repository\Styles\StylesRepository;
 use App\Infrastructure\Storage\Page\Interface\PageStorageInterface;
 use Doctrine\ORM\NonUniqueResultException;
 
@@ -24,8 +27,10 @@ class PageStorage implements PageStorageInterface
         private readonly ProjectRepository $projectRepository,
         private readonly GalleryRepository $galleryRepository,
         private readonly StylesRepository $stylesRepository,
+        private readonly GlobalStylesRepository $globalStylesRepository,
         private readonly PageFactory $pageFactory,
         private readonly StylesFactory $stylesFactory,
+        private readonly GlobalStylesFactory $globalStylesFactory,
         private readonly ProjectFactory $projectFactory,
         private readonly GalleryFactory $galleryFactory,
     ) {
@@ -77,20 +82,6 @@ class PageStorage implements PageStorageInterface
         $styles = $this->stylesRepository->findById($pageStylesId);
 
         return $this->stylesFactory->createFromEntity($styles);
-    }
-
-    public function findProjectByProjectId(string $projectId): Project
-    {
-        $page = $this->projectRepository->findById($projectId);
-
-        return $this->projectFactory->createFromEntity($page);
-    }
-
-    public function findGalleryById(string $galleryId): Gallery
-    {
-        $gallery = $this->galleryRepository->findById($galleryId);
-
-        return $this->galleryFactory->createFromEntity($gallery);
     }
 
     private function getGenerator(array $entities): \Generator

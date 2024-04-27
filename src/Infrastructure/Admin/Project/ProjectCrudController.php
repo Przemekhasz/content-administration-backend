@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Admin\Project;
 
-use App\Infrastructure\Entity\Page\Project;
+use App\Infrastructure\Entity\Project\Project;
 use App\Infrastructure\Type\ProjectDetailType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;

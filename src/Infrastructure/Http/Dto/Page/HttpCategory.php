@@ -7,9 +7,9 @@ use OpenApi\Attributes as OA;
 class HttpCategory
 {
     public function __construct(
-        #[OA\Property]
+        #[OA\Property()]
         private ?string $id = null,
-        #[OA\Property]
+        #[OA\Property()]
         private ?string $name = null,
     ) {
     }

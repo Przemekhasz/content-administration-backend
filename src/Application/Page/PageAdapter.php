@@ -2,11 +2,8 @@
 
 namespace App\Application\Page;
 
-use App\Domain\Page\Dto\Gallery;
-use App\Domain\Page\Dto\Page;
-use App\Domain\Page\Dto\Project;
-use App\Domain\Page\Dto\Styles;
 use App\Domain\Page\PageFacade;
+use App\Domain\Styles\Dto\Styles;
 use App\Infrastructure\Http\Dto\Page\HttpPage;
 use App\Infrastructure\Http\Factory\Page\PageHttpFactory;
 use Doctrine\Common\Collections\Collection;
@@ -44,15 +41,5 @@ class PageAdapter
     public function findStylesByPageId(string $id): Styles
     {
         return $this->pageFacade->findStylesByPageId($id);
-    }
-
-    public function findProjectByProjectId(string $projectId): Project
-    {
-        return $this->pageFacade->findProjectByProjectId($projectId);
-    }
-
-    public function findGalleryById(string $galleryId): Gallery
-    {
-        return $this->pageFacade->findGalleryById($galleryId);
     }
 }

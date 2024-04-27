@@ -2,6 +2,9 @@
 
 namespace App\Domain\Page\Dto;
 
+use App\Domain\MenuItem\Dto\MenuItem;
+use App\Domain\Styles\Dto\GlobalStyles;
+use App\Domain\Styles\Dto\Styles;
 use Doctrine\Common\Collections\Collection;
 
 class Page
@@ -18,6 +21,7 @@ class Page
         private ?Collection $socialMediaLinkIcons = null,
         private ?Collection $galleries = null,
         private ?Collection $projects = null,
+        private ?GlobalStyles $globalStyles = null,
         private ?Styles $styles = null,
     ) {
     }
@@ -130,6 +134,16 @@ class Page
     public function setProjects(?Collection $projects): void
     {
         $this->projects = $projects;
+    }
+
+    public function getGlobalStyles(): ?GlobalStyles
+    {
+        return $this->globalStyles;
+    }
+
+    public function setGlobalStyles(?GlobalStyles $globalStyles): void
+    {
+        $this->globalStyles = $globalStyles;
     }
 
     public function getStyles(): ?Styles
