@@ -12,7 +12,8 @@ class ContactService
     ) {
     }
 
-    public function contact(Contact $contact): Contact {
+    public function contact(Contact $contact): Contact
+    {
         return $this->contactStorage->contact($contact);
     }
 }

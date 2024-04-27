@@ -3,8 +3,6 @@
 namespace App\Domain\Project;
 
 use App\Domain\Project\Dto\Project;
-use App\Domain\Project\Dto\ProjectDetail;
-use App\Infrastructure\Service\Page\PageService;
 use App\Infrastructure\Service\Project\ProjectService;
 
 class ProjectFacade

@@ -40,7 +40,6 @@ class ContactCrudController extends AbstractCrudController
         return Contact::class;
     }
 
-
     public function configureActions(Actions $actions): Actions
     {
         $replyAction = Action::new('reply', 'Odpowiedz', 'fa fa-reply')
@@ -60,33 +59,29 @@ class ContactCrudController extends AbstractCrudController
             });
     }
 
-
     public function configureFields(string $pageName): iterable
     {
         yield FormField::addPanel('Wiadomości')->setIcon('fa fa-envelope');
 
         yield EmailField::new('email', 'Email')
-            ->setFormTypeOption('disabled', $pageName === Crud::PAGE_EDIT);
+            ->setFormTypeOption('disabled', Crud::PAGE_EDIT === $pageName);
 
         yield TextField::new('topic', 'Temat')
-            ->setFormTypeOption('disabled', $pageName === Crud::PAGE_EDIT);
+            ->setFormTypeOption('disabled', Crud::PAGE_EDIT === $pageName);
 
         yield TextareaField::new('content', 'Zawartość')
             ->hideOnIndex()
-            ->setFormTypeOption('disabled', $pageName === Crud::PAGE_EDIT);
+            ->setFormTypeOption('disabled', Crud::PAGE_EDIT === $pageName);
 
         yield TextareaField::new('replyMsg', 'Odpowiedź')
             ->hideOnIndex();
 
         yield BooleanField::new('isAnswered', 'Odpowiedziano?')
-            ->renderAsSwitch($pageName !== Crud::PAGE_EDIT)
-            ->setFormTypeOption('disabled', $pageName === Crud::PAGE_EDIT);
+            ->renderAsSwitch(Crud::PAGE_EDIT !== $pageName)
+            ->setFormTypeOption('disabled', Crud::PAGE_EDIT === $pageName);
     }
 
     /**
-     * @param Request $request
-     * @param Environment $twig
-     * @return Response
      * @throws TransportExceptionInterface
      * @throws LoaderError
      * @throws RuntimeError
@@ -110,7 +105,7 @@ class ContactCrudController extends AbstractCrudController
         $email = (new Email())
             ->from($this->emailAddress)
             ->to($contact->getEmail())
-            ->subject('[RE] ' . $contact->getTopic())
+            ->subject('[RE] '.$contact->getTopic())
             ->html($htmlContent);
 
         $this->mailer->send($email);
@@ -122,5 +117,4 @@ class ContactCrudController extends AbstractCrudController
 
         return $this->redirect($this->generateUrl('admin'));
     }
-
 }

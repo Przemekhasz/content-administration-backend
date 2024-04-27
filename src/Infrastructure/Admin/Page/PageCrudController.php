@@ -21,8 +21,7 @@ class PageCrudController extends AbstractCrudController
 
     public function __construct(
         private readonly GlobalStylesRepository $globalStylesRepository,
-    )
-    {
+    ) {
     }
 
     public function configureFields(string $pageName): iterable

@@ -26,7 +26,6 @@ class SetGlobalStylesForAllPagesCommand extends Command
             ->setDescription('Ustawienie domyślnych stylów dla wszystkich stron');
     }
 
-
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Skanowanie stron');
@@ -41,17 +40,17 @@ class SetGlobalStylesForAllPagesCommand extends Command
         $styles = $this->globalStylesRepository->findAll();
 
         foreach ($styles as $style) {
-            $output->writeln("Wyszukiwanie styli...");
-            $output->writeln(sprintf("%s %s", 'Znaleziono style o nazwie', $style->getName()));
+            $output->writeln('Wyszukiwanie styli...');
+            $output->writeln(sprintf('%s %s', 'Znaleziono style o nazwie', $style->getName()));
 
             foreach ($pages as $page) {
                 $page->setGlobalStyles($style);
                 $this->pageRepository->update($page);
 
-                $output->writeln(sprintf("%s %s", 'Ustawiono style dla strony', $page->getPageName()));
+                $output->writeln(sprintf('%s %s', 'Ustawiono style dla strony', $page->getPageName()));
             }
         }
-        $output->writeln("Ukończono podpinanie styli");
+        $output->writeln('Ukończono podpinanie styli');
 
         return Command::SUCCESS;
     }

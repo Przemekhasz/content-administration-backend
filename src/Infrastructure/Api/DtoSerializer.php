@@ -14,8 +14,7 @@ class DtoSerializer implements DtoSerializerInterface
     public function __construct(
         private readonly SerializerInterface $serializer,
         private readonly ValidatorInterface $validator,
-    )
-    {
+    ) {
     }
 
     public function convert(string $class, mixed $data, array $groups = [])
@@ -30,6 +29,7 @@ class DtoSerializer implements DtoSerializerInterface
         if (is_array($data)) {
             return $this->serializer->deserialize(json_encode($data), $class, 'json');
         }
+
         return null;
     }
 
@@ -38,7 +38,6 @@ class DtoSerializer implements DtoSerializerInterface
      */
     public function validate($dto, array $groups = [], $constraint = null): void
     {
-
         $violations = $this->validator->validate($dto, groups: $groups);
 
         if (count($violations) > 0) {
@@ -47,9 +46,9 @@ class DtoSerializer implements DtoSerializerInterface
              * @var ConstraintViolationInterface $violation
              */
             foreach ($violations as $violation) {
-                $messages[] = $violation->getPropertyPath() ." ". $violation->getMessage();
+                $messages[] = $violation->getPropertyPath().' '.$violation->getMessage();
             }
-            throw new ValidationException (implode("\n", $messages));
+            throw new ValidationException(implode("\n", $messages));
         }
     }
 }
