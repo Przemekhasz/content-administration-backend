@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Repository\Page;
 
-use App\Infrastructure\Entity\Page\Contact;
+use App\Infrastructure\Entity\Contact\Contact;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
 use Doctrine\ORM\EntityManagerInterface;
 

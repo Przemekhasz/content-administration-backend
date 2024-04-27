@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Admin\Contact;
 
-use App\Infrastructure\Entity\Page\Contact;
+use App\Infrastructure\Entity\Contact\Contact;
 use App\Infrastructure\Repository\Page\ContactRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;

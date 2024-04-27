@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Factory\Page;
 
-use App\Domain\Page\Dto\Contact;
-use App\Infrastructure\Entity\Page\Contact as ContactEntity;
+use App\Domain\Contact\Dto\Contact;
+use App\Infrastructure\Entity\Contact\Contact as ContactEntity;
 
 class ContactFactory
 {

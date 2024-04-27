@@ -2,6 +2,9 @@
 
 namespace App\Infrastructure\Http\Dto\Page;
 
+use App\Infrastructure\Http\Dto\MenuItem\HttpMenuItem;
+use App\Infrastructure\Http\Dto\Styles\HttpGlobalStyles;
+use App\Infrastructure\Http\Dto\Styles\HttpStyles;
 use Doctrine\Common\Collections\Collection;
 use OpenApi\Attributes as OA;
 
@@ -30,6 +33,8 @@ class HttpPage
         private ?Collection $galleries = null,
         #[OA\Property]
         private ?Collection $projects = null,
+        #[OA\Property]
+        private ?HttpGlobalStyles $globalStyles = null,
         #[OA\Property]
         private ?HttpStyles $styles = null,
     ) {
@@ -143,6 +148,16 @@ class HttpPage
     public function setProjects(?Collection $projects): void
     {
         $this->projects = $projects;
+    }
+
+    public function getGlobalStyles(): ?HttpGlobalStyles
+    {
+        return $this->globalStyles;
+    }
+
+    public function setGlobalStyles(?HttpGlobalStyles $globalStyles): void
+    {
+        $this->globalStyles = $globalStyles;
     }
 
     public function getStyles(): ?HttpStyles

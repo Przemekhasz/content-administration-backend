@@ -2,22 +2,22 @@
 
 namespace App\Infrastructure\Admin;
 
+use App\Infrastructure\Entity\Contact\Contact;
+use App\Infrastructure\Entity\Gallery\Gallery;
+use App\Infrastructure\Entity\Gallery\Image;
 use App\Infrastructure\Entity\Page\Banner;
 use App\Infrastructure\Entity\Page\Category;
-use App\Infrastructure\Entity\Page\Contact;
-use App\Infrastructure\Entity\Page\Gallery;
-use App\Infrastructure\Entity\Page\Image;
 use App\Infrastructure\Entity\Page\Logo;
 use App\Infrastructure\Entity\Page\Page;
 use App\Infrastructure\Entity\Page\PageHeader;
-use App\Infrastructure\Entity\Page\Project;
-use App\Infrastructure\Entity\Page\ProjectDetail;
 use App\Infrastructure\Entity\Page\SocialMediaLinkIcons;
-use App\Infrastructure\Entity\Page\Styles;
 use App\Infrastructure\Entity\Page\Tag;
+use App\Infrastructure\Entity\Project\Project;
+use App\Infrastructure\Entity\Project\ProjectDetail;
+use App\Infrastructure\Entity\Styles\GlobalStyles;
+use App\Infrastructure\Entity\Styles\Styles;
 use App\Infrastructure\Entity\User\User;
 use App\Infrastructure\Repository\Page\ContactRepository;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Locale;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -52,7 +52,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Strony', 'fa-solid fa-file-alt', Page::class);
 
         yield MenuItem::section('Konfiguracja');
-        yield MenuItem::linkToCrud('Motyw', 'fa-solid fa-palette', Styles::class);
+        yield MenuItem::linkToCrud('Motyw współdzielony', 'fa-solid fa-cog', GlobalStyles::class);
+        yield MenuItem::linkToCrud('Motywy wybranych stron', 'fa-solid fa-palette', Styles::class);
 
         yield MenuItem::section('Zarządzanie');
         yield MenuItem::subMenu('Zarządzanie użytkownikami', 'fa-solid fa-users')

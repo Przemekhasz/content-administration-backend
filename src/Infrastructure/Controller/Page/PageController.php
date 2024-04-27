@@ -97,36 +97,4 @@ class PageController extends AbstractController
             return $this->api->throwException($exception);
         }
     }
-
-    #[Route(path: '/project/{id}', methods: ['GET'])]
-    #[OA\Response(
-        response: 200,
-        description: 'Returns project by id',
-    )]
-    public function project(string $id): JsonResponse
-    {
-        try {
-            $dto = $this->adapter->findProjectByProjectId($id);
-
-            return $this->api->json($dto);
-        } catch (\Exception $exception) {
-            return $this->api->throwException($exception);
-        }
-    }
-
-    #[Route(path: '/gallery/{id}', methods: ['GET'])]
-    #[OA\Response(
-        response: 200,
-        description: 'Returns gallery by id',
-    )]
-    public function gallery(string $id): JsonResponse
-    {
-        try {
-            $dto = $this->adapter->findGalleryById($id);
-
-            return $this->api->json($dto);
-        } catch (\Exception $exception) {
-            return $this->api->throwException($exception);
-        }
-    }
 }

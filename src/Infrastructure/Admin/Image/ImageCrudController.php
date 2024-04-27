@@ -5,7 +5,7 @@ namespace App\Infrastructure\Admin\Image;
 use App\Controller\Admin\CategoryCrudController;
 use App\Infrastructure\Admin\Gallery\GalleryCrudController;
 use App\Infrastructure\Admin\Tag\TagCrudController;
-use App\Infrastructure\Entity\Page\Image;
+use App\Infrastructure\Entity\Gallery\Image;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;

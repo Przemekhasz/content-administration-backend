@@ -3,6 +3,8 @@
 namespace App\Infrastructure\Admin\Page;
 
 use App\Infrastructure\Entity\Page\Page;
+use App\Infrastructure\Repository\Styles\GlobalStylesRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -15,6 +17,12 @@ class PageCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Page::class;
+    }
+
+    public function __construct(
+        private readonly GlobalStylesRepository $globalStylesRepository,
+    )
+    {
     }
 
     public function configureFields(string $pageName): iterable
@@ -51,8 +59,27 @@ class PageCrudController extends AbstractCrudController
             ->setHelp('Associate projects with this page.')
             ->setFormTypeOptions(['by_reference' => false]);
 
-        yield AssociationField::new('styles', 'Motyw strony')
+        yield AssociationField::new('globalStyles', 'Motyw współdzielony')
+            ->setHelp('Domyślny motyw')
+            ->setFormTypeOptions([
+                'by_reference' => true,
+            ])
+            ->setDisabled();
+
+        yield AssociationField::new('styles', 'Motywy wybranych strony')
             ->setHelp('Przypisz motyw strony')
             ->setFormTypeOptions(['by_reference' => true]);
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function createEntity(string $entityFqcn): Page
+    {
+        $styles = $this->globalStylesRepository->findLastGlobalStyles();
+        $page = new Page();
+        $page->setGlobalStyles($styles);
+
+        return $page;
     }
 }

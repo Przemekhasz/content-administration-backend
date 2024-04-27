@@ -2,10 +2,11 @@
 
 namespace App\Infrastructure\Service\Page;
 
-use App\Domain\Page\Dto\Gallery;
+use App\Domain\Gallery\Dto\Gallery;
 use App\Domain\Page\Dto\Page;
-use App\Domain\Page\Dto\Project;
-use App\Domain\Page\Dto\Styles;
+use App\Domain\Project\Dto\Project;
+use App\Domain\Styles\Dto\GlobalStyles;
+use App\Domain\Styles\Dto\Styles;
 use App\Infrastructure\Storage\Page\Interface\PageStorageInterface;
 
 class PageService
@@ -38,15 +39,5 @@ class PageService
     public function findStylesByPageId(string $id): Styles
     {
         return $this->pageStorage->findStylesByPageId($id);
-    }
-
-    public function findProjectByProjectId(string $projectId): Project
-    {
-        return $this->pageStorage->findProjectByProjectId($projectId);
-    }
-
-    public function findGalleryById(string $galleryId): Gallery
-    {
-        return $this->pageStorage->findGalleryById($galleryId);
     }
 }
