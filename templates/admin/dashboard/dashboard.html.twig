@@ -10,7 +10,7 @@
 
 <div class="container py-5">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="jumbotron">
                 <h1 class="display-4">Cześć! 😎</h1>
                 <p class="lead">Stworzysz tutaj zawartość dla swojej strony, portfolio, wizytówki czego tylko zechcesz!</p>
@@ -18,24 +18,6 @@
                     Jedyne ograniczenie to wyobraznia a jezeli jednak Twoja wyobraznia wykracza poza mozliwosci tej strony, nic straconego, odezwij sie a wprowadzimy to o czym marzysz.
                 </quote>
                 <hr class="my-4">
-                <p>
-                    Warstwa frontendowa jest osobnym modułem dostępnym pod tym adresem <a href="https://github.com/Przemekhasz">Przemekhasz</a>
-                    W tym miejscu możesz manipulować zawartością strony, tj.:
-                    <ul>
-                        <li>wgrać logo</li>
-                        <li>wgrać banery</li>
-                        <li>stworzyć menu</li>
-                        <li>kreować opisy</li>
-                        <li>otrzymywać wiadomości z formularza kontaktowego i na nie odpowiadać</li>
-                        <li>stworzyć galerie zdjęć z opisami, tagami oraz kategoriami</li>
-                        <li>stworzyć zbiór projektów/realizacji czegoś, czym się chcesz pochwalić i atrakcyjnie to przedstawić</li>
-                        <li>prowadzić bloga</li>
-                        <li>Zmieniać kolory, ogólnopojęte style strony</li>
-                        <li>dostosowac szablon mailowy do wlasnych potrzeb</li>
-                        <li>zmieniac czcionki</li>
-                        <li>podpinac animacje</li>
-                    </ul>
-                </p>
                 {% if new_messages_count > 0 %}
                     <a href="?crudAction=index&crudControllerFqcn=App%5CInfrastructure%5CAdmin%5CContact%5CContactCrudController">
                         <div class="alert alert-warning" role="alert">
@@ -45,21 +27,105 @@
                 {% endif %}
             </div>
         </div>
-    </div>
-    <hr class="my-4">
-    <div class="row mt-5">
-        <div class="col text-center">
-            <h6 class="display-8">Jeśli nie wiesz jak zacząć nie przejmuj sie, kliknij w ponizszy przycisk, znajduje sie tam plik pdf, w ktorym poprowadze krok po kroku</h6>
-            <a href="https://localhost:8080/assets/docs/doc.pdf" class="btn btn-primary" target="_blank">Dokumentacja</a>
+        <div class="col-md-6">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <canvas id="countChart" width="400" height="200"></canvas>
+
+            <script>
+                var ctx = document.getElementById('countChart').getContext('2d');
+
+                var data = {
+                    labels: ['Zdjęć', 'Wiadomości', 'Projektów'],
+                    datasets: [{
+                        label: 'Statystyka',
+                        data: [{{ images_count }}, {{ messages_count }}, {{ projects_count }}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                };
+
+                var countChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
         </div>
     </div>
 
-    <!-- Author and Feedback Section -->
-    <div class="row mt-5">
-        <div class="col-md-12 text-center">
-            <h2>Autor i Kontakt</h2>
-            <p>Twórcą i opiekunem tej aplikacji jest <strong>Przemysław Tarapacki Przemekhasz</strong>. Wszelkie uwagi, pytania oraz pomysły na rozwój można zgłaszać na poniższy adres email:</p>
-            <a href="mailto:tarapackiprzemek45@gmail.com">tarapackiprzemek45@gmail.com</a>
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col-md-6">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <canvas id="messagesChart" width="400" height="200"></canvas>
+
+            <script>
+                var ctx2 = document.getElementById('messagesChart').getContext('2d');
+
+                var data2 = {
+                    labels: ['Wiadomości z odpowiedzią', 'Wiadomości bez odpowiedzi'],
+                    datasets: [{
+                        label: 'Statystyka wiadomości',
+                        data: [{{ answered_messages_count }}, {{ new_messages_count }}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                };
+                var messagesChart = new Chart(ctx2, {
+                    type: 'pie',
+                    data: data2
+                });
+            </script>
+        </div>
+        <div class="col-md-6">
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <h6 class="display-8">Jeśli nie wiesz jak zacząć nie przejmuj sie, kliknij w ponizszy przycisk, znajduje sie tam plik pdf, w ktorym poprowadze krok po kroku</h6>
+                    <a href="https://localhost:8080/assets/docs/doc.pdf" class="btn btn-primary" target="_blank">Dokumentacja</a>
+                    <hr class="my-4">
+                    <p>
+                        Warstwa frontendowa jest osobnym modułem dostępnym pod tym adresem <a href="https://github.com/Przemekhasz">Przemekhasz</a>
+                    </p>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Author and Feedback Section -->
+            <div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <h2>Autor i Kontakt</h2>
+                    <p>Twórcą i opiekunem tej aplikacji jest <strong>Przemysław Tarapacki Przemekhasz</strong>. Wszelkie uwagi, pytania oraz pomysły na rozwój można zgłaszać na poniższy adres email:</p>
+                    <a href="mailto:tarapackiprzemek45@gmail.com">tarapackiprzemek45@gmail.com</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
