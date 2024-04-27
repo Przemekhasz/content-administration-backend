@@ -18,6 +18,7 @@ class AbstractRepositoryManager extends EntityRepository
     {
         return $this->createQueryBuilder($qbName);
     }
+
     public function persist($entity): void
     {
         $this->_em->persist($entity);

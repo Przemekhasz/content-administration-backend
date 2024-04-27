@@ -2,10 +2,7 @@
 
 namespace App\Domain\Page;
 
-use App\Domain\Gallery\Dto\Gallery;
 use App\Domain\Page\Dto\Page;
-use App\Domain\Project\Dto\Project;
-use App\Domain\Styles\Dto\GlobalStyles;
 use App\Domain\Styles\Dto\Styles;
 use App\Infrastructure\Service\Page\PageService;
 

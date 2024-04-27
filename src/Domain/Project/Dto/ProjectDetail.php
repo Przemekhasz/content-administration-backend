@@ -2,9 +2,6 @@
 
 namespace App\Domain\Project\Dto;
 
-use App\Domain\User\Dto\User;
-use Doctrine\Common\Collections\Collection;
-
 class ProjectDetail
 {
     public function __construct(

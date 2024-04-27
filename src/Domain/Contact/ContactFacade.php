@@ -12,7 +12,8 @@ class ContactFacade
     ) {
     }
 
-    public function contact(Contact $contact): Contact {
+    public function contact(Contact $contact): Contact
+    {
         return $this->contactService->contact($contact);
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Service\Project;
 
 use App\Domain\Project\Dto\Project;
-use App\Domain\Project\Dto\ProjectDetail;
 use App\Infrastructure\Storage\Project\Interface\ProjectStorageInterface;
 
 class ProjectService

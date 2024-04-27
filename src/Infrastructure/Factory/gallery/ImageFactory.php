@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Factory\gallery;
 
-
 use App\Domain\Gallery\Dto\Image;
 use App\Infrastructure\Entity\Gallery\Image as ImageEntity;
 

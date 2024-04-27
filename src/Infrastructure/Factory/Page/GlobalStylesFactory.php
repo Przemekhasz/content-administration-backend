@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Factory\Page;
 
-
 use App\Domain\Styles\Dto\GlobalStyles;
 use App\Infrastructure\Entity\Styles\GlobalStyles as GlobalStylesEntity;
 
