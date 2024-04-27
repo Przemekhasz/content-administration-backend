@@ -21,4 +21,12 @@ class ProjectRepository extends AbstractRepositoryManager
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function countProjects(): int
+    {
+        return $this->createQueryBuilder('p')
+            ->select('count(p.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

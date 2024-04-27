@@ -21,4 +21,12 @@ class ImageRepository extends AbstractRepositoryManager
 
         return $qb->getQuery()->getResult();
     }
+
+    public function countImages(): int
+    {
+        return $this->createQueryBuilder('i')
+            ->select('count(i.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

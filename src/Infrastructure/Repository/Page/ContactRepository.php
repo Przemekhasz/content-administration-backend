@@ -25,4 +25,22 @@ class ContactRepository extends AbstractRepositoryManager
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function countAnsweredContacts(): int
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->where('c.isAnswered = :answered')
+            ->setParameter('answered', true)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countContacts(): int
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

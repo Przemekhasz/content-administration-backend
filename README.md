@@ -21,6 +21,11 @@ The frontend layer is a separate module available at [this address](https://gith
 *   Customize email templates to your needs
 *   Change fonts
 *   Attach animations
+*   Stats
+
+Dashboard view
+---------------
+![dashboard](https://cdn.discordapp.com/attachments/917396643609976862/1233856791410901012/image.png?ex=662e9e2f&is=662d4caf&hm=7c4fd10810463a29eeda1280cfeaa35365fe37647fdd8820b9971e4c90713ec7&)
 
 Running Commands
 ----------------

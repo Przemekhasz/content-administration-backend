@@ -17,7 +17,9 @@ use App\Infrastructure\Entity\Project\ProjectDetail;
 use App\Infrastructure\Entity\Styles\GlobalStyles;
 use App\Infrastructure\Entity\Styles\Styles;
 use App\Infrastructure\Entity\User\User;
+use App\Infrastructure\Repository\Gallery\ImageRepository;
 use App\Infrastructure\Repository\Page\ContactRepository;
+use App\Infrastructure\Repository\Project\ProjectRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Locale;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -29,6 +31,8 @@ class DashboardController extends AbstractDashboardController
 {
     public function __construct(
         private readonly ContactRepository $contactRepository,
+        private readonly ImageRepository $imageRepository,
+        private readonly ProjectRepository $projectRepository,
     ) {
     }
 
@@ -38,9 +42,17 @@ class DashboardController extends AbstractDashboardController
         parent::index();
 
         $newMessagesCount = $this->contactRepository->countUnansweredContacts();
+        $answeredMessagesCount = $this->contactRepository->countAnsweredContacts();
+        $messagesCount = $this->contactRepository->countContacts();
+        $imagesCount = $this->imageRepository->countImages();
+        $projectsCount = $this->projectRepository->countProjects();
 
         return $this->render('admin/dashboard/dashboard.html.twig', [
             'new_messages_count' => $newMessagesCount,
+            'answered_messages_count' => $answeredMessagesCount,
+            'messages_count' => $messagesCount,
+            'images_count' => $imagesCount,
+            'projects_count' => $projectsCount
         ]);
     }
 
