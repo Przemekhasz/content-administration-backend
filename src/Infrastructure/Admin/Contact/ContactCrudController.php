@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,7 +74,7 @@ class ContactCrudController extends AbstractCrudController
             ->hideOnIndex()
             ->setFormTypeOption('disabled', Crud::PAGE_EDIT === $pageName);
 
-        yield TextareaField::new('replyMsg', 'Odpowiedź')
+        yield TextEditorField::new('replyMsg', 'Odpowiedź')
             ->hideOnIndex();
 
         yield BooleanField::new('isAnswered', 'Odpowiedziano?')

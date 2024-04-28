@@ -6,6 +6,7 @@ use App\Infrastructure\Entity\Project\ProjectDetail;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ProjectDetailCrudController extends AbstractCrudController
@@ -18,13 +19,13 @@ class ProjectDetailCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('description', 'Description'),
+            TextEditorField::new('description', 'Opis'),
             ImageField::new('imagePath')
                 ->setBasePath('uploads/img')
                 ->setUploadDir('public/uploads/img')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false),
-            AssociationField::new('project', 'Project')
+            AssociationField::new('project', 'Projekt')
                 ->setFormTypeOptions(['by_reference' => true]),
         ];
     }
