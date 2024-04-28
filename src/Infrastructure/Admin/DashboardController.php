@@ -8,6 +8,7 @@ use App\Infrastructure\Entity\Gallery\Image;
 use App\Infrastructure\Entity\Page\Banner;
 use App\Infrastructure\Entity\Page\Category;
 use App\Infrastructure\Entity\Page\Logo;
+use App\Infrastructure\Entity\Page\MenuItem as MenuItemEntity;
 use App\Infrastructure\Entity\Page\Page;
 use App\Infrastructure\Entity\Page\PageHeader;
 use App\Infrastructure\Entity\Page\SocialMediaLinkIcons;
@@ -81,7 +82,7 @@ class DashboardController extends AbstractDashboardController
 
                 MenuItem::section('Zawartość strony'),
                 MenuItem::linkToCrud('Media społecznościowe', 'fa fa-share-alt', SocialMediaLinkIcons::class),
-                MenuItem::linkToCrud('Menu', 'fa fa-list-ul', \App\Infrastructure\Entity\Page\MenuItem::class),
+                MenuItem::linkToCrud('Menu', 'fa fa-list-ul', MenuItemEntity::class),
                 MenuItem::linkToCrud('Nagłówki', 'fa fa-heading', PageHeader::class),
 
                 MenuItem::section('Galeria zdjęć'),

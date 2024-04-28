@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ProjectCrudController extends AbstractCrudController
@@ -23,9 +24,8 @@ class ProjectCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Title'),
-            TextareaField::new('mainDescription', 'Main Description'),
-            AssociationField::new('author', 'Autor')
-                ->setFormTypeOptions(['by_reference' => false]),
+            TextEditorField::new('mainDescription', 'Main Description'),
+            AssociationField::new('author', 'Autor'),
             CollectionField::new('details', 'Details')
                 ->setEntryType(ProjectDetailType::class)
                 ->allowAdd()
