@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Type;
 
 use App\Infrastructure\Entity\Gallery\Image;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -20,7 +21,7 @@ class ImageType extends AbstractType
                 'label' => 'Title',
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('description', TextareaType::class, [
+            ->add('description', CKEditorType::class, [
                 'label' => 'Description',
                 'required' => false,
                 'attr' => ['class' => 'form-control'],

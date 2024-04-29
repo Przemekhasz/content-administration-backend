@@ -3,6 +3,8 @@
 namespace App\Infrastructure\Admin\ProjectDetail;
 
 use App\Infrastructure\Entity\Project\ProjectDetail;
+use App\Infrastructure\Field\CKEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -16,10 +18,17 @@ class ProjectDetailCrudController extends AbstractCrudController
         return ProjectDetail::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
+            ;
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextEditorField::new('description', 'Opis'),
+            CKEditorField::new('description', 'Opis'),
             ImageField::new('imagePath')
                 ->setBasePath('uploads/img')
                 ->setUploadDir('public/uploads/img')
