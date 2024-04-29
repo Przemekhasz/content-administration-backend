@@ -3,9 +3,15 @@
 namespace App\Infrastructure\Repository\Page;
 
 use App\Infrastructure\Entity\Page\Page;
+use App\Infrastructure\Exception\Page\PageGalleryNotFoundException;
+use App\Infrastructure\Exception\Page\PageNotFoundException;
+use App\Infrastructure\Exception\Page\PageProjectNotFoundException;
+use App\Infrastructure\Exception\Page\PageStylesNotFoundException;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 
 class PageRepository extends AbstractRepositoryManager
 {
@@ -16,56 +22,74 @@ class PageRepository extends AbstractRepositoryManager
 
     /**
      * @throws NonUniqueResultException
+     * @throws ProjectNotFoundException
+     * @throws PageNotFoundException
      */
     public function findById(string $id): ?Page
     {
-        $qb = $this->createQueryBuilder('p')
-            ->where('p.id = :id')
-            ->setParameter('id', $id);
-
-        return $qb->getQuery()->getOneOrNullResult();
+        try {
+            return $this->createQueryBuilder('p')
+                ->where('p.id = :id')
+                ->setParameter('id', $id)
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
+        } catch (NoResultException) {
+            throw new PageNotFoundException();
+        }
     }
 
     /**
      * @throws NonUniqueResultException
+     * @throws PageGalleryNotFoundException
      */
-    public function findPageWithGalleries(string $pageId)
+    public function findPageWithGalleries(string $pageId): Page
     {
-        $qb = $this->createQueryBuilder('p')
-            ->select('p', 'g', 'i')
-            ->leftJoin('p.galleries', 'g')
-            ->leftJoin('g.images', 'i')
-            ->where('p.id = :id')
-            ->setParameter('id', $pageId);
-
-        return $qb->getQuery()->getOneOrNullResult();
+        try {
+            return $this->createQueryBuilder('p')
+                ->select('p')
+                ->where('p.id = :id')
+                ->setParameter('id', $pageId)
+                ->getQuery()
+                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+        } catch (NoResultException) {
+            throw new PageGalleryNotFoundException();
+        }
     }
 
     /**
      * @throws NonUniqueResultException
+     * @throws PageProjectNotFoundException
      */
     public function findProjectsByPageId(string $pageId)
     {
-        $qb = $this->createQueryBuilder('p')
-            ->select('p', 'pr')
-            ->leftJoin('p.projects', 'pr')
-            ->where('p.id = :id')
-            ->setParameter('id', $pageId);
-
-        return $qb->getQuery()->getOneOrNullResult();
+        try {
+            return $this->createQueryBuilder('p')
+                ->select('p')
+                ->where('p.id = :id')
+                ->setParameter('id', $pageId)
+                ->getQuery()
+                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+        } catch (NoResultException) {
+            throw new PageProjectNotFoundException();
+        }
     }
 
     /**
      * @throws NonUniqueResultException
+     * @throws PageStylesNotFoundException
      */
     public function findStylesByPageId(string $pageId): ?Page
     {
-        $qb = $this->createQueryBuilder('p')
-            ->select('p', 's')
-            ->leftJoin('p.styles', 's')
-            ->where('p.id = :id')
-            ->setParameter('id', $pageId);
-
-        return $qb->getQuery()->getOneOrNullResult();
+        try {
+            return $this->createQueryBuilder('p')
+                ->select('p')
+                ->where('p.id = :id')
+                ->setParameter('id', $pageId)
+                ->getQuery()
+                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+        } catch (NoResultException) {
+            throw new PageStylesNotFoundException();
+        }
     }
 }
