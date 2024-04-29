@@ -1,0 +1,52 @@
+{# templates/admin/field/show_data_modal.html.twig #}
+<style>
+.modal-content {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-header {
+    background: #007bff;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.close {
+    color: white;
+    text-shadow: none;
+    opacity: 1;
+}
+</style>
+
+<button class="btn btn-primary" onclick="showDescriptionModal('{{ field.value|escape('js') }}')">
+    <i class="fas fa-eye"></i> Podgląd
+</button>
+
+<script>
+function showDescriptionModal(description) {
+    const modalBody = document.getElementById('modalDescriptionBody');
+    modalBody.innerHTML = description; // zabezpiecz przed XSS jeśli potrzebne
+    $('#descriptionModal').modal('show');
+}
+function closeModal() {
+    $('#descriptionModal').modal('hide');
+}
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="descriptionModalLabel">Szczegółowy opis</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
+        </button>
+      </div>
+      <div class="modal-body" id="modalDescriptionBody">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
