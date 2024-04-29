@@ -43,7 +43,7 @@ class ImageRepository extends AbstractRepositoryManager
             return $this->createQueryBuilder('i')
                 ->select('count(i.id)')
                 ->getQuery()
-                ->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
+                ->getSingleScalarResult();
         } catch (NoResultException) {
             throw new GalleryImageNotFoundException();
         }
