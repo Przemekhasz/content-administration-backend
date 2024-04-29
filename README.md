@@ -49,6 +49,10 @@ make down
 ```bash
 make rebuild
 ```
+**Install CKEditor:**
+```bash
+make ckeditor
+```
 
 Deployment
 ----------
@@ -62,9 +66,9 @@ Environment Variables
 ---------------------
 ```bash
 XDEBUG: true
-IMG\_UPLOADS\_DIR: '/uploads/img'
-PAGE\_URL: 'https://127.0.0.1:8000'
-PAGE\_NAME: 'localhost'
-FULL\_NAME: 'John Doe'
-EMAIL\_ADDRESS: 'data@gmail.com'
+IMG_UPLOADS_DIR: '/uploads/img'
+PAGE_URL: 'https://127.0.0.1:8000'
+PAGE_NAME: 'localhost'
+FULL_NAME: 'John Doe'
+EMAIL_ADDRESS: 'data@gmail.com'
 ```
