@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Storage\Styles;
 
 use App\Domain\Styles\Dto\GlobalStyles;
+use App\Infrastructure\Exception\Styles\GlobalStylesNotFoundException;
 use App\Infrastructure\Factory\Page\GlobalStylesFactory;
 use App\Infrastructure\Repository\Styles\GlobalStylesRepository;
 use App\Infrastructure\Storage\Styles\Interface\GlobalStylesStorageInterface;
@@ -18,6 +19,7 @@ class GlobalStylesStorage implements GlobalStylesStorageInterface
 
     /**
      * @throws NonUniqueResultException
+     * @throws GlobalStylesNotFoundException
      */
     public function findGlobalStyles(): GlobalStyles
     {

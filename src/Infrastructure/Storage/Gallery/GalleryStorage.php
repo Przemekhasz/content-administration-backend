@@ -3,6 +3,8 @@
 namespace App\Infrastructure\Storage\Gallery;
 
 use App\Domain\Gallery\Dto\Gallery;
+use App\Infrastructure\Exception\Gallery\GalleryImageNotFoundException;
+use App\Infrastructure\Exception\Gallery\GalleryNotFoundException;
 use App\Infrastructure\Factory\gallery\GalleryFactory;
 use App\Infrastructure\Factory\gallery\ImageFactory;
 use App\Infrastructure\Repository\Gallery\GalleryRepository;
@@ -19,6 +21,9 @@ class GalleryStorage implements GalleryStorageInterface
     ) {
     }
 
+    /**
+     * @throws GalleryNotFoundException
+     */
     public function findById(string $id): Gallery
     {
         $gallery = $this->galleryRepository->findById($id);
@@ -26,6 +31,9 @@ class GalleryStorage implements GalleryStorageInterface
         return $this->galleryFactory->createFromEntity($gallery);
     }
 
+    /**
+     * @throws GalleryImageNotFoundException
+     */
     public function findGalleryImages(string $galleryId): \Generator
     {
         $projectDetail = $this->imageRepository->findByGalleryId($galleryId);

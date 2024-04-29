@@ -4,15 +4,14 @@ namespace App\Infrastructure\Storage\Page;
 
 use App\Domain\Page\Dto\Page;
 use App\Domain\Styles\Dto\Styles;
-use App\Infrastructure\Factory\gallery\GalleryFactory;
-use App\Infrastructure\Factory\Page\GlobalStylesFactory;
+use App\Infrastructure\Exception\Page\PageGalleryNotFoundException;
+use App\Infrastructure\Exception\Page\PageNotFoundException;
+use App\Infrastructure\Exception\Page\PageProjectNotFoundException;
+use App\Infrastructure\Exception\Page\PageStylesNotFoundException;
+use App\Infrastructure\Exception\Styles\StylesNotFoundException;
 use App\Infrastructure\Factory\Page\PageFactory;
 use App\Infrastructure\Factory\Page\StylesFactory;
-use App\Infrastructure\Factory\Project\ProjectFactory;
-use App\Infrastructure\Repository\Gallery\GalleryRepository;
 use App\Infrastructure\Repository\Page\PageRepository;
-use App\Infrastructure\Repository\Project\ProjectRepository;
-use App\Infrastructure\Repository\Styles\GlobalStylesRepository;
 use App\Infrastructure\Repository\Styles\StylesRepository;
 use App\Infrastructure\Storage\Page\Interface\PageStorageInterface;
 use Doctrine\ORM\NonUniqueResultException;
@@ -21,20 +20,16 @@ class PageStorage implements PageStorageInterface
 {
     public function __construct(
         private readonly PageRepository $pageRepository,
-        private readonly ProjectRepository $projectRepository,
-        private readonly GalleryRepository $galleryRepository,
         private readonly StylesRepository $stylesRepository,
-        private readonly GlobalStylesRepository $globalStylesRepository,
         private readonly PageFactory $pageFactory,
         private readonly StylesFactory $stylesFactory,
-        private readonly GlobalStylesFactory $globalStylesFactory,
-        private readonly ProjectFactory $projectFactory,
-        private readonly GalleryFactory $galleryFactory,
     ) {
     }
 
     /**
      * @throws NonUniqueResultException
+     * @throws ProjectNotFoundException
+     * @throws PageNotFoundException
      */
     public function findById(string $id): Page
     {
@@ -52,6 +47,7 @@ class PageStorage implements PageStorageInterface
 
     /**
      * @throws NonUniqueResultException
+     * @throws PageGalleryNotFoundException
      */
     public function findGalleryByPageId(string $id): Page
     {
@@ -62,6 +58,7 @@ class PageStorage implements PageStorageInterface
 
     /**
      * @throws NonUniqueResultException
+     * @throws PageProjectNotFoundException
      */
     public function findProjectsByPageId(string $id): Page
     {
@@ -72,6 +69,8 @@ class PageStorage implements PageStorageInterface
 
     /**
      * @throws NonUniqueResultException
+     * @throws PageStylesNotFoundException
+     * @throws StylesNotFoundException
      */
     public function findStylesByPageId(string $id): Styles
     {

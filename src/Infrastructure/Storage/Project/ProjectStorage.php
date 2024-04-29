@@ -3,6 +3,8 @@
 namespace App\Infrastructure\Storage\Project;
 
 use App\Domain\Project\Dto\Project;
+use App\Infrastructure\Exception\Project\ProjectDetailsNotFoundException;
+use App\Infrastructure\Exception\Project\ProjectNotFoundException;
 use App\Infrastructure\Factory\Project\ProjectDetailFactory;
 use App\Infrastructure\Factory\Project\ProjectFactory;
 use App\Infrastructure\Repository\Project\ProjectDetailRepository;
@@ -19,6 +21,9 @@ class ProjectStorage implements ProjectStorageInterface
     ) {
     }
 
+    /**
+     * @throws ProjectNotFoundException
+     */
     public function findById(string $id): Project
     {
         $project = $this->projectRepository->findById($id);
@@ -26,6 +31,9 @@ class ProjectStorage implements ProjectStorageInterface
         return $this->projectFactory->createFromEntity($project);
     }
 
+    /**
+     * @throws ProjectDetailsNotFoundException
+     */
     public function findProjectDetails(string $projectId): \Generator
     {
         $projectDetail = $this->projectDetailRepository->findByProjectId($projectId);

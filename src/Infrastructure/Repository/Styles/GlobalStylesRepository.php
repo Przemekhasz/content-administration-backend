@@ -3,7 +3,9 @@
 namespace App\Infrastructure\Repository\Styles;
 
 use App\Infrastructure\Entity\Styles\GlobalStyles;
+use App\Infrastructure\Exception\Styles\GlobalStylesNotFoundException;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -17,37 +19,52 @@ class GlobalStylesRepository extends AbstractRepositoryManager
 
     /**
      * @throws NonUniqueResultException
+     * @throws GlobalStylesNotFoundException
      */
     public function findById(string $id): ?GlobalStyles
     {
-        $qb = $this->createQueryBuilder('gs')
-            ->where('gs.id = :id')
-            ->setParameter('id', $id);
-
-        return $qb->getQuery()->getOneOrNullResult();
+        try {
+            return $this->createQueryBuilder('gs')
+                ->where('gs.id = :id')
+                ->setParameter('id', $id)
+                ->getQuery()
+                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+        } catch (NoResultException) {
+            throw new GlobalStylesNotFoundException();
+        }
     }
 
     /**
      * @throws NonUniqueResultException
      * @throws NoResultException
+     * @throws GlobalStylesNotFoundException
      */
     public function countGlobalStyles(): int
     {
-        $qb = $this->createQueryBuilder('gs')
-            ->select('COUNT(gs.id)');
-
-        return (int) $qb->getQuery()->getSingleScalarResult();
+        try {
+            return (int) $this->createQueryBuilder('gs')
+                ->select('COUNT(gs.id)')
+                ->getQuery()
+                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+        } catch (NoResultException) {
+            throw new GlobalStylesNotFoundException();
+        }
     }
 
     /**
      * @throws NonUniqueResultException
+     * @throws GlobalStylesNotFoundException
      */
     public function findLastGlobalStyles(): ?GlobalStyles
     {
-        $qb = $this->createQueryBuilder('gs')
-            ->orderBy('gs.id', 'DESC')
-            ->setMaxResults(1);
-
-        return $qb->getQuery()->getOneOrNullResult();
+        try {
+            return $this->createQueryBuilder('gs')
+                ->orderBy('gs.id', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
+        } catch (NoResultException) {
+            throw new GlobalStylesNotFoundException();
+        }
     }
 }
