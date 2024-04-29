@@ -16,6 +16,7 @@ final class CKEditorField implements FieldInterface
             ->setProperty($propertyName)
             ->setLabel($label)
             ->setFormType(CKEditorType::class)
+            ->setTemplatePath('admin/field/show_data_modal.html.twig')
             ;
     }
 }
