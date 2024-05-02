@@ -102,7 +102,7 @@ class PageFactory
                 hoverColor: $entity->getStyles()?->getHoverColor(),
                 headingFont: $entity->getStyles()?->getHeadingFont(),
                 bodyFont: $entity->getStyles()?->getBodyFont(),
-            ),
+            ) ?? null,
         );
     }
 }

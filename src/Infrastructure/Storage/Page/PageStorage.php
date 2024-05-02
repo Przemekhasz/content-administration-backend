@@ -72,9 +72,12 @@ class PageStorage implements PageStorageInterface
      * @throws PageStylesNotFoundException
      * @throws StylesNotFoundException
      */
-    public function findStylesByPageId(string $id): Styles
+    public function findStylesByPageId(string $id): ?Styles
     {
-        $pageStylesId = $this->pageRepository->findStylesByPageId($id)->getStyles()->getId();
+        $pageStylesId = $this->pageRepository->findStylesByPageId($id)->getStyles()?->getId();
+        if (!$pageStylesId) {
+            return null;
+        }
         $styles = $this->stylesRepository->findById($pageStylesId);
 
         return $this->stylesFactory->createFromEntity($styles);

@@ -15,5 +15,5 @@ interface PageStorageInterface
 
     public function findProjectsByPageId(string $id): Page;
 
-    public function findStylesByPageId(string $id): Styles;
+    public function findStylesByPageId(string $id): ?Styles;
 }
