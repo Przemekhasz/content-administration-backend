@@ -50,7 +50,7 @@ class PageRepository extends AbstractRepositoryManager
                 ->where('p.id = :id')
                 ->setParameter('id', $pageId)
                 ->getQuery()
-                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+                ->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
         } catch (NoResultException) {
             throw new PageGalleryNotFoundException();
         }
@@ -68,7 +68,7 @@ class PageRepository extends AbstractRepositoryManager
                 ->where('p.id = :id')
                 ->setParameter('id', $pageId)
                 ->getQuery()
-                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+                ->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
         } catch (NoResultException) {
             throw new PageProjectNotFoundException();
         }
@@ -86,7 +86,7 @@ class PageRepository extends AbstractRepositoryManager
                 ->where('p.id = :id')
                 ->setParameter('id', $pageId)
                 ->getQuery()
-                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+                ->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
         } catch (NoResultException) {
             throw new PageStylesNotFoundException();
         }
