@@ -19,9 +19,9 @@ class HttpImage
         #[OA\Property]
         private ?HttpGallery $gallery = null,
         #[OA\Property]
-        private ?Collection $categories = null,
+        private ?array $categories = [],
         #[OA\Property]
-        private ?Collection $tags = null,
+        private ?array $tags = [],
     ) {
     }
 
@@ -75,22 +75,22 @@ class HttpImage
         $this->gallery = $gallery;
     }
 
-    public function getCategories(): ?Collection
+    public function getCategories(): ?array
     {
         return $this->categories;
     }
 
-    public function setCategories(?Collection $categories): void
+    public function setCategories(?array $categories): void
     {
         $this->categories = $categories;
     }
 
-    public function getTags(): ?Collection
+    public function getTags(): ?array
     {
         return $this->tags;
     }
 
-    public function setTags(?Collection $tags): void
+    public function setTags(?array $tags): void
     {
         $this->tags = $tags;
     }

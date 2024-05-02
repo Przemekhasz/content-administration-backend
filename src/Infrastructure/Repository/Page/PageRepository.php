@@ -22,10 +22,9 @@ class PageRepository extends AbstractRepositoryManager
 
     /**
      * @throws NonUniqueResultException
-     * @throws ProjectNotFoundException
      * @throws PageNotFoundException
      */
-    public function findById(string $id): ?Page
+    public function findById(string $id): Page
     {
         try {
             return $this->createQueryBuilder('p')

@@ -28,12 +28,12 @@ class PageAdapter
         return $this->pageFacade->findAll();
     }
 
-    public function findGalleryByPageId(string $id): ?Collection
+    public function findGalleryByPageId(string $id): array
     {
         return $this->pageFacade->findGalleryByPageId($id)->getGalleries();
     }
 
-    public function findProjectsByPageId(string $id): ?Collection
+    public function findProjectsByPageId(string $id): ?array
     {
         return $this->pageFacade->findProjectsByPageId($id)->getProjects();
     }
