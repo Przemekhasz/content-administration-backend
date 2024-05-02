@@ -13,7 +13,7 @@ class HttpGallery
         #[OA\Property]
         private ?string $name = null,
         #[OA\Property]
-        private ?Collection $images = null,
+        private ?array $images = [],
     ) {
     }
 
@@ -37,12 +37,12 @@ class HttpGallery
         $this->name = $name;
     }
 
-    public function getImages(): ?Collection
+    public function getImages(): ?array
     {
         return $this->images;
     }
 
-    public function setImages(?Collection $images): void
+    public function setImages(?array $images): void
     {
         $this->images = $images;
     }

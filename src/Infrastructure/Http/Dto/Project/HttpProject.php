@@ -18,11 +18,11 @@ class HttpProject
         #[OA\Property()]
         private ?HttpUser $author = null,
         #[OA\Property()]
-        private ?Collection $details = null,
+        private ?array $details = null,
         #[OA\Property()]
-        private ?Collection $categories = null,
+        private ?array $categories = null,
         #[OA\Property()]
-        private ?Collection $tags = null,
+        private ?array $tags = null,
     ) {
     }
 
@@ -66,32 +66,32 @@ class HttpProject
         $this->author = $author;
     }
 
-    public function getDetails(): ?Collection
+    public function getDetails(): ?array
     {
         return $this->details;
     }
 
-    public function setDetails(?Collection $details): void
+    public function setDetails(?array $details): void
     {
         $this->details = $details;
     }
 
-    public function getCategories(): ?Collection
+    public function getCategories(): ?array
     {
         return $this->categories;
     }
 
-    public function setCategories(?Collection $categories): void
+    public function setCategories(?array $categories): void
     {
         $this->categories = $categories;
     }
 
-    public function getTags(): ?Collection
+    public function getTags(): ?array
     {
         return $this->tags;
     }
 
-    public function setTags(?Collection $tags): void
+    public function setTags(?array $tags): void
     {
         $this->tags = $tags;
     }

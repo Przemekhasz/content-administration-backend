@@ -26,13 +26,13 @@ class HttpPage
         #[OA\Property]
         private ?HttpMenuItem $menuItem = null,
         #[OA\Property]
-        private ?Collection $pageHeaders = null,
+        private ?array $pageHeaders = [],
         #[OA\Property]
-        private ?Collection $socialMediaLinkIcons = null,
+        private ?array $socialMediaLinkIcons = [],
         #[OA\Property]
-        private ?Collection $galleries = null,
+        private ?array $galleries = [],
         #[OA\Property]
-        private ?Collection $projects = null,
+        private ?array $projects = [],
         #[OA\Property]
         private ?HttpGlobalStyles $globalStyles = null,
         #[OA\Property]
@@ -110,37 +110,37 @@ class HttpPage
         $this->menuItem = $menuItem;
     }
 
-    public function getPageHeaders(): ?Collection
+    public function getPageHeaders(): ?array
     {
         return $this->pageHeaders;
     }
 
-    public function setPageHeaders(?Collection $pageHeaders): void
+    public function setPageHeaders(?array $pageHeaders): void
     {
         $this->pageHeaders = $pageHeaders;
     }
 
-    public function getSocialMediaLinkIcons(): ?Collection
+    public function getSocialMediaLinkIcons(): ?array
     {
         return $this->socialMediaLinkIcons;
     }
 
-    public function setSocialMediaLinkIcons(?Collection $socialMediaLinkIcons): void
+    public function setSocialMediaLinkIcons(?array $socialMediaLinkIcons): void
     {
         $this->socialMediaLinkIcons = $socialMediaLinkIcons;
     }
 
-    public function getGalleries(): ?Collection
+    public function getGalleries(): ?array
     {
         return $this->galleries;
     }
 
-    public function setGalleries(?Collection $galleries): void
+    public function setGalleries(?array $galleries): void
     {
         $this->galleries = $galleries;
     }
 
-    public function getProjects(): ?Collection
+    public function getProjects(): ?array
     {
         return $this->projects;
     }
