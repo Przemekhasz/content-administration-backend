@@ -7,6 +7,7 @@ use App\Infrastructure\Exception\Gallery\GalleryNotFoundException;
 use App\Infrastructure\RepositoryManager\AbstractRepositoryManager;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 
 class GalleryRepository extends AbstractRepositoryManager
@@ -18,6 +19,7 @@ class GalleryRepository extends AbstractRepositoryManager
 
     /**
      * @throws GalleryNotFoundException
+     * @throws NonUniqueResultException
      */
     public function findById(string $id): ?Gallery
     {
@@ -27,7 +29,7 @@ class GalleryRepository extends AbstractRepositoryManager
                 ->setParameter('id', $id)
                 ->setMaxResults(1)
                 ->getQuery()
-                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+                ->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
         } catch (NoResultException) {
             throw new GalleryNotFoundException();
         }

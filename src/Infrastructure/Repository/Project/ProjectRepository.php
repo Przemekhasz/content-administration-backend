@@ -19,6 +19,7 @@ class ProjectRepository extends AbstractRepositoryManager
 
     /**
      * @throws ProjectNotFoundException
+     * @throws NonUniqueResultException
      */
     public function findById(string $id): ?Project
     {
@@ -28,7 +29,7 @@ class ProjectRepository extends AbstractRepositoryManager
                 ->setParameter('id', $id)
                 ->setMaxResults(1)
                 ->getQuery()
-                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+                ->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
         } catch (NoResultException) {
             throw new ProjectNotFoundException();
         }
