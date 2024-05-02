@@ -2,8 +2,6 @@
 
 namespace App\Domain\Gallery\Dto;
 
-use Doctrine\Common\Collections\Collection;
-
 class Image
 {
     public function __construct(
@@ -11,8 +9,8 @@ class Image
         private ?string $title = null,
         private ?string $description = null,
         private ?string $imagePath = null,
-        private ?Collection $categories = null,
-        private ?Collection $tags = null,
+        private ?array $categories = [],
+        private ?array $tags = [],
     ) {
     }
 
@@ -56,22 +54,22 @@ class Image
         $this->imagePath = $imagePath;
     }
 
-    public function getCategories(): ?Collection
+    public function getCategories(): ?array
     {
         return $this->categories;
     }
 
-    public function setCategories(?Collection $categories): void
+    public function setCategories(?array $categories): void
     {
         $this->categories = $categories;
     }
 
-    public function getTags(): ?Collection
+    public function getTags(): ?array
     {
         return $this->tags;
     }
 
-    public function setTags(?Collection $tags): void
+    public function setTags(?array $tags): void
     {
         $this->tags = $tags;
     }

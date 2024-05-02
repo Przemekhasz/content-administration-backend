@@ -8,12 +8,22 @@ use App\Domain\Page\Dto\Logo;
 use App\Domain\Page\Dto\Page;
 use App\Domain\Styles\Dto\GlobalStyles;
 use App\Domain\Styles\Dto\Styles;
+use App\Infrastructure\Entity\Gallery\Gallery as GalleryEntity;
 use App\Infrastructure\Entity\Page\Page as PageEntity;
+use App\Infrastructure\Entity\Page\PageHeader as PageHeaderEntity;
+use App\Infrastructure\Entity\Page\SocialMediaLinkIcons as SocialMediaLinkIconsEntity;
+use App\Infrastructure\Entity\Project\Project as ProjectEntity;
+use App\Infrastructure\Factory\gallery\GalleryFactory;
+use App\Infrastructure\Factory\Project\ProjectFactory;
 
 class PageFactory
 {
     public function __construct(
         private readonly ?string $imgUploadsDir,
+        private readonly GalleryFactory $galleryFactory,
+        private readonly ProjectFactory $projectFactory,
+        private readonly PageHeadersFactory $pageHeadersFactory,
+        private readonly SocialMediaLinkIconsFactory $socialMediaLinkIconsFactory,
     ) {
     }
 
@@ -39,10 +49,18 @@ class PageFactory
                 name: $entity->getMenuItem()->getName(),
                 url: $entity->getMenuItem()->getUrl(),
             ),
-            pageHeaders: $entity->getPageHeaders(),
-            socialMediaLinkIcons: $entity->getSocialMediaIcons(),
-            galleries: $entity->getGalleries(),
-            projects: $entity->getProjects(),
+            pageHeaders: array_map(fn (PageHeaderEntity $pageHeaderEntity) => $this->pageHeadersFactory->createFromEntity($pageHeaderEntity),
+                $entity->getPageHeaders()->toArray()
+            ),
+            socialMediaLinkIcons: array_map(fn (SocialMediaLinkIconsEntity $socialMediaLinkIconsEntity) => $this->socialMediaLinkIconsFactory->createFromEntity($socialMediaLinkIconsEntity),
+                $entity->getSocialMediaIcons()->toArray()
+            ),
+            galleries: array_map(fn (GalleryEntity $galleryEntity) => $this->galleryFactory->createFromEntity($galleryEntity),
+                $entity->getGalleries()->toArray()
+            ),
+            projects: array_map(fn (ProjectEntity $projectEntity) => $this->projectFactory->createFromEntity($projectEntity),
+                $entity->getProjects()->toArray()
+            ),
             globalStyles: new GlobalStyles(
                 id: $entity->getGlobalStyles()->getId(),
                 name: $entity->getGlobalStyles()->getName(),

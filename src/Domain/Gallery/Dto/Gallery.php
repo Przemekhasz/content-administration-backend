@@ -2,14 +2,12 @@
 
 namespace App\Domain\Gallery\Dto;
 
-use Doctrine\Common\Collections\Collection;
-
 class Gallery
 {
     public function __construct(
         private ?string $id = null,
         private ?string $name = null,
-        private ?Collection $images = null,
+        private ?array $images = [],
     ) {
     }
 
@@ -33,12 +31,12 @@ class Gallery
         $this->name = $name;
     }
 
-    public function getImages(): ?Collection
+    public function getImages(): ?array
     {
         return $this->images;
     }
 
-    public function setImages(?Collection $images): void
+    public function setImages(?array $images): void
     {
         $this->images = $images;
     }

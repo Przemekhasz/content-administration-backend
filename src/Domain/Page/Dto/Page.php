@@ -5,7 +5,6 @@ namespace App\Domain\Page\Dto;
 use App\Domain\MenuItem\Dto\MenuItem;
 use App\Domain\Styles\Dto\GlobalStyles;
 use App\Domain\Styles\Dto\Styles;
-use Doctrine\Common\Collections\Collection;
 
 class Page
 {
@@ -17,10 +16,10 @@ class Page
         private ?Banner $banner = null,
         private ?Logo $logo = null,
         private ?MenuItem $menuItem = null,
-        private ?Collection $pageHeaders = null,
-        private ?Collection $socialMediaLinkIcons = null,
-        private ?Collection $galleries = null,
-        private ?Collection $projects = null,
+        private ?array $pageHeaders = [],
+        private ?array $socialMediaLinkIcons = [],
+        private ?array $galleries = [],
+        private ?array $projects = [],
         private ?GlobalStyles $globalStyles = null,
         private ?Styles $styles = null,
     ) {
@@ -96,42 +95,42 @@ class Page
         $this->menuItem = $menuItem;
     }
 
-    public function getPageHeaders(): ?Collection
+    public function getPageHeaders(): ?array
     {
         return $this->pageHeaders;
     }
 
-    public function setPageHeaders(?Collection $pageHeaders): void
+    public function setPageHeaders(?array $pageHeaders): void
     {
         $this->pageHeaders = $pageHeaders;
     }
 
-    public function getSocialMediaLinkIcons(): ?Collection
+    public function getSocialMediaLinkIcons(): ?array
     {
         return $this->socialMediaLinkIcons;
     }
 
-    public function setSocialMediaLinkIcons(?Collection $socialMediaLinkIcons): void
+    public function setSocialMediaLinkIcons(?array $socialMediaLinkIcons): void
     {
         $this->socialMediaLinkIcons = $socialMediaLinkIcons;
     }
 
-    public function getGalleries(): ?Collection
+    public function getGalleries(): ?array
     {
         return $this->galleries;
     }
 
-    public function setGalleries(?Collection $galleries): void
+    public function setGalleries(?array $galleries): void
     {
         $this->galleries = $galleries;
     }
 
-    public function getProjects(): ?Collection
+    public function getProjects(): ?array
     {
         return $this->projects;
     }
 
-    public function setProjects(?Collection $projects): void
+    public function setProjects(?array $projects): void
     {
         $this->projects = $projects;
     }
