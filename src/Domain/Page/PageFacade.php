@@ -33,7 +33,7 @@ class PageFacade
         return $this->pageService->findProjectsByPageId($id);
     }
 
-    public function findStylesByPageId(string $id): Styles
+    public function findStylesByPageId(string $id): ?Styles
     {
         return $this->pageService->findStylesByPageId($id);
     }

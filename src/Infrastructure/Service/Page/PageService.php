@@ -33,7 +33,7 @@ class PageService
         return $this->pageStorage->findProjectsByPageId($id);
     }
 
-    public function findStylesByPageId(string $id): Styles
+    public function findStylesByPageId(string $id): ?Styles
     {
         return $this->pageStorage->findStylesByPageId($id);
     }

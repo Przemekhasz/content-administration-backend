@@ -38,7 +38,7 @@ class PageAdapter
         return $this->pageFacade->findProjectsByPageId($id)->getProjects();
     }
 
-    public function findStylesByPageId(string $id): Styles
+    public function findStylesByPageId(string $id): ?Styles
     {
         return $this->pageFacade->findStylesByPageId($id);
     }
