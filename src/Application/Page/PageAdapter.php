@@ -6,7 +6,6 @@ use App\Domain\Page\PageFacade;
 use App\Domain\Styles\Dto\Styles;
 use App\Infrastructure\Http\Dto\Page\HttpPage;
 use App\Infrastructure\Http\Factory\Page\PageHttpFactory;
-use Doctrine\Common\Collections\Collection;
 
 class PageAdapter
 {

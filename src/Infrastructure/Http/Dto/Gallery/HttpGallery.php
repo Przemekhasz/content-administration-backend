@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Http\Dto\Gallery;
 
-use Doctrine\Common\Collections\Collection;
 use OpenApi\Attributes as OA;
 
 class HttpGallery

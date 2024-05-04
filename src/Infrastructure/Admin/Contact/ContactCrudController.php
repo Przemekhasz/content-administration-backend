@@ -45,7 +45,7 @@ class ContactCrudController extends AbstractCrudController
     {
         return $crud
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
-            ;
+        ;
     }
 
     public function configureActions(Actions $actions): Actions

@@ -8,7 +8,6 @@ use App\Infrastructure\Exception\Page\PageGalleryNotFoundException;
 use App\Infrastructure\Exception\Page\PageNotFoundException;
 use App\Infrastructure\Exception\Page\PageProjectNotFoundException;
 use App\Infrastructure\Exception\Page\PageStylesNotFoundException;
-use App\Infrastructure\Exception\Page\ProjectNotFoundException;
 use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

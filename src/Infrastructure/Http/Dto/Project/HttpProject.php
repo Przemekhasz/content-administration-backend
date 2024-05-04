@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Http\Dto\Project;
 
 use App\Infrastructure\Http\Dto\User\HttpUser;
-use Doctrine\Common\Collections\Collection;
 use OpenApi\Attributes as OA;
 
 class HttpProject
