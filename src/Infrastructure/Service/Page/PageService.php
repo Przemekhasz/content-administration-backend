@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Service\Page;
 
+use App\Domain\Page\Dto\BodyText;
 use App\Domain\Page\Dto\Page;
 use App\Domain\Styles\Dto\Styles;
 use App\Infrastructure\Storage\Page\Interface\PageStorageInterface;
@@ -36,5 +37,10 @@ class PageService
     public function findStylesByPageId(string $id): ?Styles
     {
         return $this->pageStorage->findStylesByPageId($id);
+    }
+
+    public function findBodyTextsByPageId(string $id): \Generator|BodyText|null
+    {
+        return $this->pageStorage->findBodyTextsByPageId($id);
     }
 }

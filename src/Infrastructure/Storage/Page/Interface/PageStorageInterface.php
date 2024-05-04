@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Storage\Page\Interface;
 
+use App\Domain\Page\Dto\BodyText;
 use App\Domain\Page\Dto\Page;
 use App\Domain\Styles\Dto\Styles;
 
@@ -16,4 +17,5 @@ interface PageStorageInterface
     public function findProjectsByPageId(string $id): Page;
 
     public function findStylesByPageId(string $id): ?Styles;
+    public function findBodyTextsByPageId(string $id): \Generator|BodyText|null;
 }

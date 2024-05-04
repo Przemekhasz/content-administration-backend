@@ -92,4 +92,19 @@ class PageRepository extends AbstractRepositoryManager
             throw new PageStylesNotFoundException();
         }
     }
+
+    public function findBodyTextByPageId(string $pageId): Page
+    {
+        try {
+            return $this->createQueryBuilder('p')
+                ->leftJoin('p.bodyTexts', 'bt')
+                ->addSelect('bt')
+                ->where('p.id = :id')
+                ->setParameter('id', $pageId)
+                ->getQuery()
+                ->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
+        } catch (NoResultException) {
+            throw new PageGalleryNotFoundException();
+        }
+    }
 }

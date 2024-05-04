@@ -46,6 +46,13 @@ class Page
     )]
     private Collection $pageHeaders;
 
+    #[ORM\ManyToMany(targetEntity: BodyText::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinTable(name: 'page_page_body_texts',
+        joinColumns: [new ORM\JoinColumn(name: 'page_id', referencedColumnName: 'id', nullable: true)],
+        inverseJoinColumns: [new ORM\JoinColumn(name: 'page_body_text_id', referencedColumnName: 'id', unique: false, nullable: true)]
+    )]
+    private Collection $bodyTexts;
+
     #[ORM\ManyToMany(targetEntity: SocialMediaLinkIcons::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinTable(name: 'page_social_media_icons',
         joinColumns: [new ORM\JoinColumn(name: 'page_id', referencedColumnName: 'id')],
@@ -72,6 +79,7 @@ class Page
     public function __construct()
     {
         $this->pageHeaders = new ArrayCollection();
+        $this->bodyTexts = new ArrayCollection();
         $this->socialMediaIcons = new ArrayCollection();
         $this->galleries = new ArrayCollection();
         $this->projects = new ArrayCollection();
@@ -154,6 +162,16 @@ class Page
         if ($this->pageHeaders->removeElement($pageHeader)) {
             // additional clean-up logic if necessary
         }
+    }
+
+    public function getBodyTexts(): Collection
+    {
+        return $this->bodyTexts;
+    }
+
+    public function setBodyTexts(Collection $bodyTexts): void
+    {
+        $this->bodyTexts = $bodyTexts;
     }
 
     public function getSocialMediaIcons(): Collection

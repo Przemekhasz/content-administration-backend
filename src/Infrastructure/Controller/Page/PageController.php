@@ -54,6 +54,23 @@ class PageController extends AbstractController
         }
     }
 
+    #[Route(path: '/page/{id}/body-texts', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Returns page body texts',
+    )]
+    #[OA\Response(response: 404, description: 'Page body texts')]
+    public function bodyTextsByPageId(string $id): JsonResponse
+    {
+        try {
+            $dto = $this->adapter->findBodyTextsByPageId($id);
+
+            return $this->api->json($dto);
+        } catch (PageGalleryNotFoundException) {
+            return new JsonResponse(status: Response::HTTP_NOT_FOUND);
+        }
+    }
+
     #[Route(path: '/page/{id}/galleries', methods: ['GET'])]
     #[OA\Response(
         response: 200,
