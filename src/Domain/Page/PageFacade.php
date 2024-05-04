@@ -2,6 +2,7 @@
 
 namespace App\Domain\Page;
 
+use App\Domain\Page\Dto\BodyText;
 use App\Domain\Page\Dto\Page;
 use App\Domain\Styles\Dto\Styles;
 use App\Infrastructure\Service\Page\PageService;
@@ -36,5 +37,10 @@ class PageFacade
     public function findStylesByPageId(string $id): ?Styles
     {
         return $this->pageService->findStylesByPageId($id);
+    }
+
+    public function findBodyTextsByPageId(string $id): \Generator|BodyText|null
+    {
+        return $this->pageService->findBodyTextsByPageId($id);
     }
 }

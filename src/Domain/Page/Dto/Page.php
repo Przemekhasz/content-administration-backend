@@ -17,6 +17,7 @@ class Page
         private ?Logo $logo = null,
         private ?MenuItem $menuItem = null,
         private ?array $pageHeaders = [],
+        private ?array $bodyTexts = [],
         private ?array $socialMediaLinkIcons = [],
         private ?array $galleries = [],
         private ?array $projects = [],
@@ -103,6 +104,16 @@ class Page
     public function setPageHeaders(?array $pageHeaders): void
     {
         $this->pageHeaders = $pageHeaders;
+    }
+
+    public function getBodyTexts(): ?array
+    {
+        return $this->bodyTexts;
+    }
+
+    public function setBodyTexts(?array $bodyTexts): void
+    {
+        $this->bodyTexts = $bodyTexts;
     }
 
     public function getSocialMediaLinkIcons(): ?array

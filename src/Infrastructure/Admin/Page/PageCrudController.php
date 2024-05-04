@@ -46,6 +46,9 @@ class PageCrudController extends AbstractCrudController
         yield AssociationField::new('pageHeaders', 'Nagłówki')
             ->setHelp('Przypisz nagłówek do strony.')
             ->setFormTypeOptions(['by_reference' => true]);
+        yield AssociationField::new('bodyTexts', 'Bloki tekstu')
+            ->setHelp('Przypisz bloki tekstu do strony.')
+            ->setFormTypeOptions(['by_reference' => true]);
         yield AssociationField::new('socialMediaIcons', 'Ikony mediów społecznościowych')
             ->setHelp('Przypisz ikonę mediów społecznościowych do strony.')
             ->setFormTypeOptions(['by_reference' => true]);

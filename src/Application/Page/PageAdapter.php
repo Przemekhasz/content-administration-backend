@@ -2,6 +2,7 @@
 
 namespace App\Application\Page;
 
+use App\Domain\Page\Dto\BodyText;
 use App\Domain\Page\PageFacade;
 use App\Domain\Styles\Dto\Styles;
 use App\Infrastructure\Http\Dto\Page\HttpPage;
@@ -25,6 +26,11 @@ class PageAdapter
     public function findAll(): \Generator
     {
         return $this->pageFacade->findAll();
+    }
+
+    public function findBodyTextsByPageId(string $id): \Generator|BodyText|null
+    {
+        return $this->pageFacade->findBodyTextsByPageId($id);
     }
 
     public function findGalleryByPageId(string $id): array
