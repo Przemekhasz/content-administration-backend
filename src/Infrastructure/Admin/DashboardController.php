@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Admin;
 
 use App\Infrastructure\Entity\Contact\Contact;
+use App\Infrastructure\Entity\Footer\Footer;
 use App\Infrastructure\Entity\Gallery\Gallery;
 use App\Infrastructure\Entity\Gallery\Image;
 use App\Infrastructure\Entity\Page\Banner;
@@ -53,7 +54,7 @@ class DashboardController extends AbstractDashboardController
             'answered_messages_count' => $answeredMessagesCount,
             'messages_count' => $messagesCount,
             'images_count' => $imagesCount,
-            'projects_count' => $projectsCount
+            'projects_count' => $projectsCount,
         ]);
     }
 
@@ -79,6 +80,7 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::section('Baner & logo'),
                 MenuItem::linkToCrud('Banery', 'fa-solid fa-image', Banner::class),
                 MenuItem::linkToCrud('Logo', 'fa-solid fa-flag', Logo::class),
+                MenuItem::linkToCrud('Stopka', 'fa-solid 	fa-wpforms', Footer::class),
 
                 MenuItem::section('Zawartość strony'),
                 MenuItem::linkToCrud('Media społecznościowe', 'fa fa-share-alt', SocialMediaLinkIcons::class),

@@ -46,7 +46,8 @@ class PageRepository extends AbstractRepositoryManager
     {
         try {
             return $this->createQueryBuilder('p')
-                ->select('p')
+                ->leftJoin('p.galleries', 'g')
+                ->addSelect('g')
                 ->where('p.id = :id')
                 ->setParameter('id', $pageId)
                 ->getQuery()
