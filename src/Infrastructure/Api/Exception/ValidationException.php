@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\JSONApi\Exception;
+namespace App\Infrastructure\Api\Exception;
 
 class ValidationException extends \Exception
 {
