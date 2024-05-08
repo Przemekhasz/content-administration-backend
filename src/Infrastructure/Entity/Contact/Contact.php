@@ -21,7 +21,7 @@ class Contact
         private string $email = '',
         #[ORM\Column]
         private string $topic = '',
-        #[ORM\Column]
+        #[ORM\Column(type: 'text')]
         private string $content = '',
         #[ORM\Column(nullable: true)]
         private ?string $replyMsg = '',
