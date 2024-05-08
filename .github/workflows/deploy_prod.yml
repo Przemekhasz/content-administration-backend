@@ -29,8 +29,6 @@ jobs:
             sudo docker-compose up --build -d
             sudo docker-compose up -d
             sudo docker-compose exec php-fpm ./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix
-            sudo docker-compose exec php-fpm ./bin/console ckeditor:install --tag=4.18.0
-            sudo docker-compose exec php-fpm ./bin/console assets:install
 
       - name: Notify Discord on success
         if: success()
