@@ -24,10 +24,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/content-administration-backend
-            git pull
-            sudo docker-compose up --build -d
-            sudo docker-compose up -d
+            cd /var/www/content-administration-backend && cd ./scripts && sudo ./prod_deploy_docker.sh
 
       - name: Notify Discord on success
         if: success()
