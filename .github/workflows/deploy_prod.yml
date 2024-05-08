@@ -12,42 +12,41 @@ jobs:
   deploy:
 
     runs-on: ubuntu-latest
-    needs: [build]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Deploy to server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          cd /var/www/content-administration-backend
-          git pull
-          docker-compose up --build -d
-          docker-compose up -d
-          docker-compose exec php-fpm ./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix
-          docker-compose exec php ./bin/console d:s:u -f
-          docker-compose exec php-fpm ./bin/console ckeditor:install --tag=4.18.0
-          docker-compose exec php-fpm ./bin/console assets:install
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/content-administration-backend
+            git pull
+            docker-compose up --build -d
+            docker-compose up -d
+            docker-compose exec php-fpm ./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix
+            docker-compose exec php ./bin/console d:s:u -f
+            docker-compose exec php-fpm ./bin/console ckeditor:install --tag=4.18.0
+            docker-compose exec php-fpm ./bin/console assets:install
 
-    - name: Notify Discord on success
-      if: success()
-      uses: Ilshidur/action-discord@master
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        DISCORD_EMBEDS: '[{"title":"Deployment Notification","description":"API deployment to production has been completed successfully.","color":65280,"fields":[{"name":"Application Link","value":"[api.propelascend.pl](https://api.propelascend.pl:8080/admin)","inline":true},{"name":"Repository","value":"[GitHub Repository](https://github.com/Przemekhasz/content-administration-backend)","inline":true}],"thumbnail":{"url":"https://propelascend.pl/logo-propel-ascend.png"},"image":{"url":"https://cdn.discordapp.com/attachments/917396643609976862/1237809367710175352/image.png?ex=663cff4e&is=663badce&hm=9fdc04441d5848823caeb5ccf9677d544c90a9bea156255ef746b9fe6d1e0d31&"}}]'
-      with:
-        args: 'The API project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed successfully.'
+      - name: Notify Discord on success
+        if: success()
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_EMBEDS: '[{"title":"Deployment Notification","description":"API deployment to production has been completed successfully.","color":65280,"fields":[{"name":"Application Link","value":"[api.propelascend.pl](https://api.propelascend.pl:8080/admin)","inline":true},{"name":"Repository","value":"[GitHub Repository](https://github.com/Przemekhasz/content-administration-backend)","inline":true}],"thumbnail":{"url":"https://propelascend.pl/logo-propel-ascend.png"},"image":{"url":"https://cdn.discordapp.com/attachments/917396643609976862/1237809367710175352/image.png?ex=663cff4e&is=663badce&hm=9fdc04441d5848823caeb5ccf9677d544c90a9bea156255ef746b9fe6d1e0d31&"}}]'
+        with:
+          args: 'The API project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed successfully.'
 
-    - name: Notify Discord on failure
-      if: failure()
-      uses: Ilshidur/action-discord@master
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        DISCORD_EMBEDS: '[{"title":"Deployment Notification","description":"API deployment to production has failed.","color":16711680,"fields":[{"name":"Error","value":"There was an error during deployment. Please check the logs for more information.","inline":false}],"thumbnail":{"url":"https://propelascend.pl/logo-propel-ascend.png"},"image":{"url":"https://cdn.discordapp.com/attachments/917396643609976862/1237809012506890341/image.png?ex=663cfef9&is=663bad79&hm=b0c0f07de357909c7c12fb47a80a1f5ddd8c528865a9a18bf935cd8c317aa7c5&"}}]'
-      with:
-        args: 'Failed to deploy the API project {{ EVENT_PAYLOAD.repository.full_name }}.'
+      - name: Notify Discord on failure
+        if: failure()
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_EMBEDS: '[{"title":"Deployment Notification","description":"API deployment to production has failed.","color":16711680,"fields":[{"name":"Error","value":"There was an error during deployment. Please check the logs for more information.","inline":false}],"thumbnail":{"url":"https://propelascend.pl/logo-propel-ascend.png"},"image":{"url":"https://cdn.discordapp.com/attachments/917396643609976862/1237809012506890341/image.png?ex=663cfef9&is=663bad79&hm=b0c0f07de357909c7c12fb47a80a1f5ddd8c528865a9a18bf935cd8c317aa7c5&"}}]'
+        with:
+          args: 'Failed to deploy the API project {{ EVENT_PAYLOAD.repository.full_name }}.'
