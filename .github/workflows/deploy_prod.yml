@@ -24,7 +24,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/content-administration-backend && cd ./scripts && sudo ./prod_deploy_docker.sh
+            cd /var/www/content-administration-backend/scripts && sudo ./prod_deploy_docker.sh
 
       - name: Notify Discord on success
         if: success()
