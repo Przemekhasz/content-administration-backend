@@ -28,7 +28,6 @@ jobs:
             git pull
             sudo docker-compose up --build -d
             sudo docker-compose up -d
-            sudo docker-compose exec php-fpm ./bin/console doctrine:migrations:migrate -n
 
       - name: Notify Discord on success
         if: success()
