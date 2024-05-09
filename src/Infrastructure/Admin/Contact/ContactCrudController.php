@@ -57,7 +57,7 @@ class ContactCrudController extends AbstractCrudController
             });
 
         if ($this->isGranted('ROLE_VISITOR') && !$this->isGranted('ROLE_ADMIN')) {
-            $actions->disable(Action::NEW, Action::EDIT, Action::DELETE);
+            $actions->disable(Action::NEW, Action::EDIT, Action::DELETE, Action::DETAIL, Action::INDEX);
         }
 
         $actions
