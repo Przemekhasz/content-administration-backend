@@ -23,7 +23,7 @@ class UserRepository extends AbstractRepositoryManager implements QueryRepositor
         return self::class;
     }
 
-    public function findById(int $id): User
+    public function findById(string $id): User
     {
         try {
             return $this->select('user')
