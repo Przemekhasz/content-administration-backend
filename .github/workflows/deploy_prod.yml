@@ -8,14 +8,23 @@ permissions:
   contents: read
 
 jobs:
-
   deploy:
-
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
       - name: Deploy to server
         uses: appleboy/ssh-action@master
@@ -31,15 +40,13 @@ jobs:
         uses: Ilshidur/action-discord@master
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          DISCORD_EMBEDS: '[{"title":"Deployment Notification","description":"API deployment to production has been completed successfully.","color":65280,"fields":[{"name":"Application Link","value":"[api.propelascend.pl](https://api.propelascend.pl:8080/admin)","inline":true},{"name":"Repository","value":"[GitHub Repository](https://github.com/Przemekhasz/content-administration-backend)","inline":true}],"thumbnail":{"url":"https://propelascend.pl/logo-propel-ascend.png"},"image":{"url":"https://cdn.discordapp.com/attachments/917396643609976862/1237809367710175352/image.png?ex=663cff4e&is=663badce&hm=9fdc04441d5848823caeb5ccf9677d544c90a9bea156255ef746b9fe6d1e0d31&"}}]'
         with:
-          args: 'The API project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed successfully.'
+          args: 'The API project ${{ github.repository }} has been deployed successfully. Visit [API Dashboard](https://api.propelascend.pl:8080/admin)'
 
       - name: Notify Discord on failure
         if: failure()
         uses: Ilshidur/action-discord@master
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          DISCORD_EMBEDS: '[{"title":"Deployment Notification","description":"API deployment to production has failed.","color":16711680,"fields":[{"name":"Error","value":"There was an error during deployment. Please check the logs for more information.","inline":false}],"thumbnail":{"url":"https://propelascend.pl/logo-propel-ascend.png"},"image":{"url":"https://cdn.discordapp.com/attachments/917396643609976862/1237809012506890341/image.png?ex=663cfef9&is=663bad79&hm=b0c0f07de357909c7c12fb47a80a1f5ddd8c528865a9a18bf935cd8c317aa7c5&"}}]'
         with:
-          args: 'Failed to deploy the API project {{ EVENT_PAYLOAD.repository.full_name }}.'
+          args: 'Failed to deploy the API project ${{ github.repository }}. Please check the logs for more information.'
