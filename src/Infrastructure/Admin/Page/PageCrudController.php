@@ -5,6 +5,8 @@ namespace App\Infrastructure\Admin\Page;
 use App\Infrastructure\Entity\Page\Page;
 use App\Infrastructure\Repository\Styles\GlobalStylesRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -22,6 +24,17 @@ class PageCrudController extends AbstractCrudController
     public function __construct(
         private readonly GlobalStylesRepository $globalStylesRepository,
     ) {
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        $actions = parent::configureActions($actions);
+
+        if ($this->isGranted('ROLE_VISITOR') && !$this->isGranted('ROLE_ADMIN')) {
+            $actions->disable(Action::NEW, Action::EDIT, Action::DELETE);
+        }
+
+        return $actions;
     }
 
     public function configureFields(string $pageName): iterable

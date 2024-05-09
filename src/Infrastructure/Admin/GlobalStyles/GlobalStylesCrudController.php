@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Admin\GlobalStyles;
 
 use App\Infrastructure\Entity\Styles\GlobalStyles;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -20,8 +21,13 @@ class GlobalStylesCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        return $actions
-            ->disable('new', 'delete');
+        $actions = parent::configureActions($actions);
+
+        if ($this->isGranted('ROLE_VISITOR') && !$this->isGranted('ROLE_ADMIN')) {
+            $actions->disable(Action::NEW, Action::EDIT, Action::DELETE);
+        }
+
+        return $actions->disable('new', 'delete');
     }
 
     public function configureFields(string $pageName): iterable
