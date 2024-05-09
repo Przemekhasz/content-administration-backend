@@ -19,6 +19,7 @@ class ProjectHttpFactory
             id: $http->getId(),
             title: $http->getTitle(),
             mainDescription: $http->getMainDescription(),
+            isPinned: $http->isPinned(),
             details: $http->getDetails(),
             author: new User(
                 id: $http->getAuthor()->getId(),
@@ -35,6 +36,7 @@ class ProjectHttpFactory
             id: $dto->getId(),
             title: $dto->getTitle(),
             mainDescription: $dto->getMainDescription(),
+            isPinned: $dto->isPinned(),
             author: new HttpUser(
                 id: $dto->getAuthor()->getId(),
                 username: $dto->getAuthor()->getUsername(),

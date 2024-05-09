@@ -61,6 +61,7 @@ class PageFactory
             projects: array_map(fn (ProjectEntity $projectEntity) => $this->projectFactory->createFromEntity($projectEntity),
                 $entity->getProjects()->toArray()
             ),
+            showPinnedProjects: $entity->isShowPinnedProjects(),
             globalStyles: new GlobalStyles(
                 id: $entity->getGlobalStyles()->getId(),
                 name: $entity->getGlobalStyles()->getName(),

@@ -47,6 +47,7 @@ class PageHttpFactory
             socialMediaLinkIcons: $http->getSocialMediaLinkIcons(),
             galleries: $http->getGalleries(),
             projects: $http->getProjects(),
+            showPinnedProjects: $http->isShowPinnedProjects(),
             globalStyles: new GlobalStyles(
                 id: $http->getGlobalStyles()->getId(),
                 name: $http->getGlobalStyles()->getName(),

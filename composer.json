@@ -15,7 +15,7 @@
         "ext-zip": "*",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.7",
-        "doctrine/doctrine-migrations-bundle": "^3.2",
+        "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.13",
         "dompdf/dompdf": "^2.0",
         "easycorp/easyadmin-bundle": "^4.0",

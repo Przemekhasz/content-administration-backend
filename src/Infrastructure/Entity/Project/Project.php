@@ -23,6 +23,9 @@ class Project
     #[ORM\Column(type: 'text')]
     private string $mainDescription;
 
+    #[ORM\Column(type: "boolean", nullable: false, options: ["default" => false])]
+    private bool $isPinned = false;
+
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: ProjectDetail::class, cascade: ['persist', 'remove'])]
     private Collection $details;
 
@@ -69,6 +72,16 @@ class Project
     public function setMainDescription(string $mainDescription): void
     {
         $this->mainDescription = $mainDescription;
+    }
+
+    public function isPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function setIsPinned(bool $isPinned): void
+    {
+        $this->isPinned = $isPinned;
     }
 
     public function getAuthor(): ?User

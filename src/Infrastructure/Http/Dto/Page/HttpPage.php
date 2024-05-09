@@ -34,6 +34,8 @@ class HttpPage
         #[OA\Property]
         private ?array $projects = [],
         #[OA\Property]
+        private bool $showPinnedProjects = false,
+        #[OA\Property]
         private ?HttpGlobalStyles $globalStyles = null,
         #[OA\Property]
         private ?HttpStyles $styles = null,
@@ -148,6 +150,16 @@ class HttpPage
     public function setProjects(?Collection $projects): void
     {
         $this->projects = $projects;
+    }
+
+    public function isShowPinnedProjects(): bool
+    {
+        return $this->showPinnedProjects;
+    }
+
+    public function setShowPinnedProjects(bool $showPinnedProjects): void
+    {
+        $this->showPinnedProjects = $showPinnedProjects;
     }
 
     public function getGlobalStyles(): ?HttpGlobalStyles

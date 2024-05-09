@@ -15,6 +15,8 @@ class HttpProject
         #[OA\Property()]
         private ?string $mainDescription = null,
         #[OA\Property()]
+        private bool $isPinned = false,
+        #[OA\Property()]
         private ?HttpUser $author = null,
         #[OA\Property()]
         private ?array $details = null,
@@ -53,6 +55,16 @@ class HttpProject
     public function setMainDescription(?string $mainDescription): void
     {
         $this->mainDescription = $mainDescription;
+    }
+
+    public function isPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function setIsPinned(bool $isPinned): void
+    {
+        $this->isPinned = $isPinned;
     }
 
     public function getAuthor(): ?HttpUser

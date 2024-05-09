@@ -20,10 +20,6 @@ composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-p
 echo "Building and starting Docker containers..."
 docker-compose up --build -d
 
-# Setting Symfony environment variables
-echo "Setting Symfony environment variables..."
-docker-compose exec -T php-fpm bash -c "export APP_ENV=prod && export APP_DEBUG=0"
-
 # Clear and warm up the Symfony cache
 echo "Clearing and warming up cache..."
 docker-compose exec -T php-fpm php bin/console cache:clear --env=prod --no-warmup
@@ -33,8 +29,8 @@ docker-compose exec -T php-fpm php bin/console cache:warmup --env=prod
 echo "Installing assets..."
 docker-compose exec -T php-fpm php bin/console assets:install --env=prod --no-interaction
 
-# Additional Symfony commands can be added here, for example, database migrations
-# echo "Running database migrations..."
-# docker-compose exec -T php-fpm php bin/console doctrine:migrations:migrate --no-interaction
+# Database migrations
+echo "Running database migrations..."
+docker-compose exec -T php-fpm php bin/console doctrine:migrations:migrate --no-interaction
 
 echo "Deployment completed successfully."
