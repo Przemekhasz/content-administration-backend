@@ -7,12 +7,6 @@
     "description": "Content administration backend api and admin panel.",
     "require": {
         "php": ">=8.1.12",
-        "ext-ctype": "*",
-        "ext-fileinfo": "*",
-        "ext-gd": "*",
-        "ext-iconv": "*",
-        "ext-imagick": "*",
-        "ext-zip": "*",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.3",
