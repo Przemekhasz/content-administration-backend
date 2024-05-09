@@ -5,6 +5,8 @@ namespace App\Infrastructure\Admin\Project;
 use App\Infrastructure\Entity\Project\Project;
 use App\Infrastructure\Field\CKEditorField;
 use App\Infrastructure\Type\ProjectDetailType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -24,6 +26,17 @@ class ProjectCrudController extends AbstractCrudController
         return $crud
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
         ;
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        $actions = parent::configureActions($actions);
+
+        if ($this->isGranted('ROLE_VISITOR') && !$this->isGranted('ROLE_ADMIN')) {
+            $actions->disable(Action::NEW, Action::EDIT, Action::DELETE);
+        }
+
+        return $actions;
     }
 
     public function configureFields(string $pageName): iterable

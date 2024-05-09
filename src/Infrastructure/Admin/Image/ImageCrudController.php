@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use function Symfony\Component\Translation\t;
 
 class ImageCrudController extends AbstractCrudController
 {
@@ -30,18 +31,18 @@ class ImageCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title'),
-            AssociationField::new('gallery')
+            TextField::new('title', t('title')),
+            AssociationField::new('gallery', 'image.gallery')
                 ->setCrudController(GalleryCrudController::class),
-            CKEditorField::new('description', 'Opis'),
-            ImageField::new('imagePath')
+            CKEditorField::new('description', 'image.description'),
+            ImageField::new('imagePath', 'image.upload_image')
                 ->setBasePath('uploads/img')
                 ->setUploadDir('public/uploads/img')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false),
-            AssociationField::new('categories')
+            AssociationField::new('categories', 'image.categories')
                 ->setCrudController(CategoryCrudController::class),
-            AssociationField::new('tags')
+            AssociationField::new('tags', 'image.tags')
                 ->setCrudController(TagCrudController::class),
         ];
     }

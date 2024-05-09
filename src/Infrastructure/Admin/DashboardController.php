@@ -20,9 +20,14 @@ use App\Infrastructure\Entity\Project\ProjectDetail;
 use App\Infrastructure\Entity\Styles\GlobalStyles;
 use App\Infrastructure\Entity\Styles\Styles;
 use App\Infrastructure\Entity\User\User;
+use App\Infrastructure\Exception\Gallery\GalleryImageNotFoundException;
+use App\Infrastructure\Exception\Project\ProjectNotFoundException;
 use App\Infrastructure\Repository\Gallery\ImageRepository;
 use App\Infrastructure\Repository\Page\ContactRepository;
 use App\Infrastructure\Repository\Project\ProjectRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Locale;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -124,7 +129,7 @@ class DashboardController extends AbstractDashboardController
             ->setFaviconPath('favicon.svg')
 
             // the domain used by default is 'messages'
-            ->setTranslationDomain('my-custom-domain')
+            ->setTranslationDomain('messages')
 
             // there's no need to define the "text direction" explicitly because
             // its default value is inferred dynamically from the user locale

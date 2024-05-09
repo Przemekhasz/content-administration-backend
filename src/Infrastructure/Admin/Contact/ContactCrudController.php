@@ -56,7 +56,11 @@ class ContactCrudController extends AbstractCrudController
                 return !$entity->isAnswered();
             });
 
-        return $actions
+        if ($this->isGranted('ROLE_VISITOR') && !$this->isGranted('ROLE_ADMIN')) {
+            $actions->disable(Action::NEW, Action::EDIT, Action::DELETE);
+        }
+
+        $actions
             ->add(Crud::PAGE_INDEX, $replyAction)
             ->add(Crud::PAGE_DETAIL, $replyAction)
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
@@ -65,6 +69,8 @@ class ContactCrudController extends AbstractCrudController
                     ->setLabel('Poka')
                     ->setIcon('fa fa-eye');
             });
+
+        return $actions;
     }
 
     public function configureFields(string $pageName): iterable
