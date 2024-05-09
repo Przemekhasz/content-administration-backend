@@ -73,6 +73,8 @@ class PageCrudController extends AbstractCrudController
         yield AssociationField::new('projects', 'Projects')
             ->setHelp('Associate projects with this page.')
             ->setFormTypeOptions(['by_reference' => false]);
+        yield BooleanField::new('showPinnedProjects', 'Przypięte projekty?')
+            ->setHelp('Jeśli zaznaczysz to na stronie wyświetlą się tylko przypięte projekty w przeciwnym razie wyświetlone zostaną wszystkie projekty');
 
         yield AssociationField::new('globalStyles', 'Motyw współdzielony')
             ->setHelp('Domyślny motyw')

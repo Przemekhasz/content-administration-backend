@@ -26,6 +26,7 @@ class ProjectFactory
             id: $entity->getId(),
             title: $entity->getTitle(),
             mainDescription: $entity->getMainDescription(),
+            isPinned: $entity->isPinned(),
             details: array_map(fn (ProjectDetailEntity $projectDetailEntity) => $this->projectDetailFactory->createFromEntity($projectDetailEntity),
                 $entity->getDetails()->toArray()
             ),

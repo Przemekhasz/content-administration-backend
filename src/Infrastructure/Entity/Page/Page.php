@@ -68,6 +68,9 @@ class Page
     #[ORM\JoinTable(name: 'page_projects')]
     private Collection $projects;
 
+    #[ORM\Column(type: "boolean", nullable: false, options: ["default" => false])]
+    private bool $showPinnedProjects = false;
+
     #[ORM\ManyToOne(targetEntity: GlobalStyles::class)]
     #[ORM\JoinColumn(name: 'global_styles_id', referencedColumnName: 'id', nullable: true)]
     private ?GlobalStyles $globalStyles = null;
@@ -225,6 +228,16 @@ class Page
     public function removeProject(Project $project): void
     {
         $this->projects->removeElement($project);
+    }
+
+    public function isShowPinnedProjects(): bool
+    {
+        return $this->showPinnedProjects;
+    }
+
+    public function setShowPinnedProjects(bool $showPinnedProjects): void
+    {
+        $this->showPinnedProjects = $showPinnedProjects;
     }
 
     public function getGlobalStyles(): ?GlobalStyles

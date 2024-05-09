@@ -21,6 +21,7 @@ class Page
         private ?array $socialMediaLinkIcons = [],
         private ?array $galleries = [],
         private ?array $projects = [],
+        private bool $showPinnedProjects = false,
         private ?GlobalStyles $globalStyles = null,
         private ?Styles $styles = null,
     ) {
@@ -144,6 +145,16 @@ class Page
     public function setProjects(?array $projects): void
     {
         $this->projects = $projects;
+    }
+
+    public function isShowPinnedProjects(): bool
+    {
+        return $this->showPinnedProjects;
+    }
+
+    public function setShowPinnedProjects(bool $showPinnedProjects): void
+    {
+        $this->showPinnedProjects = $showPinnedProjects;
     }
 
     public function getGlobalStyles(): ?GlobalStyles
