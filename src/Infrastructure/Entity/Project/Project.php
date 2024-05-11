@@ -23,8 +23,11 @@ class Project
     #[ORM\Column(type: 'text')]
     private string $mainDescription;
 
-    #[ORM\Column(type: "boolean", nullable: false, options: ["default" => false])]
+    #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
     private bool $isPinned = false;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private string $status;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: ProjectDetail::class, cascade: ['persist', 'remove'])]
     private Collection $details;
@@ -72,6 +75,16 @@ class Project
     public function setMainDescription(string $mainDescription): void
     {
         $this->mainDescription = $mainDescription;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
     }
 
     public function isPinned(): bool

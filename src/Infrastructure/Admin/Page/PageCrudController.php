@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -39,6 +40,7 @@ class PageCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield FormField::addTab('Strona');
         yield IdField::new('id')->hideOnForm();
         yield TextField::new('pageName', 'Nazwa strony')
             ->setHelp('Podaj nazwę strony, która będzie wyświetlana użytkownikom.');
@@ -66,16 +68,19 @@ class PageCrudController extends AbstractCrudController
             ->setHelp('Przypisz ikonę mediów społecznościowych do strony.')
             ->setFormTypeOptions(['by_reference' => true]);
 
+        yield FormField::addTab('Galerie');
         yield AssociationField::new('galleries', 'Galleries')
             ->setHelp('Associate galleries with this page.')
             ->setFormTypeOptions(['by_reference' => false]);
 
+        yield FormField::addTab('Projekty');
         yield AssociationField::new('projects', 'Projects')
             ->setHelp('Associate projects with this page.')
             ->setFormTypeOptions(['by_reference' => false]);
         yield BooleanField::new('showPinnedProjects', 'Przypięte projekty?')
             ->setHelp('Jeśli zaznaczysz to na stronie wyświetlą się tylko przypięte projekty w przeciwnym razie wyświetlone zostaną wszystkie projekty');
 
+        yield FormField::addTab('Motyw');
         yield AssociationField::new('globalStyles', 'Motyw współdzielony')
             ->setHelp('Domyślny motyw')
             ->setFormTypeOptions([

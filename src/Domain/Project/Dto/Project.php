@@ -10,6 +10,7 @@ class Project
         private ?string $id = null,
         private ?string $title = null,
         private ?string $mainDescription = null,
+        private ?string $status = null,
         private bool $isPinned = false,
         private ?array $details = [],
         private ?User $author = null,
@@ -46,6 +47,16 @@ class Project
     public function setMainDescription(?string $mainDescription): void
     {
         $this->mainDescription = $mainDescription;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): void
+    {
+        $this->status = $status;
     }
 
     public function isPinned(): bool
