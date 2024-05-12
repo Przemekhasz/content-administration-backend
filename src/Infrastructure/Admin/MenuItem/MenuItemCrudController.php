@@ -6,6 +6,7 @@ use App\Infrastructure\Entity\Page\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class MenuItemCrudController extends AbstractCrudController
@@ -30,5 +31,6 @@ class MenuItemCrudController extends AbstractCrudController
     {
         yield TextField::new('name', 'Menu Item Name');
         yield TextField::new('url', 'Link to Page');
+        yield NumberField::new('position', 'Kolejność w menu');
     }
 }
