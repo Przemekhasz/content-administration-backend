@@ -17,6 +17,7 @@ class MenuItemsFactory
             id: $entity->getId(),
             name: $entity->getName(),
             url: $entity->getUrl(),
+            position: $entity->getPosition(),
         );
     }
 }

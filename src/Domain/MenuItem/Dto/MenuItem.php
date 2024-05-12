@@ -8,6 +8,7 @@ class MenuItem
         private ?string $id = null,
         private ?string $name = null,
         private ?string $url = null,
+        private ?int $position = null,
     ) {
     }
 
@@ -39,5 +40,15 @@ class MenuItem
     public function setUrl(?string $url): void
     {
         $this->url = $url;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?int $position): void
+    {
+        $this->position = $position;
     }
 }

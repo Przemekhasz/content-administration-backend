@@ -17,6 +17,8 @@ class MenuItem
         private string $name = '',
         #[ORM\Column]
         private string $url = '',
+        #[ORM\Column(unique: true, nullable: true)]
+        private int $position = 0,
     ) {
     }
 
@@ -38,6 +40,16 @@ class MenuItem
     public function setUrl(string $url): void
     {
         $this->url = $url;
+    }
+
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): void
+    {
+        $this->position = $position;
     }
 
     public function __toString(): string

@@ -13,6 +13,8 @@ class HttpMenuItem
         private ?string $name = null,
         #[OA\Property]
         private ?string $url = null,
+        #[OA\Property]
+        private ?int $position = null,
     ) {
     }
 
@@ -44,5 +46,15 @@ class HttpMenuItem
     public function setUrl(?string $url): void
     {
         $this->url = $url;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?int $position): void
+    {
+        $this->position = $position;
     }
 }
