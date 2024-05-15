@@ -49,7 +49,7 @@ class UserCrudController extends AbstractCrudController
      */
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        $existedUserEntity = $this->userRepository->findById((int)$entityInstance->getId());
+        $existedUserEntity = $this->userRepository->findById((int) $entityInstance->getId());
 
         if ($existedUserEntity->getPassword() !== $entityInstance->getPassword()) {
             $entityInstance->setPassword(password_hash($entityInstance->getPassword(), PASSWORD_DEFAULT));
@@ -59,11 +59,11 @@ class UserCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield FormField::addTab('Konto');
+        yield FormField::addTab('Account');
         yield IdField::new('id')->hideOnForm();
-        yield TextField::new('userName', 'Nazwa użytkownika');
-        yield TextField::new('password', 'Hasło')->hideOnIndex();
-        yield ChoiceField::new('roles', 'Rola')
+        yield TextField::new('userName', 'Username');
+        yield TextField::new('password', 'Password')->hideOnIndex();
+        yield ChoiceField::new('roles', 'Roles')
             ->allowMultipleChoices()
             ->setChoices([
                 'Admin' => 'ROLE_ADMIN',

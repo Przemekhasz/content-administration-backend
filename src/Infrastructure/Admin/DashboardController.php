@@ -66,61 +66,62 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Kokpit', 'fa fa-home');
+        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
-        yield MenuItem::section('Kreator stron');
-        yield MenuItem::linkToCrud('Strony', 'fa-solid fa-file-alt', Page::class);
+        yield MenuItem::section('Page Builder');
+        yield MenuItem::linkToCrud('Pages', 'fa-solid fa-file-alt', Page::class);
 
-        yield MenuItem::section('Konfiguracja');
-        yield MenuItem::linkToCrud('Motyw współdzielony', 'fa-solid fa-cog', GlobalStyles::class);
-        yield MenuItem::linkToCrud('Motywy wybranych stron', 'fa-solid fa-palette', Styles::class);
+        yield MenuItem::section('Configuration');
+        yield MenuItem::linkToCrud('Shared Theme', 'fa-solid fa-cog', GlobalStyles::class);
+        yield MenuItem::linkToCrud('Page-Specific Themes', 'fa-solid fa-palette', Styles::class);
 
-        yield MenuItem::section('Zarządzanie');
-        yield MenuItem::subMenu('Zarządzanie użytkownikami', 'fa-solid fa-users')
+        yield MenuItem::section('Management');
+        yield MenuItem::subMenu('User Management', 'fa-solid fa-users')
             ->setSubItems([
-                MenuItem::linkToCrud('Użytkownik', 'fa-solid fa-user', User::class),
+                MenuItem::linkToCrud('User', 'fa-solid fa-user', User::class),
             ]);
 
-        yield MenuItem::subMenu('Zarządzanie treścią', 'fa-solid fa-edit')
+        yield MenuItem::subMenu('Content Management', 'fa-solid fa-edit')
             ->setSubItems([
-                MenuItem::section('Baner & logo'),
-                MenuItem::linkToCrud('Banery', 'fa-solid fa-image', Banner::class),
-                MenuItem::linkToCrud('Logo', 'fa-solid fa-flag', Logo::class),
-                MenuItem::linkToCrud('Stopka', 'fa-solid 	fa-wpforms', Footer::class),
+                MenuItem::section('Banner & Logo'),
+                MenuItem::linkToCrud('Banners', 'fa-solid fa-image', Banner::class),
+                MenuItem::linkToCrud('Logos', 'fa-solid fa-flag', Logo::class),
+                MenuItem::linkToCrud('Footer', 'fa-solid fa-wpforms', Footer::class),
 
-                MenuItem::section('Zawartość strony'),
-                MenuItem::linkToCrud('Media społecznościowe', 'fa fa-share-alt', SocialMediaLinkIcons::class),
+                MenuItem::section('Page Content'),
+                MenuItem::linkToCrud('Social Media Icons', 'fa fa-share-alt', SocialMediaLinkIcons::class),
                 MenuItem::linkToCrud('Menu', 'fa fa-list-ul', MenuItemEntity::class),
-                MenuItem::linkToCrud('Nagłówki', 'fa fa-heading', PageHeader::class),
-                MenuItem::linkToCrud('Bloki tekstu', 'fa fa-envelope-open-text', BodyText::class),
+                MenuItem::linkToCrud('Headers', 'fa fa-heading', PageHeader::class),
+                MenuItem::linkToCrud('Text Blocks', 'fa fa-envelope-open-text', BodyText::class),
 
-                MenuItem::section('Galeria zdjęć'),
-                MenuItem::linkToCrud('Galerie', 'fas fa-images', Gallery::class),
-                MenuItem::linkToCrud('Zdjęcia', 'fas fa-image', Image::class),
+                MenuItem::section('Photo Gallery'),
+                MenuItem::linkToCrud('Galleries', 'fas fa-images', Gallery::class),
+                MenuItem::linkToCrud('Photos', 'fas fa-image', Image::class),
 
-                MenuItem::section('Projekty'),
+                MenuItem::section('Projects'),
                 MenuItem::linkToCrud('Projects', 'fas fa-list', Project::class),
                 MenuItem::linkToCrud('Project Details', 'fas fa-list', ProjectDetail::class),
 
-                MenuItem::section('Tagi i kategorie'),
-                MenuItem::linkToCrud('Kategorie', 'fas fa-tags', Category::class),
-                MenuItem::linkToCrud('Tagi', 'fas fa-tag', Tag::class),
+                MenuItem::section('Tags and Categories'),
+                MenuItem::linkToCrud('Categories', 'fas fa-tags', Category::class),
+                MenuItem::linkToCrud('Tags', 'fas fa-tag', Tag::class),
             ]);
 
-        yield MenuItem::section('Administracja');
-        yield MenuItem::subMenu('Zapytania', 'fa-solid fa-envelope')
+        yield MenuItem::section('Administration');
+        yield MenuItem::subMenu('Inquiries', 'fa-solid fa-envelope')
             ->setSubItems([
-                MenuItem::linkToCrud('Wiadomości', 'fa-solid fa-message', Contact::class),
+                MenuItem::linkToCrud('Messages', 'fa-solid fa-message', Contact::class),
             ]);
     }
+
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
             // the name visible to end users
-            ->setTitle('Administracja zawartością witryn')
+            ->setTitle('Content managment system')
             // you can include HTML contents too (e.g. to link to an image)
-            ->setTitle('Administracja <span class="text-small">zawartością witryn.</span>')
+            ->setTitle('Content managment <span class="text-small">system.</span>')
 
             // by default EasyAdmin displays a black square as its default favicon;
             // use this method to display a custom favicon: the given path is passed

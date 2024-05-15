@@ -33,27 +33,27 @@ class GlobalStylesCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            FormField::addPanel('Ogólne'),
-            TextField::new('name', 'Nazwa stylów')->setFormTypeOptions(['row_attr' => ['class' => 'col-md-6']]),
+            FormField::addPanel('Global styles'),
+            TextField::new('name', 'Styles name')->setFormTypeOptions(['row_attr' => ['class' => 'col-md-6']]),
 
-            FormField::addPanel('Kolory'),
-            ColorField::new('primaryColor', 'Główny kolor tekstu'),
-            ColorField::new('secondaryColor', 'Drugorzędny kolor tekstu'),
-            ColorField::new('backgroundColor', 'Kolor tła'),
-            ColorField::new('textColor', 'Kolor tekstu'),
+            FormField::addPanel('Colors'),
+            ColorField::new('primaryColor', 'Primary color'),
+            ColorField::new('secondaryColor', 'Seconary color'),
+            ColorField::new('backgroundColor', 'Background color'),
+            ColorField::new('textColor', 'Text color'),
 
-            FormField::addPanel('Kolory kategorii'),
-            ColorField::new('categoriesBackgroundColor', 'Kolor tła kategorii'),
-            ColorField::new('categoriesColor', 'Kolor tekstu dla kategorii'),
-            FormField::addPanel('Kolory tagów'),
-            ColorField::new('tagsBackgroundColor', 'Kolor tła tagów'),
-            ColorField::new('tagsColor', 'Kolor tekstu dla tagów'),
+            FormField::addPanel('Category color'),
+            ColorField::new('categoriesBackgroundColor', 'Category background color'),
+            ColorField::new('categoriesColor', 'Category text color'),
+            FormField::addPanel('Tag color'),
+            ColorField::new('tagsBackgroundColor', 'Tag background color'),
+            ColorField::new('tagsColor', 'Tag text color'),
 
             FormField::addPanel('Baner'),
-            BooleanField::new('bannerTextBold', 'Czy tekst na banerze ma być pogróbiony?'),
-            BooleanField::new('bannerTextShadow', 'Czy tekst na banerze ma mieć cienie?'),
-            BooleanField::new('bannerTextAnimation', 'Czy tekst na banerze ma mieć animacje?'),
-            ChoiceField::new('bannerTextFontFamily', 'Czcionka tekstu na banerze')->setChoices([
+            BooleanField::new('bannerTextBold', 'Banner text bold?'),
+            BooleanField::new('bannerTextShadow', 'Banner text shadow?'),
+            BooleanField::new('bannerTextAnimation', 'Banner text animation?'),
+            ChoiceField::new('bannerTextFontFamily', 'Banner text font family')->setChoices([
                 'Arial' => 'Arial',
                 'Times New Roman' => 'Times New Roman',
                 'Helvetica' => 'Helvetica',
@@ -67,12 +67,12 @@ class GlobalStylesCrudController extends AbstractCrudController
                 'Impact' => 'Impact',
                 'Comic Sans MS' => 'Comic Sans MS',
             ]),
-            ColorField::new('bannerTextShadowColor', 'Kolor cienia tekstu na banerze'),
+            ColorField::new('bannerTextShadowColor', 'Banner text shadow color'),
 
-            FormField::addPanel('Inne'),
-            ColorField::new('linkColor', 'Kolor linków'),
-            ColorField::new('hoverColor', 'Kolor po najechaniu'),
-            ChoiceField::new('headingFont', 'Czcionka tytułów')->setChoices([
+            FormField::addPanel('Other'),
+            ColorField::new('linkColor', 'Link color'),
+            ColorField::new('hoverColor', 'Hover color'),
+            ChoiceField::new('headingFont', 'Heading font')->setChoices([
                 'Arial' => 'Arial',
                 'Times New Roman' => 'Times New Roman',
                 'Helvetica' => 'Helvetica',

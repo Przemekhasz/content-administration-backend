@@ -32,7 +32,7 @@ class SocialMediaLinkIconsCrudController extends AbstractCrudController
     {
         yield FormField::addPanel('Social Media Links')->setIcon('fa fa-share-alt');
 
-        yield ChoiceField::new('name', 'Portal')
+        yield ChoiceField::new('name', 'Social')
             ->setChoices([
                 'Facebook' => 'facebook',
                 'Twitter' => 'twitter',

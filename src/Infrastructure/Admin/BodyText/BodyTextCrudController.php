@@ -39,10 +39,10 @@ class BodyTextCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield FormField::addTab('Stopka');
+        yield FormField::addTab('Body text');
         yield IdField::new('id')->hideOnForm();
 
-        yield TextField::new('heading', 'Nagłówek');
-        yield CKEditorField::new('body', 'Zawartość');
+        yield TextField::new('heading', 'Heading');
+        yield CKEditorField::new('body', 'Body');
     }
 }

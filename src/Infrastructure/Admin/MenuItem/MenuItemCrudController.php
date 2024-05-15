@@ -31,6 +31,7 @@ class MenuItemCrudController extends AbstractCrudController
     {
         yield TextField::new('name', 'Menu Item Name');
         yield TextField::new('url', 'Link to Page');
-        yield NumberField::new('position', 'Kolejność w menu');
+        yield NumberField::new('position', 'Menu position')
+            ->setHelp('Uniq position');
     }
 }

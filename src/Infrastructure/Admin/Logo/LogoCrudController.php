@@ -34,7 +34,7 @@ class LogoCrudController extends AbstractCrudController
         yield FormField::addTab('Logo');
         yield IdField::new('id')->hideOnForm();
 
-        yield TextField::new('name', 'Nazwa');
+        yield TextField::new('name', 'Name');
         yield ImageField::new('logo', 'Logo')
             ->setBasePath('uploads/img')
             ->setUploadDir('public/uploads/img')

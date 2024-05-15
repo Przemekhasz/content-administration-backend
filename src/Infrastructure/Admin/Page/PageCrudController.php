@@ -40,56 +40,56 @@ class PageCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield FormField::addTab('Strona');
+        yield FormField::addTab('Page');
         yield IdField::new('id')->hideOnForm();
-        yield TextField::new('pageName', 'Nazwa strony')
-            ->setHelp('Podaj nazwę strony, która będzie wyświetlana użytkownikom.');
-        yield NumberField::new('pageNumber', 'Numer strony')
-            ->setHelp('Numer porządkowy strony w dokumentacji lub wykazie.');
-        yield BooleanField::new('isPublic', 'Publiczna?')
-            ->setHelp('Decyduje czy strona jest publicznie dostępna.');
+        yield TextField::new('pageName', 'Page name')
+            ->setHelp('Enter the name of the page that will be displayed to users.');
+        yield NumberField::new('pageNumber', 'Page number')
+            ->setHelp('The ordinal number of the page in the documentation or listing.');
+        yield BooleanField::new('isPublic', 'Public?')
+            ->setHelp('Decides whether the page is publicly accessible.');
 
-        yield AssociationField::new('banner', 'Baner')
-            ->setHelp('Wybierz baner wyświetlany na stronie.')
+        yield AssociationField::new('banner', 'Banner')
+            ->setHelp('Select the banner displayed on the page.')
             ->setFormTypeOptions(['by_reference' => true]);
-        yield AssociationField::new('logo', 'Logotyp')
-            ->setHelp('Przypisz logotyp do strony.')
+        yield AssociationField::new('logo', 'Logo')
+            ->setHelp('Assign a logo to the page.')
             ->setFormTypeOptions(['by_reference' => true]);
-        yield AssociationField::new('menuItem', 'Element menu')
-            ->setHelp('Przypisz menu do tej strony.')
+        yield AssociationField::new('menuItem', 'Menu item')
+            ->setHelp('Assign a menu item to this page.')
             ->setFormTypeOptions(['by_reference' => true]);
-        yield AssociationField::new('pageHeaders', 'Nagłówki')
-            ->setHelp('Przypisz nagłówek do strony.')
+        yield AssociationField::new('pageHeaders', 'Headers')
+            ->setHelp('Assign headers to the page.')
             ->setFormTypeOptions(['by_reference' => true]);
-        yield AssociationField::new('bodyTexts', 'Bloki tekstu')
-            ->setHelp('Przypisz bloki tekstu do strony.')
+        yield AssociationField::new('bodyTexts', 'Text blocks')
+            ->setHelp('Assign text blocks to the page.')
             ->setFormTypeOptions(['by_reference' => true]);
-        yield AssociationField::new('socialMediaIcons', 'Ikony mediów społecznościowych')
-            ->setHelp('Przypisz ikonę mediów społecznościowych do strony.')
+        yield AssociationField::new('socialMediaIcons', 'Social media icons')
+            ->setHelp('Assign social media icons to the page.')
             ->setFormTypeOptions(['by_reference' => true]);
 
-        yield FormField::addTab('Galerie');
+        yield FormField::addTab('Galleries');
         yield AssociationField::new('galleries', 'Galleries')
             ->setHelp('Associate galleries with this page.')
             ->setFormTypeOptions(['by_reference' => false]);
 
-        yield FormField::addTab('Projekty');
+        yield FormField::addTab('Projects');
         yield AssociationField::new('projects', 'Projects')
             ->setHelp('Associate projects with this page.')
             ->setFormTypeOptions(['by_reference' => false]);
-        yield BooleanField::new('showPinnedProjects', 'Przypięte projekty?')
-            ->setHelp('Jeśli zaznaczysz to na stronie wyświetlą się tylko przypięte projekty w przeciwnym razie wyświetlone zostaną wszystkie projekty');
+        yield BooleanField::new('showPinnedProjects', 'Show pinned projects?')
+            ->setHelp('If selected, only pinned projects will be displayed on the page; otherwise, all projects will be displayed.');
 
-        yield FormField::addTab('Motyw');
-        yield AssociationField::new('globalStyles', 'Motyw współdzielony')
-            ->setHelp('Domyślny motyw')
+        yield FormField::addTab('Theme');
+        yield AssociationField::new('globalStyles', 'Shared theme')
+            ->setHelp('Default theme')
             ->setFormTypeOptions([
                 'by_reference' => true,
             ])
             ->setDisabled();
 
-        yield AssociationField::new('styles', 'Motywy wybranych strony')
-            ->setHelp('Przypisz motyw strony')
+        yield AssociationField::new('styles', 'Page-specific themes')
+            ->setHelp('Assign a theme to the page.')
             ->setFormTypeOptions(['by_reference' => true]);
     }
 
