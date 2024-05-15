@@ -1,6 +1,8 @@
 name: Symfony prod deployment
 
 on:
+  pull_request:
+    branches: [ "main" ]
   push:
     branches: [ "main" ]
 
@@ -9,8 +11,7 @@ permissions:
 
 jobs:
 
-  deploy:
-
+  validate-composer:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,6 +20,15 @@ jobs:
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: validate-composer
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Deploy to server
         uses: appleboy/ssh-action@master
