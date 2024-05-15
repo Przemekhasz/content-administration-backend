@@ -30,9 +30,9 @@ class PageHeaderCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield FormField::addTab('Nagłówek');
+        yield FormField::addTab('Header');
 
-        yield TextField::new('name', 'Nazwa nagłówka');
-        yield BooleanField::new('isMain', 'Główny?');
+        yield TextField::new('name', 'Name');
+        yield BooleanField::new('isMain', 'Main?');
     }
 }

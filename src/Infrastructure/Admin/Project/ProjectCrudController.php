@@ -46,14 +46,14 @@ class ProjectCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Title'),
-            CKEditorField::new('mainDescription', 'Opis'),
+            CKEditorField::new('mainDescription', 'Description'),
             ChoiceField::new('status', 'Status')->setChoices([
-                '<b style="color: dodgerblue;">W TRAKCIE</b>' => 'inProgress',
-                '<b style="color: green;">UKONCZONY</b>' => 'done',
+                '<b style="color: dodgerblue;">IN PROGRESS</b>' => 'inProgress',
+                '<b style="color: green;">DONE</b>' => 'done',
             ]),
 
-            BooleanField::new('isPinned', 'Przypnij'),
-            AssociationField::new('author', 'Autor'),
+            BooleanField::new('isPinned', 'Pin'),
+            AssociationField::new('author', 'Author'),
             CollectionField::new('details', 'Details')
                 ->setEntryType(ProjectDetailType::class)
                 ->allowAdd()

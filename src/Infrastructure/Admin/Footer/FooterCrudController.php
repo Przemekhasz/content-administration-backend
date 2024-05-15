@@ -30,13 +30,13 @@ class FooterCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield FormField::addTab('Stopka');
+        yield FormField::addTab('Footer');
         yield IdField::new('id')->hideOnForm();
 
-        yield TextField::new('siteName', 'Nazwa strony');
-        yield TextField::new('description', 'Opis');
-        yield TextField::new('phoneNumber', 'Numer telefonu');
+        yield TextField::new('siteName', 'Page name');
+        yield TextField::new('description', 'Description');
+        yield TextField::new('phoneNumber', 'Phone number');
         yield TextField::new('email', 'Email');
-        yield TextField::new('followUs', 'Śledź nas tekst');
+        yield TextField::new('followUs', 'Follow us text');
     }
 }

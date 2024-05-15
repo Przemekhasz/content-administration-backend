@@ -39,13 +39,13 @@ class ProjectDetailCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            CKEditorField::new('description', 'Opis'),
+            CKEditorField::new('description', 'Description'),
             ImageField::new('imagePath')
                 ->setBasePath('uploads/img')
                 ->setUploadDir('public/uploads/img')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false),
-            AssociationField::new('project', 'Projekt')
+            AssociationField::new('project', 'Project')
                 ->setFormTypeOptions(['by_reference' => true]),
         ];
     }

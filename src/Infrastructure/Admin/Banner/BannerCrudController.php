@@ -31,11 +31,11 @@ class BannerCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield FormField::addTab('Baner');
+        yield FormField::addTab('Banner');
         yield IdField::new('id')->hideOnForm();
 
-        yield TextField::new('name', 'Nazwa');
-        yield ImageField::new('image', 'Obrazek')
+        yield TextField::new('name', 'Name');
+        yield ImageField::new('image', 'Image')
             ->setBasePath('uploads/img')
             ->setUploadDir('public/uploads/img')
             ->setUploadedFileNamePattern('[randomhash].[extension]')

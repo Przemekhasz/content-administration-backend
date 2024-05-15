@@ -50,7 +50,7 @@ class ContactCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $replyAction = Action::new('reply', 'Odpowiedz', 'fa fa-reply')
+        $replyAction = Action::new('reply', 'Answer', 'fa fa-reply')
             ->linkToCrudAction('sendReply')
             ->displayIf(static function ($entity) {
                 return !$entity->isAnswered();
@@ -66,7 +66,7 @@ class ContactCrudController extends AbstractCrudController
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->update(Crud::PAGE_INDEX, Action::DETAIL, function (Action $action) {
                 return $action
-                    ->setLabel('Poka')
+                    ->setLabel('Show')
                     ->setIcon('fa fa-eye');
             });
 
@@ -80,17 +80,17 @@ class ContactCrudController extends AbstractCrudController
         yield EmailField::new('email', 'Email')
             ->setFormTypeOption('disabled', Crud::PAGE_EDIT === $pageName);
 
-        yield TextField::new('topic', 'Temat')
+        yield TextField::new('topic', 'Topic')
             ->setFormTypeOption('disabled', Crud::PAGE_EDIT === $pageName);
 
-        yield TextareaField::new('content', 'Zawartość')
+        yield TextareaField::new('content', 'Content')
             ->hideOnIndex()
             ->setFormTypeOption('disabled', Crud::PAGE_EDIT === $pageName);
 
-        yield CKEditorField::new('replyMsg', 'Odpowiedź')
+        yield CKEditorField::new('replyMsg', 'Reply message')
             ->hideOnIndex();
 
-        yield BooleanField::new('isAnswered', 'Odpowiedziano?')
+        yield BooleanField::new('isAnswered', 'Is answered?')
             ->renderAsSwitch(Crud::PAGE_EDIT !== $pageName)
             ->setFormTypeOption('disabled', Crud::PAGE_EDIT === $pageName);
     }
